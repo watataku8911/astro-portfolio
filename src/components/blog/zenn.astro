@@ -1,0 +1,38 @@
+---
+import Card from "../Card.astro";
+
+type Qiita = {
+  url: string;
+  title: string;
+  created_at: string;
+};
+
+const endpoint = "https://api.rss2json.com/v1/api.json";
+const feed = "https://zenn.dev/watataku/feed";
+
+const myZennApiUrl = endpoint + "?rss_url=" + feed;
+
+const res = await fetch(myZennApiUrl);
+const getFetchData = await res.json();
+console.log(getFetchData);
+---
+
+<!-- <div class="zenn">
+  {
+    getFetchData.map((qiita: Qiita) => (
+      <Card
+        image="/qiita-ogp.png"
+        href={qiita.url}
+        title={qiita.title}
+        time={qiita.created_at}
+      />
+    ))
+  }
+</div> -->
+<style>
+  .zenn {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+</style>

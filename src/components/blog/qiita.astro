@@ -1,0 +1,35 @@
+---
+import Card from "../Card.astro";
+
+type Qiita = {
+  url: string;
+  title: string;
+  created_at: string;
+};
+const myQiitaApiUrl =
+  "https://qiita.com/api/v2/items?page=1&per_page=4&query=user:watataku8911";
+
+const res = await fetch(myQiitaApiUrl);
+const getFetchData: Qiita[] = await res.json();
+---
+
+<div class="qiita">
+  {
+    getFetchData.map((qiita: Qiita) => (
+      <Card
+        image="/qiita-ogp.png"
+        href={qiita.url}
+        title={qiita.title}
+        time={qiita.created_at}
+      />
+    ))
+  }
+</div>
+
+<style>
+  .qiita {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+</style>

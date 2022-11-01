@@ -1,0 +1,77 @@
+---
+import { parseISO, format } from "date-fns";
+
+// 日付整形関数
+export const datePlasticSurgery = (dateString: string): string => {
+  const date = parseISO(dateString);
+  return format(date, "yyyy年M月d日");
+};
+
+// 文字を丸める関数
+export const split = (text: string, maxLength: number): string => {
+  let modStr = "・・・";
+
+  if (text.length > maxLength) {
+    modStr = text.substr(0, maxLength) + "...";
+  } else {
+    modStr = text;
+  }
+  return modStr;
+};
+
+export interface Props {
+  image: string;
+  title: string;
+  href: string;
+  time: string;
+}
+
+const { image, href, title, time } = Astro.props;
+---
+
+<a href={href} target="_blank">
+  <article class="card">
+    <div class="card__thumbnail">
+      <img src={image} alt={title} class="card__thunbnail__img" />
+    </div>
+    <h4 class="card__title">
+      {split(title, 30)}
+    </h4>
+    <time datetime="YYYY年MM月DD日" class="card__date">
+      {datePlasticSurgery(time)}
+    </time>
+  </article>
+</a>
+
+<style>
+  .card {
+    position: relative;
+    width: 23vw;
+    height: 300px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .card__thumbnail {
+    width: 100%;
+    height: 190px;
+  }
+
+  .card__thunbnail__img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .card__title {
+    margin: 0;
+    padding: 0 0 0 5px;
+    font-size: 1rem;
+    color: #000;
+  }
+
+  .card__date {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: #333;
+  }
+</style>
