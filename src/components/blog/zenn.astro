@@ -1,38 +1,89 @@
 ---
-import Card from "../Card.astro";
+import Card from "../UIKit/Card.astro";
+import Linker from "../UIKit/Linker.astro";
 
-type Qiita = {
-  url: string;
+type Zenn = {
+  items: Items[];
+};
+
+type Items = {
+  link: string;
   title: string;
-  created_at: string;
+  pubDate: string;
 };
 
 const endpoint = "https://api.rss2json.com/v1/api.json";
 const feed = "https://zenn.dev/watataku/feed";
 
-const myZennApiUrl = endpoint + "?rss_url=" + feed;
+const myZennApiUrl =
+  endpoint +
+  "?rss_url=" +
+  feed +
+  "&api_key=" +
+  import.meta.env.RSS_TO_JSON_API_KEY +
+  "&count=4";
 
 const res = await fetch(myZennApiUrl);
-const getFetchData = await res.json();
-console.log(getFetchData);
+const getFetchData: Zenn = await res.json();
 ---
 
-<!-- <div class="zenn">
+<div class="zenn">
   {
-    getFetchData.map((qiita: Qiita) => (
+    getFetchData.items.map((zenn: Items) => (
       <Card
-        image="/qiita-ogp.png"
-        href={qiita.url}
-        title={qiita.title}
-        time={qiita.created_at}
+        image="/zenn.png"
+        href={zenn.link}
+        title={zenn.title}
+        time={zenn.pubDate}
       />
     ))
   }
-</div> -->
+</div>
+<div class="linker-area">
+  <Linker href="https://zenn.dev/watataku" msg="more" />
+</div>
+
 <style>
   .zenn {
+    height: 270px;
     display: flex;
-    gap: 20px;
+    align-items: center;
     flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .zenn::before {
+    content: "";
+    width: 20vw;
+    order: 1;
+  }
+
+  .zenn::after {
+    content: "";
+    width: 20vw;
+  }
+
+  @media screen and (min-width: 482px) and (max-width: 1025px) {
+    .zenn {
+      height: 220px;
+    }
+  }
+
+  @media screen and (max-width: 481px) {
+    .zenn {
+      height: 450px;
+    }
+
+    .zenn::before {
+      width: 45vw;
+    }
+
+    .zenn::after {
+      width: 45vw;
+    }
+  }
+
+  .linker-area {
+    text-align: right;
   }
 </style>

@@ -1,5 +1,6 @@
 ---
-import Card from "../Card.astro";
+import Card from "../UIKit/Card.astro";
+import Linker from "../UIKit/Linker.astro";
 
 type Qiita = {
   url: string;
@@ -25,11 +26,52 @@ const getFetchData: Qiita[] = await res.json();
     ))
   }
 </div>
+<div class="linker-area">
+  <Linker href="https://qiita.com/watataku8911" msg="more" />
+</div>
 
 <style>
   .qiita {
+    height: 270px;
     display: flex;
-    gap: 20px;
+    align-items: center;
+    justify-content: space-around;
     flex-wrap: wrap;
+    column-gap: 2vw;
+  }
+
+  .qiita::before {
+    content: "";
+    width: 20vw;
+    order: 1;
+  }
+
+  .qiita::after {
+    content: "";
+    width: 20vw;
+  }
+
+  @media screen and (min-width: 482px) and (max-width: 1025px) {
+    .qiita {
+      height: 220px;
+    }
+  }
+
+  @media screen and (max-width: 481px) {
+    .qiita {
+      height: 450px;
+    }
+
+    .qiita::before {
+      width: 45vw;
+    }
+
+    .qiita::after {
+      width: 45vw;
+    }
+  }
+
+  .linker-area {
+    margin-right: auto;
   }
 </style>

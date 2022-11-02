@@ -2,13 +2,13 @@
 import { parseISO, format } from "date-fns";
 
 // 日付整形関数
-export const datePlasticSurgery = (dateString: string): string => {
+const datePlasticSurgery = (dateString: string): string => {
   const date = parseISO(dateString);
   return format(date, "yyyy年M月d日");
 };
 
 // 文字を丸める関数
-export const split = (text: string, maxLength: number): string => {
+const split = (text: string, maxLength: number): string => {
   let modStr = "・・・";
 
   if (text.length > maxLength) {
@@ -19,21 +19,19 @@ export const split = (text: string, maxLength: number): string => {
   return modStr;
 };
 
-export interface Props {
+type Props = {
   image: string;
   title: string;
   href: string;
   time: string;
-}
+};
 
 const { image, href, title, time } = Astro.props;
 ---
 
 <a href={href} target="_blank">
   <article class="card">
-    <div class="card__thumbnail">
-      <img src={image} alt={title} class="card__thunbnail__img" />
-    </div>
+    <img src={image} alt={title} class="card__thunbnail" />
     <h4 class="card__title">
       {split(title, 30)}
     </h4>
@@ -46,17 +44,29 @@ const { image, href, title, time } = Astro.props;
 <style>
   .card {
     position: relative;
-    width: 23vw;
-    height: 300px;
+    width: 20vw;
+    height: 250px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   }
 
-  .card__thumbnail {
-    width: 100%;
-    height: 190px;
+  @media screen and (min-width: 482px) and (max-width: 1025px) {
+    .card {
+      height: 200px;
+    }
   }
 
-  .card__thunbnail__img {
+  @media screen and (max-width: 481px) {
+    .card {
+      width: 45vw;
+      height: 200px;
+    }
+  }
+
+  .card:hover {
+    transform: translateY(-10px);
+  }
+
+  .card__thunbnail {
     max-width: 100%;
     height: auto;
   }
@@ -64,6 +74,7 @@ const { image, href, title, time } = Astro.props;
   .card__title {
     margin: 0;
     padding: 0 0 0 5px;
+    letter-spacing: 1px;
     font-size: 1rem;
     color: #000;
   }

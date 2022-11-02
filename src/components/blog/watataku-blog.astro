@@ -1,0 +1,90 @@
+---
+import Card from "../UIKit/Card.astro";
+import Linker from "../UIKit/Linker.astro";
+
+type WatatakuBlog = {
+  contents: Contents[];
+};
+
+type Contents = {
+  id: string;
+  createdAt: string;
+  title: string;
+  thumbnail: Thumbnail;
+};
+
+type Thumbnail = {
+  url: string;
+};
+
+const myQiitaApiUrl =
+  "https://du14ecbjft.microcms.io/api/v1/blog?orders=-publishedAt&limit=4";
+
+const res = await fetch(myQiitaApiUrl, {
+  headers: {
+    "X-MICROCMS-API-KEY": import.meta.env.MICROCMS_API_KEY,
+  },
+});
+const getFetchData: WatatakuBlog = await res.json();
+---
+
+<div class="watataku-blog">
+  {
+    getFetchData.contents.map((item: Contents) => (
+      <Card
+        image={item.thumbnail.url}
+        href={"https:watataku-blog.vercel.app/blog/" + item.id}
+        title={item.title}
+        time={item.createdAt}
+      />
+    ))
+  }
+</div>
+<div class="linker-area">
+  <Linker href="https:watataku-blog.vercel.app" msg="more" />
+</div>
+<style>
+  .watataku-blog {
+    height: 270px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    column-gap: 2vw;
+  }
+
+  .watataku-blog::before {
+    content: "";
+    width: 20vw;
+    order: 1;
+  }
+
+  .watataku-blog::after {
+    content: "";
+    width: 20vw;
+  }
+
+  @media screen and (min-width: 482px) and (max-width: 1025px) {
+    .watataku-blog {
+      height: 220px;
+    }
+  }
+
+  @media screen and (max-width: 481px) {
+    .watataku-blog {
+      height: 450px;
+    }
+
+    .watataku-blog::before {
+      width: 45vw;
+    }
+
+    .watataku-blog::after {
+      width: 45vw;
+    }
+  }
+
+  .linker-area {
+    margin-right: auto;
+  }
+</style>
