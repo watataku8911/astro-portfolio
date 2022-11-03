@@ -1,3 +1,6 @@
+---
+---
+
 <section class="profile">
   <h2 class="profile__title">PLOFILE</h2>
   <div class="profile__inner">
@@ -9,7 +12,10 @@
         初めまして。ご覧いただきありがとうございます。フロントエンドエンジニアとして活動しているWatatakuです。
       </p>
       <p class="profile__right__message">
-        「デザイン崩れ」のおきないサイト制作を目指し、「UI/UXを意識」したサイト制作を心がけています。
+        <i style="font-weight: 400">「デザイン崩れ」</i
+        >のおきないサイト制作を目指し、<i style="font-weight: 400"
+          >「UI/UXを意識」</i
+        >したサイト制作を心がけています。
       </p>
       <p class="profile__right__message">
         インタラクティブなサイトが好きなので、少しユーモアのあるインタラクションを取り入れたサイト制作を目指しています。
@@ -20,33 +26,50 @@
 
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Anton&family=Nunito:ital,wght@1,300&family=Oswald:wght@300&display=swap");
 
   .profile {
+    padding: 2%;
+    background-color: #addff2;
     height: 600px;
   }
 
   .profile__title {
-    font-size: 2.5em;
+    font-size: 3.5em;
     letter-spacing: 10px;
     margin-left: 10px;
-    text-align: center;
     font-family: "Oswald", sans-serif;
+    margin-bottom: 60px;
+    text-align: center;
   }
 
   .profile__inner {
+    width: 1250px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
   }
 
   .profile__left {
-    display: flex;
-    align-items: center;
     width: 50%;
   }
 
   .profile__left img {
-    max-width: 100%;
-    height: auto;
+    height: 300px;
+    width: 300px;
+  }
+
+  .profile__right {
+    width: 50%;
+  }
+
+  .profile__right__message {
+    font-family: "Anton", sans-serif;
+    font-family: "Nunito", sans-serif;
+    font-family: "Oswald", sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
   }
 </style>
