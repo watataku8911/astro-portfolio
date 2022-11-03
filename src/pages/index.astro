@@ -5,15 +5,11 @@ import Contact from "../components/Contact.astro";
 import Work from "../components/Work.astro";
 import Plofile from "../components/Plofile.astro";
 import FirstView from "../components/FirstView.astro";
-import IconDown from "/icon/icon_down.svg";
 ---
 
 <Layout title="Watataku's ポートフォリオ">
   <FirstView />
   <main class="main-contents">
-    <div class="pic_down">
-      <img src={IconDown} alt="↓" />
-    </div>
     <Plofile />
     <Work />
     <Blog />
@@ -23,7 +19,7 @@ import IconDown from "/icon/icon_down.svg";
 
 <style>
   .main-contents {
-    width: 1240px;
+    /* width: 1240px; */
     margin: auto;
   }
 
@@ -36,24 +32,6 @@ import IconDown from "/icon/icon_down.svg";
   @media screen and (max-width: 481px) {
     .main-contents {
       width: 100%;
-    }
-  }
-
-  .pic_down {
-    text-align: center;
-    animation-name: picdown;
-    animation-duration: 1s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease;
-    will-change: transform;
-  }
-  @keyframes picdown {
-    /*タイプライターライクなアニメーション*/
-    0% {
-      transform: translateY(0);
-    }
-    100% {
-      transform: translateY(20px);
     }
   }
 </style>

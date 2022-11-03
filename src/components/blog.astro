@@ -6,21 +6,33 @@ import WatatakuBlog from "./blog/watataku-blog.astro";
 
 <section class="blog">
   <h2 class="blog__title">BLOG</h2>
-  <h3>- Qiita</h3>
-  <Qiita />
-  <h3>- Zenn</h3>
-  <Zenn />
-  <h2>- Watataku ブログ</h2>
-  <WatatakuBlog />
+  <div class="blog__inner">
+    <h3>- Qiita</h3>
+    <Qiita />
+    <h3>- Zenn</h3>
+    <Zenn />
+    <h2>- Watataku ブログ</h2>
+    <WatatakuBlog />
+  </div>
 </section>
 
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap");
+  .blog {
+    padding: 5px;
+    background-color: #d6eff9;
+  }
+
   .blog__title {
     font-family: "Oswald", sans-serif;
     font-size: 2.5em;
     letter-spacing: 10px;
     margin-left: 10px;
     text-align: center;
+  }
+
+  .blog__inner {
+    width: 1240px;
+    margin: 0 auto;
   }
 </style>

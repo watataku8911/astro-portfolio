@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "astro": "^1.6.0",
-    "date-fns": "^2.29.3"
+    "date-fns": "^2.29.3",
+    "gsap": "^3.11.3"
   }
 }

@@ -1,19 +1,196 @@
+---
+import IconDown from "/icon/icon_down.svg";
+---
+
+<div class="c-loader-bg js-loader-bg">
+  <div class="c-loader-dot js-loader-dot-wrap">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
 <section class="first-view">
-  <p><a href="">Watataku's</a></p>
-  <h1 class="first-view__title">WATATAKU PORTFORIO</h1>
+  <header class="first-view__header">
+    <p class="first-view__header__logo"><a href="#">Watataku's</a></p>
+  </header>
+  <!-- <h1 class="first-view__title">
+    <i>Portfolio</i>
+  </h1> -->
+  <div class="first-view__circle center">
+    <!-- <div class="first-view__circle2 center">
+      <div class="first-view__circle3 center">
+        <div class="first-view__circle4 center"></div>
+      </div> -->
+  </div>
+
+  <p class="first-view__text">MARKUP&nbsp;ENGINNER/FRONTEND&nbsp;ENGINNER</p>
+  <div class="pic_down">
+    <img src={IconDown} alt="↓" />
+  </div>
 </section>
 
-<style>
-  @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap");
+<script>
+  import gsap from "gsap";
 
-  .first-view {
+  const jsLoaderBg = ".js-loader-bg";
+  const jsDot = ".js-loader-dot-wrap > span";
+
+  gsap.set(jsDot, {
+    opacity: 0,
+    y: -50,
+  });
+  gsap
+    .timeline()
+    .to(
+      /* 0.8秒後に起動 */
+      jsDot,
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        delay: 0.8,
+        stagger: {
+          amount: 0.5, //0.5秒おきに
+          from: "start", // 左から
+          ease: "power4.inOut",
+        },
+      }
+    )
+    .to(jsDot, {
+      opacity: 0,
+    })
+    .to(jsLoaderBg, {
+      y: "100%",
+      delay: 0.5,
+    });
+</script>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Anton&family=Nunito:ital,wght@1,300&family=Oswald:wght@300&display=swap");
+
+  /* オープニングアニメーション */
+  .c-loader-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 95vh;
+    height: 100%;
+    background-color: #000;
+    z-index: 100;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
   }
 
-  .first-view__title {
-    letter-spacing: 10px;
-    font-size: 100px;
+  .c-loader-dot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: start;
+    pointer-events: none;
+  }
+
+  .c-loader-dot > span {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #fff;
+  }
+
+  .c-loader-dot > span + span {
+    margin-left: 3rem;
+  }
+
+  /* メイン */
+  .first-view {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    margin-bottom: 200px;
+  }
+
+  .first-view__header__logo {
+    font-size: 35px;
+    font-family: "Anton", sans-serif;
+    font-family: "Nunito", sans-serif;
     font-family: "Oswald", sans-serif;
+  }
+
+  .first-view__header__logo a {
+    color: #333;
+  }
+
+  /* .first-view__title {
+    font-family: "Anton", sans-serif;
+    font-family: "Nunito", sans-serif;
+    font-family: "Oswald", sans-serif;
+    font-size: 100px;
+    text-align: center;
+  } */
+  /* 円 */
+  .center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .first-view__circle {
+    position: absolute;
+    bottom: -50%;
+    width: 1000px;
+    height: 1000px;
+    border-radius: 50%;
+    background-color: #5bbee5;
+  }
+
+  .first-view__circle2 {
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    background-color: #addff2;
+  }
+
+  .first-view__circle3 {
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background-color: #c2e7f6;
+  }
+
+  .first-view__circle4 {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #d6eff9;
+  }
+
+  .first-view__text {
+    font-family: "Anton", sans-serif;
+    font-family: "Nunito", sans-serif;
+    font-family: "Oswald", sans-serif;
+    position: absolute;
+    bottom: 2%;
+    font-size: 60px;
+  }
+
+  /* 下矢印 */
+  .pic_down {
+    position: absolute;
+    right: 2vw;
+    bottom: 2%;
+    animation-name: picdown;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+    will-change: transform;
+  }
+  @keyframes picdown {
+    /*タイプライターライクなアニメーション*/
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(20px);
+    }
   }
 </style>
