@@ -1,18 +1,85 @@
-<section class="work">
-  <h2 class="work__title">WORK</h2>
+---
+import workList from "../../public/data/work.json";
+import WorkCard from "./UIKit/WorkCard .astro";
+
+type Work = {
+  id: number;
+  image: string;
+  title: string;
+  href: string;
+  tag: string;
+  comment: string;
+};
+---
+
+<section class="works" id="work">
+  <div class="works__work">
+    <h2 class="works__work__title">Work.</h2>
+    <div class="works__work__inner">
+      {
+        workList.map((work: Work) => (
+          <WorkCard
+            image={work.image}
+            href={work.href}
+            title={work.title}
+            tag={work.tag}
+            comment={work.comment}
+          />
+        ))
+      }
+    </div>
+  </div>
 </section>
 
 <style>
-  @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap");
-  .work {
-    background-color: #c2e7f6;
-    height: 600px;
+  .works {
+    background-color: white;
+    padding: 0 0 10% 0;
   }
-  .work__title {
-    padding-top: 60px;
-    font-family: "Oswald", sans-serif;
-    font-size: 2.5em;
-    letter-spacing: 10px;
-    text-align: center;
+
+  .works::after {
+    content: "";
+    width: 40vw;
+  }
+
+  .works__work {
+    width: 1250px;
+    margin: 0 auto;
+  }
+
+  @media screen and (max-width: 1026px) {
+    .works__work {
+      width: 100%;
+    }
+  }
+
+  .works__work__title {
+    font-family: "Lobster";
+    font-size: 4.5em;
+    padding: 2% 0 60px 0;
+  }
+
+  @media screen and (min-width: 482px) and (max-width: 1025px) {
+    .works__work__title {
+      font-size: 3.5em;
+    }
+  }
+
+  @media screen and (max-width: 481px) {
+    .works__work__title {
+      font-size: 2.5em;
+    }
+  }
+
+  .works__work__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  @media screen and (max-width: 481px) {
+    .works__work__inner {
+      flex-direction: column;
+    }
   }
 </style>

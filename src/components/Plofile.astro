@@ -2,10 +2,10 @@
 ---
 
 <section class="profile">
-  <h2 class="profile__title">PLOFILE</h2>
   <div class="profile__inner">
+    <h2 class="profile__title">About&nbsp;me.</h2>
     <div class="profile__left">
-      <img src="/Hight_icon_watataku's_radius.png" alt="Watataku" />
+      <img src="/img/Hight_icon_watataku's_radius.png" alt="Watataku" />
     </div>
     <div class="profile__right">
       <p class="profile__right__message">
@@ -25,34 +25,49 @@
 </section>
 
 <style>
-  @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap");
-  @import url("https://fonts.googleapis.com/css2?family=Anton&family=Nunito:ital,wght@1,300&family=Oswald:wght@300&display=swap");
-
   .profile {
-    padding: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
     background-color: #addff2;
-    height: 600px;
+    padding: 0 0 10% 0;
   }
 
   .profile__title {
-    font-size: 3.5em;
-    letter-spacing: 10px;
-    margin-left: 10px;
-    font-family: "Oswald", sans-serif;
-    margin-bottom: 60px;
-    text-align: center;
+    font-family: "Lobster";
+    font-size: 4.5em;
+    padding: 2% 0 60px 0;
+  }
+
+  @media screen and (min-width: 482px) and (max-width: 1025px) {
+    .profile__title {
+      font-size: 3.5em;
+    }
+  }
+
+  @media screen and (max-width: 481px) {
+    .profile__title {
+      font-size: 2.5em;
+    }
   }
 
   .profile__inner {
     width: 1250px;
     margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
   }
 
   .profile__left {
     width: 50%;
+    float: left;
+  }
+
+  @media screen and (max-width: 481px) {
+    .profile__left {
+      text-align: center;
+      width: 100%;
+      float: none;
+    }
   }
 
   .profile__left img {
@@ -60,16 +75,47 @@
     width: 300px;
   }
 
+  @media screen and (min-width: 482px) and (max-width: 1025px) {
+    .profile__left img {
+      height: 200px;
+      width: 200px;
+    }
+  }
+
+  @media screen and (max-width: 481px) {
+    .profile__left img {
+      height: 100px;
+      width: 100px;
+    }
+  }
+
   .profile__right {
     width: 50%;
+    float: right;
+  }
+
+  @media screen and (max-width: 481px) {
+    .profile__right {
+      width: 100%;
+      float: none;
+    }
   }
 
   .profile__right__message {
-    font-family: "Anton", sans-serif;
-    font-family: "Nunito", sans-serif;
-    font-family: "Oswald", sans-serif;
     font-size: 1.5rem;
     letter-spacing: 2px;
     margin-bottom: 20px;
+  }
+
+  @media screen and (min-width: 482px) and (max-width: 1025px) {
+    .profile__right__message {
+      font-size: 24px;
+    }
+  }
+
+  @media screen and (max-width: 481px) {
+    .profile__right__message {
+      font-size: 18px;
+    }
   }
 </style>

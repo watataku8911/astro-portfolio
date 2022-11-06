@@ -1,4 +1,5 @@
 ---
+import { log } from "astro/dist/core/logger/core";
 import Card from "../UIKit/Card.astro";
 import Linker from "../UIKit/Linker.astro";
 
@@ -23,15 +24,19 @@ const myZennApiUrl =
   import.meta.env.RSS_TO_JSON_API_KEY +
   "&count=4";
 
+// console.log(myZennApiUrl);
+
 const res = await fetch(myZennApiUrl);
 const getFetchData: Zenn = await res.json();
+
+// console.log(getFetchData.items);
 ---
 
 <div class="zenn">
   {
     getFetchData.items.map((zenn: Items) => (
       <Card
-        image="/zenn.png"
+        image="/img/zenn.png"
         href={zenn.link}
         title={zenn.title}
         time={zenn.pubDate}
@@ -39,13 +44,9 @@ const getFetchData: Zenn = await res.json();
     ))
   }
 </div>
-<div class="linker-area">
-  <Linker href="https://zenn.dev/watataku" msg="more" />
-</div>
-
 <style>
   .zenn {
-    height: 270px;
+    height: 300px;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -81,9 +82,5 @@ const getFetchData: Zenn = await res.json();
     .zenn::after {
       width: 45vw;
     }
-  }
-
-  .linker-area {
-    text-align: right;
   }
 </style>

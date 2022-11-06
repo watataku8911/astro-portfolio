@@ -1,37 +1,23 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Blog from "../components/blog.astro";
+import Blog from "../components/Blog.astro";
 import Contact from "../components/Contact.astro";
 import Work from "../components/Work.astro";
 import Plofile from "../components/Plofile.astro";
 import FirstView from "../components/FirstView.astro";
 ---
 
-<Layout title="Watataku's ポートフォリオ">
+<Layout
+  title="Watataku's ポートフォリオ"
+  description="Watatakuのポートフォリオサイトです。"
+>
   <FirstView />
   <main class="main-contents">
     <Plofile />
     <Work />
-    <Blog />
+    <!-- <Blog /> -->
     <Contact />
   </main>
 </Layout>
 
-<style>
-  .main-contents {
-    /* width: 1240px; */
-    margin: auto;
-  }
-
-  @media screen and (min-width: 482px) and (max-width: 1025px) {
-    .main-contents {
-      width: 95%;
-    }
-  }
-
-  @media screen and (max-width: 481px) {
-    .main-contents {
-      width: 100%;
-    }
-  }
-</style>
+<style></style>

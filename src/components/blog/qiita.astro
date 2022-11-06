@@ -18,7 +18,7 @@ const getFetchData: Qiita[] = await res.json();
   {
     getFetchData.map((qiita: Qiita) => (
       <Card
-        image="/qiita-ogp.png"
+        image="/img/qiita-ogp.png"
         href={qiita.url}
         title={qiita.title}
         time={qiita.created_at}
@@ -26,13 +26,10 @@ const getFetchData: Qiita[] = await res.json();
     ))
   }
 </div>
-<div class="linker-area">
-  <Linker href="https://qiita.com/watataku8911" msg="more" />
-</div>
 
 <style>
   .qiita {
-    height: 270px;
+    height: 300px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -69,9 +66,5 @@ const getFetchData: Qiita[] = await res.json();
     .qiita::after {
       width: 45vw;
     }
-  }
-
-  .linker-area {
-    margin-right: auto;
   }
 </style>

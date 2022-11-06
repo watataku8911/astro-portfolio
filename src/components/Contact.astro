@@ -1,17 +1,90 @@
-<section class="contact">
-  <h2 class="contact__title">CONTACT</h2>
-</section>
+---
+import TwitterIcon from "/icon/ico_tw.svg";
+---
 
-<style>
-  @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap");
-  .contact {
-    height: 600px;
-  }
-  .contact__title {
-    font-family: "Oswald", sans-serif;
-    font-size: 2.5em;
-    letter-spacing: 10px;
-    margin-left: 10px;
-    text-align: center;
-  }
-</style>
+<section class="contacts" id="contact">
+  <div class="contacts__contact">
+    <h2 class="contacts__contact__title">Contact.</h2>
+    <div class="contacts__contact__inner">
+      <div class="contacts__contact__inner__message">
+        <p>
+          Twitterがありますので、ご連絡の際はTwitterのDMまでお願いします。
+          またフォローの方もお待ちしております。
+        </p>
+      </div>
+      <p class="contacts__contact__inner__twitter">
+        <a href="https://twitter.com/watataku8911"
+          ><img src={TwitterIcon} alt="twitter" width="250" height="250" />
+        </a>
+      </p>
+    </div>
+  </div>
+
+  <style>
+    .contacts {
+      height: 100vh;
+      padding: 0 0 10% 0;
+    }
+
+    .contacts__contact {
+      width: 1250px;
+      margin: 0 auto;
+    }
+
+    @media screen and (max-width: 1026px) {
+      .contacts__contact {
+        width: 100%;
+      }
+    }
+
+    .contacts__contact__title {
+      font-family: "Lobster";
+      font-size: 4.5em;
+      padding: 2% 0 60px 0;
+    }
+
+    @media screen and (min-width: 482px) and (max-width: 1025px) {
+      .contacts__contact__title {
+        font-size: 3.5em;
+      }
+    }
+
+    @media screen and (max-width: 481px) {
+      .contacts__contact__title {
+        font-size: 2.5em;
+      }
+    }
+
+    .contacts__contact__inner {
+      display: flex;
+      flex-direction: column;
+      align-content: space-between;
+    }
+
+    .contacts__contact__inner__message {
+      height: 300px;
+    }
+
+    @media screen and (max-width: 1026px) {
+      .contacts__contact__inner__message {
+        height: 70vh;
+      }
+    }
+
+    .contacts__contact__inner__message p {
+      word-wrap: break-word;
+    }
+
+    .contacts__contact__inner__twitter {
+      margin-left: auto;
+    }
+
+    .contacts__contact__inner__twitter a {
+      display: block;
+    }
+
+    .contacts__contact__inner__twitter a:hover {
+      opacity: 0.5;
+    }
+  </style>
+</section>
