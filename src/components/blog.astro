@@ -4,35 +4,36 @@ import Zenn from "./blog/zenn.astro";
 import WatatakuBlog from "./blog/watataku-blog.astro";
 ---
 
-<section class="blog">
-  <h2 class="blog__title">BLOG</h2>
-  <div class="blog__inner">
-    <h3>- Qiita</h3>
-    <Qiita />
-    <h3>- Zenn</h3>
-    <Zenn />
-    <h2>- Watataku ブログ</h2>
-    <WatatakuBlog />
+<section class="blogs" id="blog">
+  <div class="blogs__blog">
+    <h2 class="blogs__blog__title">Blog.</h2>
+    <div class="blogs__blog__inner">
+      <h3>- Qiita</h3>
+      <div class="module--spacing--small"></div>
+      <Qiita />
+      <h3>- Zenn</h3>
+      <div class="module--spacing--small"></div>
+      <Zenn />
+      <h3>- Watataku ブログ</h3>
+      <div class="module--spacing--small"></div>
+      <WatatakuBlog />
+    </div>
   </div>
 </section>
 
 <style>
-  @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap");
-  .blog {
-    padding: 5px;
-    background-color: #d6eff9;
+  .blogs {
+    background-color: #addff2;
   }
 
-  .blog__title {
-    font-family: "Oswald", sans-serif;
-    font-size: 2.5em;
-    letter-spacing: 10px;
-    margin-left: 10px;
-    text-align: center;
-  }
-
-  .blog__inner {
-    width: 1240px;
+  .blogs__blog {
+    width: 1250px;
     margin: 0 auto;
+  }
+
+  .blogs__blog__title {
+    font-family: "Lobster";
+    font-size: 4.5em;
+    padding: 0 0 60px 0;
   }
 </style>

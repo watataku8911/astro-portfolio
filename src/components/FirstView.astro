@@ -13,17 +13,14 @@ import IconDown from "/icon/icon_down.svg";
   <header class="first-view__header">
     <p class="first-view__header__logo"><a href="#">Watataku's</a></p>
   </header>
-  <!-- <h1 class="first-view__title">
-    <i>Portfolio</i>
-  </h1> -->
-  <div class="first-view__circle center">
-    <!-- <div class="first-view__circle2 center">
-      <div class="first-view__circle3 center">
-        <div class="first-view__circle4 center"></div>
-      </div> -->
-  </div>
-
-  <p class="first-view__text">MARKUP&nbsp;ENGINNER/FRONTEND&nbsp;ENGINNER</p>
+  <div class="first-view__circle"></div>
+  <h1 class="first-view__title center">
+    Welcome&nbsp;to<br />
+    <i class="span">my&nbsp;portfolio.</i>
+  </h1>
+  <p class="first-view__text bottom">
+    Markup&nbsp;Enginner/Frontend&nbsp;Enginner.
+  </p>
   <div class="pic_down">
     <img src={IconDown} alt="↓" />
   </div>
@@ -66,9 +63,6 @@ import IconDown from "/icon/icon_down.svg";
 </script>
 
 <style>
-  @import url("https://fonts.googleapis.com/css2?family=Anton&family=Nunito:ital,wght@1,300&family=Oswald:wght@300&display=swap");
-
-  /* オープニングアニメーション */
   .c-loader-bg {
     position: fixed;
     top: 0;
@@ -106,71 +100,103 @@ import IconDown from "/icon/icon_down.svg";
     position: relative;
     width: 100%;
     height: 100vh;
-    margin-bottom: 200px;
+    overflow: hidden;
   }
 
   .first-view__header__logo {
     font-size: 35px;
-    font-family: "Anton", sans-serif;
-    font-family: "Nunito", sans-serif;
-    font-family: "Oswald", sans-serif;
   }
 
   .first-view__header__logo a {
     color: #333;
   }
 
-  /* .first-view__title {
-    font-family: "Anton", sans-serif;
-    font-family: "Nunito", sans-serif;
-    font-family: "Oswald", sans-serif;
-    font-size: 100px;
-    text-align: center;
-  } */
-  /* 円 */
-  .center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  /* text */
+  .first-view__text {
+    font-family: "Lobster";
+    position: absolute;
+    font-size: 4.5em;
   }
 
+  @media screen and (min-width: 482px) and (max-width: 1025px) {
+    .first-view__text {
+      font-size: 2em;
+    }
+  }
+
+  @media screen and (max-width: 481px) {
+    .first-view__text {
+      font-size: 1em;
+    }
+  }
+
+  .first-view__title {
+    font-family: "Lobster";
+    width: 100%;
+    text-align: left;
+    font-size: 100px;
+    position: absolute;
+  }
+
+  @media screen and (min-width: 482px) and (max-width: 1025px) {
+    .first-view__title {
+      font-size: 80px;
+    }
+  }
+
+  @media screen and (max-width: 481px) {
+    .first-view__title {
+      font-size: 50px;
+    }
+  }
+
+  .first-view__title .span {
+    margin-left: 15vw;
+  }
+
+  .top {
+    left: 10%;
+    top: 10%;
+  }
+
+  .center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .bottom {
+    left: 1%;
+    bottom: 2%;
+  }
+
+  /* 円 */
   .first-view__circle {
     position: absolute;
     bottom: -50%;
-    width: 1000px;
-    height: 1000px;
-    border-radius: 50%;
-    background-color: #5bbee5;
-  }
-
-  .first-view__circle2 {
-    width: 800px;
-    height: 800px;
+    left: -10%;
+    width: 1100px;
+    height: 1100px;
     border-radius: 50%;
     background-color: #addff2;
   }
 
-  .first-view__circle3 {
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    background-color: #c2e7f6;
+  @media screen and (min-width: 482px) and (max-width: 1025px) {
+    .first-view__circle {
+      bottom: -80%;
+      left: -10%;
+      width: 600px;
+      height: 600px;
+    }
   }
 
-  .first-view__circle4 {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background-color: #d6eff9;
-  }
-
-  .first-view__text {
-    font-family: "Anton", sans-serif;
-    font-family: "Nunito", sans-serif;
-    font-family: "Oswald", sans-serif;
-    position: absolute;
-    bottom: 2%;
-    font-size: 60px;
+  @media screen and (max-width: 481px) {
+    .first-view__circle {
+      bottom: -50%;
+      left: -90%;
+      width: 800px;
+      height: 800px;
+    }
   }
 
   /* 下矢印 */
