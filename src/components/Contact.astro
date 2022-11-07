@@ -14,7 +14,7 @@ import TwitterIcon from "/icon/ico_tw.svg";
       </div>
       <p class="contacts__contact__inner__twitter">
         <a href="https://twitter.com/watataku8911"
-          ><img src={TwitterIcon} alt="twitter" width="250" height="250" />
+          ><img src={TwitterIcon} alt="twitter" />
         </a>
       </p>
     </div>
@@ -27,7 +27,7 @@ import TwitterIcon from "/icon/ico_tw.svg";
     }
 
     .contacts__contact {
-      width: 1250px;
+      width: 95%;
       margin: 0 auto;
     }
 
@@ -61,15 +61,15 @@ import TwitterIcon from "/icon/ico_tw.svg";
       align-content: space-between;
     }
 
-    .contacts__contact__inner__message {
-      height: 300px;
+    /* .contacts__contact__inner__message {
+      margin-top: auto;
     }
 
     @media screen and (max-width: 1026px) {
       .contacts__contact__inner__message {
-        height: 70vh;
+        height: 40vh;
       }
-    }
+    } */
 
     .contacts__contact__inner__message p {
       word-wrap: break-word;
@@ -77,10 +77,25 @@ import TwitterIcon from "/icon/ico_tw.svg";
 
     .contacts__contact__inner__twitter {
       margin-left: auto;
+      margin-top: auto;
     }
 
     .contacts__contact__inner__twitter a {
       display: block;
+    }
+
+    .contacts__contact__inner__twitter img {
+      max-width: 90%;
+      width: 200px;
+      height: 200px;
+    }
+
+    @media screen and (max-width: 1026px) {
+      .contacts__contact__inner__twitter img {
+        max-width: 90%;
+        width: 100px;
+        height: 100px;
+      }
     }
 
     .contacts__contact__inner__twitter a:hover {
