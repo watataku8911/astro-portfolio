@@ -1,0 +1,68 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Watataku's ポートフォリオサイト | About"
+  description="WatatakuのAboutページです。"
+>
+  <section class="abouts">
+    <h1 class="abouts__title">About me.</h1>
+    <div class="abouts__about">
+      <div class="abouts__about__image-box">
+        <img src="/img/Hight_icon_watataku's_radius.png" alt="Watataku" />
+      </div>
+      <div class="abouts__about__career">
+        <h2 class="abouts__about__career__title">Career</h2>
+        キャリアが入ります。キャリアが入ります。キャリアが入ります。キャリアが入ります。キャリアが入ります。
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .abouts {
+    width: 1250px;
+    margin: 0 auto;
+  }
+
+  @media screen and (max-width: 1026px) {
+    .abouts {
+      width: 100%;
+    }
+  }
+
+  .abouts__about {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  @media screen and (max-width: 1026px) {
+    .abouts__about {
+      flex-direction: column;
+    }
+  }
+
+  .abouts__title {
+    font-family: "Lobster";
+    font-size: 4.5em;
+    padding: 2% 0 60px 0;
+  }
+
+  @media screen and (min-width: 482px) and (max-width: 1025px) {
+    .abouts__title {
+      font-size: 3.5em;
+    }
+  }
+
+  @media screen and (max-width: 481px) {
+    .abouts__title {
+      font-size: 2.5em;
+    }
+  }
+
+  .abouts__about__image-box img {
+    max-width: 90%;
+  }
+</style>
