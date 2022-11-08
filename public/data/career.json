@@ -1,0 +1,20 @@
+[
+  {
+    "id": 0,
+    "timeline_date": "2019年03月",
+    "timeline_title": "ITの専門学校を卒業",
+    "timeline_content": "HTML、CSS、JavaScript、PHP等のコーディングやWebデザインの基礎、その他、DBやネットワークなどのインフラまわりなども学習。"
+  },
+  {
+    "id": 1,
+    "timeline_date": "2019年04月",
+    "timeline_title": "某SI企業でWEBエンジニア",
+    "timeline_content": "PHPを使ったインフラ系のWEBシステム開発を行う。"
+  },
+  {
+    "id": 2,
+    "timeline_date": "2019年08月 現在",
+    "timeline_title": "この年に見つかった病気の影響で退職",
+    "timeline_content": "退職後、Vue.jsやReactなどのフロントエンド技術を中心に独学で学習。病気と戦いながらフロントエンドエンジニアとして社会復帰を目指す。"
+  }
+]
