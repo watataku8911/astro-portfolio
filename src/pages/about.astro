@@ -1,5 +1,22 @@
 ---
+import careerList from "../../public/data/career.json";
+import interestList from "../../public/data/interest.json";
+
 import Layout from "../layouts/Layout.astro";
+
+type Service = {};
+
+type Interest = {
+  id: number;
+  interest: string;
+};
+
+type Career = {
+  id: number;
+  timeline_date: string;
+  timeline_title: string;
+  timeline_content: string;
+};
 ---
 
 <Layout
@@ -9,12 +26,47 @@ import Layout from "../layouts/Layout.astro";
   <section class="abouts">
     <h1 class="abouts__title">About me.</h1>
     <div class="abouts__about">
-      <div class="abouts__about__image-box">
+      <div class="abouts__about__left">
         <img src="/img/Hight_icon_watataku's_radius.png" alt="Watataku" />
       </div>
-      <div class="abouts__about__career">
-        <h2 class="abouts__about__career__title">Career</h2>
-        キャリアが入ります。キャリアが入ります。キャリアが入ります。キャリアが入ります。キャリアが入ります。
+      <div class="abouts__about__right">
+        <div class="abouts__about__right__inner">
+          <h2 class="abouts__about__title">
+            Service<span class="abouts__about__title__sub">サービス</span>
+          </h2>
+        </div>
+        <div class="abouts__about__right__inner">
+          <h2 class="abouts__about__title">
+            Interest<span class="abouts__about__title__sub">興味がある</span>
+          </h2>
+          <ul>
+            {
+              interestList.map((interest: Interest) => (
+                <li class="abouts__about__li">{interest.interest}</li>
+              ))
+            }
+          </ul>
+        </div>
+        <div class="abouts__about__right__inner">
+          <h2 class="abouts__about__title">
+            Career<span class="abouts__about__title__sub">キャリア</span>
+          </h2>
+          <ul class="abouts__about__timeline">
+            {
+              careerList.map((career: Career) => (
+                <li>
+                  <p class="abouts__about__timeline__date">
+                    {career.timeline_date}
+                  </p>
+                  <div class="abouts__about__timeline__content">
+                    <h3>{career.timeline_title}</h3>
+                    <p>{career.timeline_content}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -62,7 +114,66 @@ import Layout from "../layouts/Layout.astro";
     }
   }
 
-  .abouts__about__image-box img {
-    max-width: 90%;
+  .abouts__about__left img {
+    max-width: 70%;
+  }
+
+  .abouts__about__right__inner {
+    margin: 0 0 20px 0;
+  }
+
+  .abouts__about__title {
+    font-size: 25px;
+    margin-bottom: 15px;
+  }
+
+  .abouts__about__title__sub {
+    font-size: 0.5em;
+    color: #444;
+  }
+
+  .abouts__about__title__sub::before {
+    display: inline-block;
+    content: "";
+    width: 20px;
+    margin: 0 4px 0 4px;
+    border-bottom: 1px solid #444;
+  }
+
+  .abouts__about__li {
+    margin-left: 25px;
+    list-style: disc;
+  }
+
+  .abouts__about__timeline > li {
+    overflow: hidden;
+    margin: 0;
+    position: relative;
+  }
+  .abouts__about__timeline__date {
+    width: 130px;
+    float: left;
+    margin-top: 20px;
+  }
+  .abouts__about__timeline__content {
+    width: 75%;
+    float: left;
+    border-left: 3px #5bbee5 solid;
+    padding-left: 30px;
+    padding-bottom: 10px;
+  }
+  .abouts__about__timeline__content h3 {
+    font-size: 22px;
+    font-weight: bold;
+  }
+  .abouts__about__timeline__content:before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background-color: #5bbee5;
+    position: absolute;
+    left: 126px;
+    top: 24px;
+    border-radius: 100%;
   }
 </style>

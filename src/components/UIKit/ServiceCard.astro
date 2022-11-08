@@ -4,32 +4,23 @@ import IconTag from "/icon/icon_tag_navy.svg";
 type Props = {
   image: string;
   title: string;
-  tag: string;
-  href: string;
-  comment: string;
+  text: string;
 };
 
-const { image, href, title, tag, comment } = Astro.props;
+const { image, title, text } = Astro.props;
 ---
 
-<a href={href} target="_blank" class="link">
-  <article class="card">
-    <img src={image} alt={title} class="card__thunbnail" />
-    <p class="card__tag black"><img src={IconTag} alt="タグ" />{tag}</p>
-    <h4 class="card__title black">
-      {title}
-    </h4>
-    <p class="card__comment black">
-      {comment}
-    </p>
-  </article>
-</a>
+<article class="card">
+  <img src={image} alt={title} class="card__thunbnail" />
+  <h4 class="card__title black">
+    {title}
+  </h4>
+  <p class="card__text black">
+    {text}
+  </p>
+</article>
 
 <style>
-  .link {
-    display: block;
-  }
-
   .card {
     position: relative;
     width: 40vw;
@@ -51,10 +42,6 @@ const { image, href, title, tag, comment } = Astro.props;
       height: 400px;
       margin-bottom: 20px;
     }
-  }
-
-  .card:hover {
-    transform: translateY(-10px);
   }
 
   .card__thunbnail {
