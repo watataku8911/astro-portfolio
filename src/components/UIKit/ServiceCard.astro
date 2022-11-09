@@ -15,7 +15,7 @@ const { image, title, text } = Astro.props;
   <h4 class="card__title black">
     {title}
   </h4>
-  <p class="card__text black">
+  <p class="card__text black text">
     {text}
   </p>
 </article>
@@ -23,23 +23,21 @@ const { image, title, text } = Astro.props;
 <style>
   .card {
     position: relative;
-    width: 40vw;
-    height: 450px;
+    width: 25vw;
+    height: 500px;
     background-color: #fffdf9;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   }
-
   @media screen and (min-width: 482px) and (max-width: 1025px) {
     .card {
-      width: 45vw;
-      height: 350px;
+      width: 30vw;
+      height: 400px;
     }
   }
-
   @media screen and (max-width: 481px) {
     .card {
       width: 95vw;
-      height: 400px;
+      height: 500px;
       margin-bottom: 20px;
     }
   }
@@ -51,7 +49,11 @@ const { image, title, text } = Astro.props;
 
   .black {
     padding: 0 0 0 5px;
-    color: #000;
+    color: black;
+  }
+
+  .text {
+    color: #222;
   }
 
   .card__tag {
@@ -59,6 +61,7 @@ const { image, title, text } = Astro.props;
   }
 
   .card__title {
+    text-align: center;
     font-size: 1.35rem;
     margin-bottom: 10px;
   }

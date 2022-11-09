@@ -17,10 +17,10 @@ type Thumbnail = {
   url: string;
 };
 
-const myQiitaApiUrl =
+const myMicroCMSApiUrl =
   "https://du14ecbjft.microcms.io/api/v1/blog?orders=-publishedAt&limit=4";
 
-const res = await fetch(myQiitaApiUrl, {
+const res = await fetch(myMicroCMSApiUrl, {
   headers: {
     "X-MICROCMS-API-KEY": import.meta.env.MICROCMS_API_KEY,
   },
@@ -33,7 +33,7 @@ const getFetchData: WatatakuBlog = await res.json();
     getFetchData.contents.map((item: Contents) => (
       <Card
         image={item.thumbnail.url}
-        href={"https:watataku-blog.vercel.app/blog/" + item.id}
+        href={"/blog/" + item.id}
         title={item.title}
         time={item.createdAt}
       />

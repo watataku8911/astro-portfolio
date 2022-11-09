@@ -1,20 +1,20 @@
 [
   {
     "id": 0,
-    "image": "",
-    "serice": "Webサイト制作",
-    "text": "HTML/CSS/Javascriptを使ってコーディングができます。また、Typescript・Vue.jsやReactのモダンフレームワークもできます。レスポンシブやHeadressCMSなどの事もできます。"
+    "image": "/img/coding.png",
+    "service": "Webサイト制作",
+    "text": "HTML/CSS/Javascriptを使ってコーディングができます。レスポンシブや様々なサイトにも対応可能です。"
   },
   {
     "id": 1,
-    "image": "",
-    "serice": "Webシステム開発",
-    "text": "JavaやPHPなどのバックエンド言語を用いてのapi開発などができます。"
+    "image": "/img/programing.png",
+    "service": "フロントエンド開発",
+    "text": "React、Vue.js、TypeScriptなどを使ったフロントエンド開発ができます。"
   },
   {
-    "id": 0,
-    "image": "",
-    "serice": "テキスト",
-    "text": "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト"
+    "id": 2,
+    "image": "/img/api.png",
+    "service": "バックエンド開発",
+    "text": "JavaやPHPなどのバックエンド言語を使ったAPI開発などができます。"
   }
 ]
