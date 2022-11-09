@@ -1,10 +1,17 @@
 ---
-import careerList from "../../public/data/career.json";
+import serviceList from "../../public/data/service.json";
 import interestList from "../../public/data/interest.json";
+import careerList from "../../public/data/career.json";
 
 import Layout from "../layouts/Layout.astro";
+import ServiceCard from "../components/UIKit/ServiceCard.astro";
 
-type Service = {};
+type Service = {
+  id: number;
+  image: string;
+  service: string;
+  text: string;
+};
 
 type Interest = {
   id: number;
@@ -20,54 +27,66 @@ type Career = {
 ---
 
 <Layout
-  title="Watataku's ポートフォリオサイト | About"
+  title="ABOUT | Watataku's ポートフォリオサイト"
   description="WatatakuのAboutページです。"
 >
   <section class="abouts">
     <h1 class="abouts__title">About me.</h1>
-    <div class="abouts__about">
-      <div class="abouts__about__left">
-        <img src="/img/Hight_icon_watataku's_radius.png" alt="Watataku" />
+    <div class="abouts__about image-box">
+      <img
+        class="abouts__about__img"
+        src="/img/Hight_icon_watataku's_radius.png"
+        alt="Watataku"
+      />
+      <p class="abouts__about__name">Watataku</p>
+    </div>
+    <div class="abouts__about__inner">
+      <h2 class="abouts__about__title">
+        Service<span class="abouts__about__title__sub">サービス</span>
+      </h2>
+      <div class="abouts__about__service">
+        {
+          serviceList.map((service: Service) => (
+            <ServiceCard
+              image={service.image}
+              title={service.service}
+              text={service.text}
+            />
+          ))
+        }
       </div>
-      <div class="abouts__about__right">
-        <div class="abouts__about__right__inner">
-          <h2 class="abouts__about__title">
-            Service<span class="abouts__about__title__sub">サービス</span>
-          </h2>
-        </div>
-        <div class="abouts__about__right__inner">
-          <h2 class="abouts__about__title">
-            Interest<span class="abouts__about__title__sub">興味がある</span>
-          </h2>
-          <ul>
-            {
-              interestList.map((interest: Interest) => (
-                <li class="abouts__about__li">{interest.interest}</li>
-              ))
-            }
-          </ul>
-        </div>
-        <div class="abouts__about__right__inner">
-          <h2 class="abouts__about__title">
-            Career<span class="abouts__about__title__sub">キャリア</span>
-          </h2>
-          <ul class="abouts__about__timeline">
-            {
-              careerList.map((career: Career) => (
-                <li>
-                  <p class="abouts__about__timeline__date">
-                    {career.timeline_date}
-                  </p>
-                  <div class="abouts__about__timeline__content">
-                    <h3>{career.timeline_title}</h3>
-                    <p>{career.timeline_content}</p>
-                  </div>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-      </div>
+    </div>
+    <div class="abouts__about__inner">
+      <h2 class="abouts__about__title">
+        Interest<span class="abouts__about__title__sub">興味がある</span>
+      </h2>
+      <ul>
+        {
+          interestList.map((interest: Interest) => (
+            <li class="abouts__about__li">{interest.interest}</li>
+          ))
+        }
+      </ul>
+    </div>
+    <div class="abouts__about__inner">
+      <h2 class="abouts__about__title">
+        Career<span class="abouts__about__title__sub">キャリア</span>
+      </h2>
+      <ul class="abouts__about__timeline">
+        {
+          careerList.map((career: Career) => (
+            <li>
+              <p class="abouts__about__timeline__date">
+                {career.timeline_date}
+              </p>
+              <div class="abouts__about__timeline__content">
+                <h3>{career.timeline_title}</h3>
+                <p>{career.timeline_content}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </section>
 </Layout>
@@ -77,22 +96,9 @@ type Career = {
     width: 1250px;
     margin: 0 auto;
   }
-
   @media screen and (max-width: 1026px) {
     .abouts {
       width: 100%;
-    }
-  }
-
-  .abouts__about {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-
-  @media screen and (max-width: 1026px) {
-    .abouts__about {
-      flex-direction: column;
     }
   }
 
@@ -101,24 +107,55 @@ type Career = {
     font-size: 4.5em;
     padding: 2% 0 60px 0;
   }
-
   @media screen and (min-width: 482px) and (max-width: 1025px) {
     .abouts__title {
       font-size: 3.5em;
     }
   }
-
   @media screen and (max-width: 481px) {
     .abouts__title {
       font-size: 2.5em;
     }
   }
 
-  .abouts__about__left img {
-    max-width: 70%;
+  .abouts__about {
+    margin: 0 0 30px 0;
   }
 
-  .abouts__about__right__inner {
+  .image-box {
+    text-align: center;
+  }
+
+  .abouts__about__service {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  @media screen and (max-width: 481px) {
+    .abouts__about__service {
+      flex-direction: column;
+    }
+  }
+
+  .abouts__about__name {
+    font-size: 30px;
+  }
+
+  .abouts__about .abouts__about__img {
+    max-width: 20%;
+  }
+  @media screen and (min-width: 482px) and (max-width: 1025px) {
+    .abouts__about .abouts__about__img {
+      max-width: 25%;
+    }
+  }
+  @media screen and (max-width: 481px) {
+    .abouts__about .abouts__about__img {
+      max-width: 40%;
+    }
+  }
+
+  .abouts__about__inner {
     margin: 0 0 20px 0;
   }
 
@@ -150,11 +187,13 @@ type Career = {
     margin: 0;
     position: relative;
   }
+
   .abouts__about__timeline__date {
     width: 130px;
     float: left;
     margin-top: 20px;
   }
+
   .abouts__about__timeline__content {
     width: 75%;
     float: left;
@@ -162,10 +201,23 @@ type Career = {
     padding-left: 30px;
     padding-bottom: 10px;
   }
+  @media screen and (max-width: 481px) {
+    .abouts__about__timeline__content {
+      width: 100%;
+      border-left: none;
+    }
+  }
+
   .abouts__about__timeline__content h3 {
     font-size: 22px;
     font-weight: bold;
   }
+  @media screen and (max-width: 481px) {
+    .abouts__about__timeline__content h3 {
+      padding: 0 0 10px 0;
+    }
+  }
+
   .abouts__about__timeline__content:before {
     content: "";
     width: 12px;
@@ -175,5 +227,10 @@ type Career = {
     left: 126px;
     top: 24px;
     border-radius: 100%;
+  }
+  @media screen and (max-width: 481px) {
+    .abouts__about__timeline__content:before {
+      display: none;
+    }
   }
 </style>
