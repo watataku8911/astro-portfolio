@@ -20,6 +20,46 @@ import TwitterIcon from "/icon/ico_tw.svg";
     </div>
   </div>
 
+  <script>
+    import gsap from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const contacts = ".contacts";
+    const contactsContactTitle = ".contacts__contact__title";
+    const contactsContactInner = ".contacts__contact__inner";
+
+    gsap.set(contactsContactTitle, {
+      opacity: 0,
+      y: 10,
+    });
+    gsap.set(contactsContactInner, {
+      opacity: 0,
+      y: -50,
+    });
+
+    gsap.to(contactsContactTitle, {
+      opacity: 1,
+      y: 0,
+      scrollTrigger: {
+        trigger: contacts,
+        start: "top center",
+      },
+      duration: 0.7,
+    });
+    gsap.to(contactsContactInner, {
+      opacity: 1,
+      x: 0,
+      scrollTrigger: {
+        trigger: contactsContactTitle,
+        start: "top center",
+      },
+      duration: 0.7,
+      delay: 0.5,
+    });
+  </script>
+
   <style>
     .contacts {
       height: 100vh;
@@ -39,7 +79,7 @@ import TwitterIcon from "/icon/ico_tw.svg";
     .contacts__contact__title {
       font-family: "Lobster";
       font-size: 4.5em;
-      padding: 2% 0 60px 0;
+      padding: 2% 0 160px 0;
     }
     @media screen and (min-width: 482px) and (max-width: 1025px) {
       .contacts__contact__title {
@@ -57,16 +97,6 @@ import TwitterIcon from "/icon/ico_tw.svg";
       flex-direction: column;
       align-content: space-between;
     }
-
-    /* .contacts__contact__inner__message {
-      margin-top: auto;
-    }
-
-    @media screen and (max-width: 1026px) {
-      .contacts__contact__inner__message {
-        height: 40vh;
-      }
-    } */
 
     .contacts__contact__inner__message p {
       word-wrap: break-word;

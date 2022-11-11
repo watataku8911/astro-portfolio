@@ -13,14 +13,18 @@ import IconDown from "/icon/icon_down.svg";
   <header class="first-view__header">
     <p class="first-view__header__logo"><a href="#">Watataku's</a></p>
   </header>
+
   <div class="first-view__circle"></div>
-  <h1 class="first-view__title center">
-    Welcome&nbsp;to<br />
-    <i class="span">my&nbsp;portfolio.</i>
-  </h1>
+
+  <div class="first-view__title center-top">
+    <h1 class="first-view__title__text">Welcome&nbsp;to</h1>
+    <h1 class="first-view__title__text margin-left">my&nbsp;portfolio.</h1>
+  </div>
+
   <p class="first-view__text bottom">
     Markup&nbsp;Enginner/Frontend&nbsp;Enginner.
   </p>
+
   <div class="pic_down">
     <img src={IconDown} alt="↓" />
   </div>
@@ -29,13 +33,25 @@ import IconDown from "/icon/icon_down.svg";
 <script>
   import gsap from "gsap";
 
+  surroundSpan(".first-view__title__text");
+  surroundSpan(".first-view__text");
+
   const jsLoaderBg = ".js-loader-bg";
   const jsDot = ".js-loader-dot-wrap > span";
+  const firstViewCircle = ".first-view__circle";
+  const firstViewTitle = ".first-view__title__text span";
+  const firstViewtext = ".first-view__text span";
+  const picDown = ".pic_down";
 
-  gsap.set(jsDot, {
+  gsap.set([jsDot, firstViewTitle, firstViewtext], {
     opacity: 0,
     y: -50,
   });
+  gsap.set([firstViewCircle, picDown], {
+    opacity: 0,
+    y: 30,
+  });
+
   gsap
     .timeline()
     .to(
@@ -59,7 +75,56 @@ import IconDown from "/icon/icon_down.svg";
     .to(jsLoaderBg, {
       y: "100%",
       delay: 0.5,
-    });
+    })
+    .to(
+      firstViewCircle,
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: {
+          amount: 0.6,
+        },
+      },
+      "+=0.2"
+    )
+    .to(
+      firstViewtext,
+      {
+        /* 前のアニメーションが完了する0.1秒前に実行 */
+        opacity: 1,
+        y: 0,
+        stagger: {
+          amount: 1,
+          from: "start",
+          ease: "sine.in",
+        },
+      },
+      "-=0.1"
+    )
+    .to(
+      firstViewTitle,
+      {
+        /* 前のアニメーションが完了する0.1秒前に実行 */
+        opacity: 1,
+        y: 0,
+        stagger: {
+          amount: 1,
+          from: "start",
+          ease: "sine.in",
+        },
+      },
+      "-=0.1"
+    )
+    .to(
+      picDown,
+      {
+        opacity: 2,
+        y: 0,
+        duration: 0.8,
+      },
+      "+=0.2"
+    );
 </script>
 
 <style>
@@ -132,33 +197,36 @@ import IconDown from "/icon/icon_down.svg";
     font-family: "Lobster";
     width: 100%;
     text-align: left;
-    font-size: 100px;
+    font-size: 80px;
     position: absolute;
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
     .first-view__title {
-      font-size: 80px;
+      font-size: calc(5vh + 12px);
     }
   }
   @media screen and (max-width: 481px) {
     .first-view__title {
-      font-size: 50px;
+      font-size: 2em;
     }
   }
 
-  .first-view__title .span {
+  .first-view__title__text.margin-left {
     margin-left: 15vw;
   }
 
-  .top {
-    left: 10%;
-    top: 10%;
+  .center-top {
+    top: 27%;
   }
-
-  .center {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  @media screen and (min-width: 482px) and (max-width: 1025px) {
+    .center-top {
+      top: 35vh;
+    }
+  }
+  @media screen and (max-width: 481px) {
+    .center-top {
+      top: 38%;
+    }
   }
 
   .bottom {

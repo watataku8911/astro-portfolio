@@ -7,15 +7,17 @@ type Props = {
 const { href, msg } = Astro.props;
 ---
 
-<p class="linker">
-  <a href={href} target="_blank" class="linker__title">
-    {msg}
-    →
-  </a>
-</p>
+<a href={href} target="_blank" class="linker__title">
+  {msg}
+</a>
 
 <style>
-  .linker {
+  .linker__title {
+    display: block;
+    letter-spacing: 2px;
+    color: white;
+    font-size: 1.5em;
+    text-align: center;
     border-radius: 30px;
     background-color: rgb(22, 214, 156);
     width: 130px;
@@ -23,15 +25,7 @@ const { href, msg } = Astro.props;
     box-shadow: 0px 0px 27px -6px rgba(0, 0, 0, 0.6);
   }
 
-  .linker__title {
-    display: block;
-    letter-spacing: 2px;
-    color: white;
-    font-size: 1.5em;
-    text-align: center;
-  }
-
-  .linker:hover {
+  .linker__title:hover {
     transform: translateX(8px);
   }
 </style>

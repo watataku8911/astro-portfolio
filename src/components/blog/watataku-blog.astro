@@ -1,6 +1,5 @@
 ---
 import Card from "../UIKit/Card.astro";
-import Linker from "../UIKit/Linker.astro";
 
 type WatatakuBlog = {
   contents: Contents[];
@@ -17,8 +16,9 @@ type Thumbnail = {
   url: string;
 };
 
-const myMicroCMSApiUrl =
-  "https://du14ecbjft.microcms.io/api/v1/blog?orders=-publishedAt&limit=4";
+const myMicroCMSApiUrl = `https://${
+  import.meta.env.MICROCMS_SERVICE_DOMAIN
+}.microcms.io/api/v1/blog?orders=-publishedAt&limit=4`;
 
 const res = await fetch(myMicroCMSApiUrl, {
   headers: {
@@ -32,14 +32,40 @@ const getFetchData: WatatakuBlog = await res.json();
   {
     getFetchData.contents.map((item: Contents) => (
       <Card
+        target={"_blank"}
         image={item.thumbnail.url}
-        href={"/blog/" + item.id}
+        href={"https://watataku-blog.vercel.app/blog/" + item.id}
         title={item.title}
         time={item.createdAt}
       />
     ))
   }
 </div>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const zenn = ".zenn";
+  const WatatakuBlog = ".watataku-blog";
+
+  gsap.set(WatatakuBlog, {
+    opacity: 0,
+    y: 90,
+  });
+
+  gsap.to(WatatakuBlog, {
+    opacity: 1,
+    y: 0,
+    scrollTrigger: {
+      trigger: zenn,
+      start: "top center",
+    },
+    delay: 0.5,
+  });
+</script>
 
 <style>
   .watataku-blog {

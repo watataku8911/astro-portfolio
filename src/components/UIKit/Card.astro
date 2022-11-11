@@ -20,16 +20,17 @@ const split = (text: string, maxLength: number): string => {
 };
 
 type Props = {
+  target: "_blank" | "_self" | "_top" | "_parent";
   image: string;
   title: string;
   href: string;
   time: string;
 };
 
-const { image, href, title, time } = Astro.props;
+const { target, image, href, title, time } = Astro.props;
 ---
 
-<a href={href} target="_blank">
+<a href={href} target={target}>
   <article class="card">
     <img src={image} alt={title} class="card__thunbnail" />
     <h4 class="card__title">
@@ -44,7 +45,7 @@ const { image, href, title, time } = Astro.props;
 <style>
   .card {
     position: relative;
-    width: 20vw;
+    width: 21vw;
     height: 250px;
     background-color: #fffdf9;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -56,7 +57,7 @@ const { image, href, title, time } = Astro.props;
   }
   @media screen and (max-width: 481px) {
     .card {
-      width: 45vw;
+      width: 43vw;
       height: 200px;
     }
   }
@@ -71,11 +72,16 @@ const { image, href, title, time } = Astro.props;
   }
 
   .card__title {
-    margin: 0;
+    word-break: break-all;
     padding: 0 0 0 5px;
     letter-spacing: 1px;
     font-size: 1rem;
     color: #000;
+  }
+  @media screen and (max-width: 1026px) {
+    .card__title {
+      font-size: 0.8rem;
+    }
   }
 
   .card__date {

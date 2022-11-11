@@ -1,6 +1,5 @@
 ---
 import Card from "../UIKit/Card.astro";
-import Linker from "../UIKit/Linker.astro";
 
 type Qiita = {
   url: string;
@@ -18,6 +17,7 @@ const getFetchData: Qiita[] = await res.json();
   {
     getFetchData.map((qiita: Qiita) => (
       <Card
+        target={"_blank"}
         image="/img/qiita-ogp.png"
         href={qiita.url}
         title={qiita.title}
@@ -26,6 +26,30 @@ const getFetchData: Qiita[] = await res.json();
     ))
   }
 </div>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const blogsInner = ".blogs__blog__inner";
+  const qiita = ".qiita";
+
+  gsap.set(qiita, {
+    opacity: 0,
+    y: 90,
+  });
+
+  gsap.to(qiita, {
+    opacity: 1,
+    y: 0,
+    scrollTrigger: {
+      trigger: blogsInner,
+      start: "top center",
+    },
+  });
+</script>
 
 <style>
   .qiita {
