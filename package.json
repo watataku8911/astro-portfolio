@@ -11,8 +11,15 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@ashthornton/asscroll": "^2.0.11",
     "astro": "^1.6.0",
     "date-fns": "^2.29.3",
     "gsap": "^3.11.3"
+  },
+  "devDependencies": {
+    "@astrojs/react": "^1.2.2",
+    "@types/react": "^18.0.25",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }

@@ -1,0 +1,76 @@
+---
+import Qiita from "../blog/qiita.astro";
+import Zenn from "../blog/zenn.astro";
+import WatatakuBlog from "../blog/watataku-blog.astro";
+---
+
+<section class="blogs" id="blog">
+  <div class="blogs__blog">
+    <h2 class="blogs__blog__title">Tech&nbsp;Blog.</h2>
+    <div class="blogs__blog__inner">
+      <h3>
+        <a class="link" href="https://qiita.com/watatatku8911" target="_blank"
+          >- Qiita(もっとみる)</a
+        >
+      </h3>
+      <Qiita />
+      <!-- <h3><a class="link" href="https://watataku-blog.vercel.com" target="_blank">- Zenn<(もっとみる)/a></h3>
+      <Zenn /> -->
+      <h3>
+        <a class="link" href="https://watataku-blog.vercel.com" target="_blank"
+          >- Watataku ブログ(もっとみる)</a
+        >
+      </h3>
+      <WatatakuBlog />
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const blogs = ".blogs";
+  const blogsBlogTitle = ".blogs__blog__title";
+
+  gsap.set(blogsBlogTitle, {
+    opacity: 0,
+    y: 10,
+  });
+  gsap.to(blogsBlogTitle, {
+    opacity: 1,
+    y: 0,
+    scrollTrigger: {
+      trigger: blogs,
+      start: "top center",
+    },
+  });
+</script>
+
+<style>
+  .blogs {
+    background-color: #addff2;
+    height: 1200px;
+  }
+
+  .blogs__blog {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .blogs__blog__title {
+    font-family: "Lobster";
+    font-size: 4.5em;
+    padding: 0 0 60px 0;
+  }
+
+  .blogs__blog__inner .link {
+    color: #000;
+  }
+
+  .blogs__blog__inner .link:hover {
+    color: #eee;
+  }
+</style>

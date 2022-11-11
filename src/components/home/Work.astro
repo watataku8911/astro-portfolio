@@ -1,6 +1,6 @@
 ---
-import workList from "../../public/data/work.json";
-import WorkCard from "./UIKit/WorkCard .astro";
+import workList from "../../../public/data/work.json";
+import WorkCard from "../UIKit/WorkCard .astro";
 
 type Work = {
   id: number;
@@ -31,6 +31,45 @@ type Work = {
   </div>
 </section>
 
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const works = ".works";
+  const worksWorkTitle = ".works__work__title";
+  const worksworkInner = ".works__work__inner";
+  gsap.set(worksWorkTitle, {
+    opacity: 0,
+    y: 10,
+  });
+  gsap.set(worksworkInner, {
+    opacity: 0,
+    y: 30,
+  });
+
+  gsap.to(worksWorkTitle, {
+    opacity: 1,
+    y: 0,
+    scrollTrigger: {
+      trigger: works,
+      start: "top center", //アニメーションが始まる位置
+    },
+    duration: 0.7,
+  });
+  gsap.to(worksworkInner, {
+    opacity: 1,
+    y: 0,
+    scrollTrigger: {
+      trigger: worksWorkTitle,
+      start: "top center", //アニメーションが始まる位置
+    },
+    duration: 0.7,
+    delay: 0.5,
+  });
+</script>
+
 <style>
   .works {
     background-color: white;
@@ -43,7 +82,7 @@ type Work = {
   }
 
   .works__work {
-    width: 95%;
+    width: 90%;
     margin: 0 auto;
   }
   @media screen and (max-width: 1026px) {
@@ -69,6 +108,8 @@ type Work = {
   }
 
   .works__work__inner {
+    width: 90%;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;

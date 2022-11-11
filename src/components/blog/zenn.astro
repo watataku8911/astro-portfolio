@@ -36,7 +36,8 @@ const getFetchData: Zenn = await res.json();
   {
     getFetchData.items.map((zenn: Items) => (
       <Card
-        image="/img/zenn.png"
+        target={"_blank"}
+        image={"/img/zenn.png"}
         href={zenn.link}
         title={zenn.title}
         time={zenn.pubDate}
@@ -44,6 +45,34 @@ const getFetchData: Zenn = await res.json();
     ))
   }
 </div>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const blogsInner = ".blogs__inner";
+  const qiita = ".qiita";
+
+  gsap.set(blogsInner, {
+    opacity: 0,
+    y: 90,
+  });
+  gsap.set(qiita, {
+    opacity: 0,
+    y: 90,
+  });
+
+  gsap.to(qiita, {
+    opacity: 1,
+    y: 0,
+    scrollTrigger: {
+      trigger: blogsInner,
+      start: "top center",
+    },
+  });
+</script>
 <style>
   .zenn {
     height: 300px;

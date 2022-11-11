@@ -1,4 +1,8 @@
 ---
+import IconTw from "/icon/ico_tw.svg";
+import IconInst from "/icon/ico_inst.svg";
+import IconGit from "/icon/github_logo.svg";
+
 import serviceList from "../../public/data/service.json";
 import interestList from "../../public/data/interest.json";
 import careerList from "../../public/data/career.json";
@@ -30,6 +34,13 @@ type Career = {
   title="ABOUT | Watataku's ポートフォリオサイト"
   description="WatatakuのAboutページです。"
 >
+  <div class="c-loader-bg js-loader-bg">
+    <div class="c-loader-dot js-loader-dot-wrap">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
   <section class="abouts">
     <h1 class="abouts__title">About me.</h1>
     <div class="abouts__about image-box">
@@ -39,6 +50,29 @@ type Career = {
         alt="Watataku"
       />
       <p class="abouts__about__name">Watataku</p>
+      <div class="abouts__about__sns">
+        <p>
+          <a
+            class="link"
+            href="https://twitter.com/watataku8911"
+            target="_blank"
+            ><img class="sns-icon" src={IconTw} alt="twitter" />
+          </a>
+        </p>
+        <p>
+          <a
+            class="link"
+            href="https://instagram.com/watataku8911"
+            target="_blank"
+            ><img class="sns-icon" src={IconInst} alt="instagram" />
+          </a>
+        </p>
+        <p>
+          <a class="link" href="https://github.com/watataku8911" target="_blank"
+            ><img class="sns-icon" src={IconGit} alt="github" />
+          </a>
+        </p>
+      </div>
     </div>
     <div class="abouts__about__inner">
       <h2 class="abouts__about__title">
@@ -91,7 +125,97 @@ type Career = {
   </section>
 </Layout>
 
+<script>
+  import gsap from "gsap";
+
+  const jsLoaderBg = ".js-loader-bg";
+  const jsDot = ".js-loader-dot-wrap > span";
+  const aboutsTitle = ".abouts__title";
+  const aboutsAbout = ".abouts__about";
+
+  gsap.set(jsDot, {
+    opacity: 0,
+    y: -50,
+  });
+  gsap.set(aboutsTitle, {
+    opacity: 0,
+    x: -90,
+  });
+  gsap.set(aboutsAbout, {
+    opacity: 0,
+    y: 90,
+  });
+
+  gsap
+    .timeline()
+    .to(
+      /* 0.8秒後に起動 */
+      jsDot,
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        delay: 0.8,
+        stagger: {
+          amount: 0.5, //0.5秒おきに
+          from: "start", // 左から
+          ease: "power4.inOut",
+        },
+      }
+    )
+    .to(jsDot, {
+      opacity: 0,
+    })
+    .to(jsLoaderBg, {
+      y: "100%",
+      delay: 0.5,
+    })
+    .to(aboutsTitle, {
+      opacity: 1,
+      x: 0,
+      duration: 0.7,
+    })
+    .to(aboutsAbout, {
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+    });
+</script>
+
 <style>
+  .c-loader-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 100;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+  }
+
+  .c-loader-dot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: start;
+    pointer-events: none;
+  }
+
+  .c-loader-dot > span {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #fff;
+  }
+
+  .c-loader-dot > span + span {
+    margin-left: 3rem;
+  }
+
+  /* メイン */
   .abouts {
     width: 1250px;
     margin: 0 auto;
@@ -137,10 +261,6 @@ type Career = {
     }
   }
 
-  .abouts__about__name {
-    font-size: 30px;
-  }
-
   .abouts__about .abouts__about__img {
     max-width: 20%;
   }
@@ -153,6 +273,34 @@ type Career = {
     .abouts__about .abouts__about__img {
       max-width: 40%;
     }
+  }
+
+  .abouts__about__name {
+    font-size: 30px;
+  }
+
+  .abouts__about__sns {
+    width: 50%;
+    margin: 0 auto;
+    padding: 60px 0 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sns-icon {
+    width: 100px;
+    height: 100px;
+  }
+  @media screen and (max-width: 1026px) {
+    .sns-icon {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  .link:hover {
+    opacity: 0.5;
   }
 
   .abouts__about__inner {

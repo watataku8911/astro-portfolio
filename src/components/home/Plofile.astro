@@ -24,18 +24,67 @@
   </div>
 </section>
 
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const profile = ".profile";
+  const profileTitle = ".profile__title";
+  const profileLeft = ".profile__left";
+  const profileRight = ".profile__right";
+  const profileRightMessage = ".profile__right__message";
+
+  gsap.set([profileTitle, profileLeft], {
+    opacity: 0,
+    y: -10,
+  });
+  gsap.set(profileRightMessage, {
+    opacity: 0,
+    y: 10,
+  });
+
+  gsap.to(profileTitle, {
+    opacity: 1,
+    y: 0,
+    scrollTrigger: {
+      trigger: profile,
+      start: "top center", //アニメーションが始まる位置
+    },
+    duration: 0.7,
+  });
+  gsap.to(profileLeft, {
+    opacity: 1,
+    y: 0,
+    scrollTrigger: {
+      trigger: profileLeft,
+      start: "top center", //アニメーションが始まる位置
+    },
+  });
+  gsap.to(profileRightMessage, {
+    opacity: 1,
+    x: 0,
+    scrollTrigger: {
+      trigger: profileRight,
+      start: "top center", //アニメーションが始まる位置
+    },
+  });
+</script>
+
 <style>
   .profile {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     background-color: #addff2;
+    padding: 0 0 60px 0;
   }
 
   .profile__title {
     font-family: "Lobster";
     font-size: 4.5em;
-    padding: 2% 0 60px 0;
+    padding: 60px 0 80px 0;
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
     .profile__title {
@@ -49,8 +98,7 @@
   }
 
   .profile__inner {
-    width: 95%;
-    margin: 0 auto;
+    width: 90%;
   }
 
   .profile__left {
