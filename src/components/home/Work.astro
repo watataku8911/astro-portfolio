@@ -32,42 +32,8 @@ type Work = {
 </section>
 
 <script>
-  import gsap from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  const works = ".works";
-  const worksWorkTitle = ".works__work__title";
-  const worksworkInner = ".works__work__inner";
-  gsap.set(worksWorkTitle, {
-    opacity: 0,
-    y: 10,
-  });
-  gsap.set(worksworkInner, {
-    opacity: 0,
-    y: 30,
-  });
-
-  gsap.to(worksWorkTitle, {
-    opacity: 1,
-    y: 0,
-    scrollTrigger: {
-      trigger: works,
-      start: "top center", //アニメーションが始まる位置
-    },
-    duration: 0.7,
-  });
-  gsap.to(worksworkInner, {
-    opacity: 1,
-    y: 0,
-    scrollTrigger: {
-      trigger: worksWorkTitle,
-      start: "top center", //アニメーションが始まる位置
-    },
-    duration: 0.7,
-    delay: 0.5,
-  });
+  intersection(document.querySelectorAll(".works__work__title"));
+  intersection(document.querySelectorAll(".work-card"));
 </script>
 
 <style>
@@ -94,17 +60,25 @@ type Work = {
   .works__work__title {
     font-family: "Lobster";
     font-size: 4.5em;
-    padding: 2% 0 60px 0;
+    padding: 0 0 60px 0;
+    opacity: 0;
+    transform: translateX(-30px);
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
     .works__work__title {
       font-size: 3.5em;
+      transform: translateY(30px);
     }
   }
   @media screen and (max-width: 481px) {
     .works__work__title {
       font-size: 2.5em;
+      transform: translateY(30px);
     }
+  }
+
+  .works__work__title.active {
+    animation: animationName 0.5s ease 0.5s 1 forwards;
   }
 
   .works__work__inner {
@@ -117,6 +91,13 @@ type Work = {
   @media screen and (max-width: 481px) {
     .works__work__inner {
       flex-direction: column;
+    }
+  }
+
+  @keyframes animationName {
+    100% {
+      opacity: 1;
+      transform: translate(0, 0);
     }
   }
 </style>

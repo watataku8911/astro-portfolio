@@ -30,8 +30,8 @@ type Props = {
 const { target, image, href, title, time } = Astro.props;
 ---
 
-<a href={href} target={target}>
-  <article class="card">
+<article class="card">
+  <a href={href} target={target}>
     <img src={image} alt={title} class="card__thunbnail" />
     <h4 class="card__title">
       {split(title, 30)}
@@ -39,8 +39,8 @@ const { target, image, href, title, time } = Astro.props;
     <time datetime="YYYY年MM月DD日" class="card__date">
       {datePlasticSurgery(time)}
     </time>
-  </article>
-</a>
+  </a>
+</article>
 
 <style>
   .card {

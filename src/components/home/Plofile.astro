@@ -1,79 +1,42 @@
 ---
 ---
 
-<section class="profile">
-  <div class="profile__inner">
-    <h2 class="profile__title">About&nbsp;me.</h2>
-    <div class="profile__left">
-      <img src="/img/Hight_icon_watataku's_radius.png" alt="Watataku" />
-    </div>
-    <div class="profile__right">
-      <p class="profile__right__message">
-        初めまして。ご覧いただきありがとうございます。フロントエンドエンジニアとして活動しているWatatakuです。
-      </p>
-      <p class="profile__right__message">
-        <i style="font-weight: 400">「デザイン崩れ」</i
-        >のおきないサイト制作を目指し、<i style="font-weight: 400"
-          >「UI/UXを意識」</i
-        >したサイト制作を心がけています。
-      </p>
-      <p class="profile__right__message">
-        インタラクティブなサイトが好きなので、少しユーモアのあるインタラクションを取り入れたサイト制作を目指しています。
-      </p>
+<section class="profiles">
+  <div class="profiles__inner">
+    <h2 class="profiles__title">About&nbsp;me.</h2>
+    <div class="profiles__profile">
+      <div class="profiles__profile__left">
+        <img src="/img/Hight_icon_watataku's_radius.png" alt="Watataku" />
+      </div>
+      <div class="profiles__profile__right">
+        <p class="profiles__profile__right__message">
+          初めまして。ご覧いただきありがとうございます。フロントエンドエンジニアとして活動しているWatatakuです。
+        </p>
+        <p class="profiles__profile__right__message">
+          <i style="font-weight: 400">「デザイン崩れ」</i
+          >のおきないサイト制作を目指し、<i style="font-weight: 400"
+            >「UI/UXを意識」</i
+          >したサイト制作を心がけています。
+        </p>
+        <p class="profiles__profile__right__message">
+          インタラクティブなサイトが好きなので、少しユーモアのあるインタラクションを取り入れたサイト制作を目指しています。
+        </p>
+        <p class="profiles__profile__right__message">
+          <a href="/about">詳しく</a>
+        </p>
+      </div>
     </div>
   </div>
 </section>
 
 <script>
-  import gsap from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  const profile = ".profile";
-  const profileTitle = ".profile__title";
-  const profileLeft = ".profile__left";
-  const profileRight = ".profile__right";
-  const profileRightMessage = ".profile__right__message";
-
-  gsap.set([profileTitle, profileLeft], {
-    opacity: 0,
-    y: -10,
-  });
-  gsap.set(profileRightMessage, {
-    opacity: 0,
-    y: 10,
-  });
-
-  gsap.to(profileTitle, {
-    opacity: 1,
-    y: 0,
-    scrollTrigger: {
-      trigger: profile,
-      start: "top center", //アニメーションが始まる位置
-    },
-    duration: 0.7,
-  });
-  gsap.to(profileLeft, {
-    opacity: 1,
-    y: 0,
-    scrollTrigger: {
-      trigger: profileLeft,
-      start: "top center", //アニメーションが始まる位置
-    },
-  });
-  gsap.to(profileRightMessage, {
-    opacity: 1,
-    x: 0,
-    scrollTrigger: {
-      trigger: profileRight,
-      start: "top center", //アニメーションが始まる位置
-    },
-  });
+  intersection(document.querySelectorAll(".profiles__title"));
+  intersection(document.querySelectorAll(".profiles__profile__left"));
+  intersection(document.querySelectorAll(".profiles__profile__right__message"));
 </script>
 
 <style>
-  .profile {
+  .profiles {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -81,80 +44,112 @@
     padding: 0 0 60px 0;
   }
 
-  .profile__title {
+  .profiles__title {
+    opacity: 0;
+    transform: translateX(-30px);
     font-family: "Lobster";
     font-size: 4.5em;
-    padding: 60px 0 80px 0;
+    padding: 0 0 80px 0;
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
-    .profile__title {
+    .profiles__title {
       font-size: 3.5em;
+      transform: translateY(30px);
     }
   }
   @media screen and (max-width: 481px) {
-    .profile__title {
+    .profiles__title {
       font-size: 2.5em;
+      transform: translateY(30px);
     }
   }
 
-  .profile__inner {
+  .profiles__title.active {
+    animation: animationName 0.5s ease 0.5s 1 forwards;
+  }
+
+  .profiles__inner {
     width: 90%;
   }
 
-  .profile__left {
+  .profiles__profile__left {
     width: 50%;
     float: left;
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: all 2s ease;
   }
+
   @media screen and (max-width: 1026px) {
-    .profile__left {
+    .profiles__profile__left {
       text-align: center;
       width: 100%;
       float: none;
       margin-bottom: 20px;
+      transform: translateY(30px);
     }
   }
 
-  .profile__left img {
+  .profiles__profile__left.active {
+    animation: animationName 0.5s ease 0.5s 1 forwards;
+  }
+
+  .profiles__profile__left img {
     height: 300px;
     width: 300px;
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
-    .profile__left img {
+    .profiles__profile__left img {
       height: 20vw;
       width: 20vw;
     }
   }
   @media screen and (max-width: 481px) {
-    .profile__left img {
+    .profiles__profile__left img {
       height: 100px;
       width: 100px;
     }
   }
 
-  .profile__right {
+  .profiles__profile__right {
     width: 50%;
     float: right;
   }
   @media screen and (max-width: 1026px) {
-    .profile__right {
+    .profiles__profile__right {
       width: 100%;
       float: none;
     }
   }
 
-  .profile__right__message {
+  .profiles__profile__right__message {
     font-size: 1.5rem;
     letter-spacing: 2px;
     margin-bottom: 20px;
+    opacity: 0;
+    transform: translateX(-70px);
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
-    .profile__right__message {
+    .profiles__profile__right__message {
       font-size: 15px;
+      transform: translateY(30px);
     }
   }
   @media screen and (max-width: 481px) {
-    .profile__right__message {
+    .profiles__profile__right__message {
       font-size: 18px;
+      transform: translateY(30px);
+    }
+  }
+
+  .profiles__profile__right__message.active {
+    animation: animationName 0.5s ease 0.5s 1 forwards;
+  }
+
+  @keyframes animationName {
+    100% {
+      opacity: 1;
+      transform: translate(0, 0);
     }
   }
 </style>

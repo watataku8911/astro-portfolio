@@ -12,50 +12,70 @@ type Props = {
 const { image, href, title, tag, comment } = Astro.props;
 ---
 
-<a href={href} target="_blank" class="link">
-  <article class="card">
-    <img src={image} alt={title} class="card__thunbnail" />
-    <p class="card__tag black"><img src={IconTag} alt="タグ" />{tag}</p>
-    <h4 class="card__title black">
+<article class="work-card">
+  <a href={href} target="_blank" class="link">
+    <img src={image} alt={title} class="work-card__thunbnail" />
+    <p class="work-card__tag black"><img src={IconTag} alt="タグ" />{tag}</p>
+    <h4 class="work-card__title black">
       {title}
     </h4>
-    <p class="card__comment black">
+    <p class="work-card__comment black">
       {comment}
     </p>
-  </article>
-</a>
+  </a>
+</article>
+
+<script>
+  intersection(document.querySelectorAll(".work-card"));
+</script>
 
 <style>
+  @keyframes animationName {
+    100% {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
+
   .link {
     display: block;
   }
 
-  .card {
+  .work-card {
     position: relative;
     width: 38vw;
     height: 450px;
     background-color: #fffdf9;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(30px);
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
-    .card {
+    .work-card {
       width: 43vw;
       height: 350px;
     }
   }
   @media screen and (max-width: 481px) {
-    .card {
+    .work-card {
       width: 95vw;
       height: 400px;
       margin-bottom: 20px;
     }
   }
 
-  .card:hover {
+  .work-card.active:nth-child(2n + 1) {
+    animation: animationName 0.5s ease 0.5s 1 forwards;
+  }
+  .work-card.active:nth-child(2n) {
+    animation: animationName 0.5s ease 1s 1 forwards;
+  }
+
+  .work-card:hover {
     transform: translateY(-10px);
   }
 
-  .card__thunbnail {
+  .work-card__thunbnail {
     max-width: 100%;
     height: auto;
   }
@@ -65,11 +85,11 @@ const { image, href, title, tag, comment } = Astro.props;
     color: #000;
   }
 
-  .card__tag {
+  .work-card__tag {
     font-size: 1rem;
   }
 
-  .card__title {
+  .work-card__title {
     font-size: 1.35rem;
     margin-bottom: 10px;
   }

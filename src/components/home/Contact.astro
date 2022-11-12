@@ -26,37 +26,36 @@ import TwitterIcon from "/icon/ico_tw.svg";
 
     gsap.registerPlugin(ScrollTrigger);
 
+    surroundSpan(".contacts__contact__title");
+
+    intersection(
+      document.querySelectorAll(".contacts__contact__inner__message")
+    );
+    intersection(
+      document.querySelectorAll(".contacts__contact__inner__twitter")
+    );
+
     const contacts = ".contacts";
-    const contactsContactTitle = ".contacts__contact__title";
-    const contactsContactInner = ".contacts__contact__inner";
+    const contactsContactTitle = ".contacts__contact__title span";
 
     gsap.set(contactsContactTitle, {
       opacity: 0,
       y: 10,
     });
-    gsap.set(contactsContactInner, {
-      opacity: 0,
-      y: -50,
-    });
 
     gsap.to(contactsContactTitle, {
       opacity: 1,
       y: 0,
+      stagger: {
+        amount: 1,
+        from: "start",
+        ease: "sine.in",
+      },
       scrollTrigger: {
         trigger: contacts,
         start: "top center",
       },
-      duration: 0.7,
-    });
-    gsap.to(contactsContactInner, {
-      opacity: 1,
-      x: 0,
-      scrollTrigger: {
-        trigger: contactsContactTitle,
-        start: "top center",
-      },
-      duration: 0.7,
-      delay: 0.5,
+      delay: -0.1,
     });
   </script>
 
@@ -79,7 +78,7 @@ import TwitterIcon from "/icon/ico_tw.svg";
     .contacts__contact__title {
       font-family: "Lobster";
       font-size: 4.5em;
-      padding: 2% 0 160px 0;
+      padding: 2% 0 5% 0;
     }
     @media screen and (min-width: 482px) and (max-width: 1025px) {
       .contacts__contact__title {
@@ -98,6 +97,16 @@ import TwitterIcon from "/icon/ico_tw.svg";
       align-content: space-between;
     }
 
+    .contacts__contact__inner__message {
+      padding-left: 30px;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .contacts__contact__inner__message.active {
+      animation: animationName 0.5s ease 0.5s 1 forwards;
+    }
+
     .contacts__contact__inner__message p {
       word-wrap: break-word;
     }
@@ -105,6 +114,12 @@ import TwitterIcon from "/icon/ico_tw.svg";
     .contacts__contact__inner__twitter {
       margin-left: auto;
       margin-top: auto;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .contacts__contact__inner__twitter.active {
+      animation: animationName 0.5s ease 0.5s 1 forwards;
     }
 
     .contacts__contact__inner__twitter a {

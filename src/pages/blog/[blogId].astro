@@ -17,7 +17,9 @@ type Thumbnail = {
 };
 
 export async function getStaticPaths() {
-  const myMicroCMSApiUrl = `https://du14ecbjft.microcms.io/api/v1/blog`;
+  const myMicroCMSApiUrl = `https://${
+    import.meta.env.MICROCMS_SERVICE_DOMAIN
+  }.microcms.io/api/v1/blog`;
   const res = await fetch(myMicroCMSApiUrl, {
     headers: {
       "X-MICROCMS-API-KEY": import.meta.env.MICROCMS_API_KEY,
@@ -36,7 +38,9 @@ export async function getStaticPaths() {
 const { blogId } = Astro.params;
 console.log(blogId);
 
-const myMicroCMSApiUrl = `https://du14ecbjft.microcms.io/api/v1/blog/${blogId}`;
+const myMicroCMSApiUrl = `https://${
+  import.meta.env.MICROCMS_SERVICE_DOMAIN
+}.microcms.io/api/v1/blog/${blogId}`;
 const res = await fetch(myMicroCMSApiUrl, {
   headers: {
     "X-MICROCMS-API-KEY": import.meta.env.MICROCMS_API_KEY,
