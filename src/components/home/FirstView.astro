@@ -52,79 +52,81 @@ import IconDown from "/icon/icon_down.svg";
     y: 30,
   });
 
-  gsap
-    .timeline()
-    .to(
-      /* 0.8秒後に起動 */
-      jsDot,
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        delay: 0.8,
-        stagger: {
-          amount: 0.5, //0.5秒おきに
-          from: "start", // 左から
-          ease: "power4.inOut",
-        },
-      }
-    )
-    .to(jsDot, {
-      opacity: 0,
-    })
-    .to(jsLoaderBg, {
-      y: "100%",
-      delay: 0.5,
-    })
-    .to(
-      firstViewCircle,
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: {
-          amount: 0.6,
-        },
+  gsap.timeline().to(
+    /* 0.8秒後に起動 */
+    jsDot,
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      delay: 0.8,
+      stagger: {
+        amount: 0.5, //0.5秒おきに
+        from: "start", // 左から
+        ease: "power4.inOut",
       },
-      "+=0.2"
-    )
-    .to(
-      firstViewtext,
-      {
-        /* 前のアニメーションが完了する0.1秒前に実行 */
-        opacity: 1,
-        y: 0,
-        stagger: {
-          amount: 1,
-          from: "start",
-          ease: "sine.in",
+    }
+  );
+  window.addEventListener("load", (event) => {
+    gsap
+      .timeline()
+      .to(jsDot, {
+        opacity: 0,
+      })
+      .to(jsLoaderBg, {
+        y: "100%",
+        delay: 0.5,
+      })
+      .to(
+        firstViewCircle,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: {
+            amount: 0.6,
+          },
         },
-      },
-      "-=0.1"
-    )
-    .to(
-      firstViewTitle,
-      {
-        /* 前のアニメーションが完了する0.1秒前に実行 */
-        opacity: 1,
-        y: 0,
-        stagger: {
-          amount: 1,
-          from: "start",
-          ease: "sine.in",
+        "+=0.2"
+      )
+      .to(
+        firstViewTitle,
+        {
+          /* 前のアニメーションが完了する0.1秒前に実行 */
+          opacity: 1,
+          y: 0,
+          stagger: {
+            amount: 1,
+            from: "start",
+            ease: "sine.in",
+          },
         },
-      },
-      "-=0.1"
-    )
-    .to(
-      picDown,
-      {
-        opacity: 2,
-        y: 0,
-        duration: 0.8,
-      },
-      "+=0.2"
-    );
+        "-=0.1"
+      )
+      .to(
+        firstViewtext,
+        {
+          /* 前のアニメーションが完了する0.1秒前に実行 */
+          opacity: 1,
+          y: 0,
+          stagger: {
+            amount: 1,
+            from: "start",
+            ease: "sine.in",
+          },
+        },
+        "-=0.1"
+      )
+      .to(
+        picDown,
+        {
+          opacity: 2,
+          y: 0,
+          duration: 0.8,
+        },
+        "+=0.2"
+      );
+  });
 </script>
 
 <style>
