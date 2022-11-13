@@ -1,7 +1,7 @@
 ---
-import Qiita from "../blog/qiita.astro";
-import Zenn from "../blog/zenn.astro";
-import WatatakuBlog from "../blog/watataku-blog.astro";
+import Qiita from "../home/blog/qiita.astro";
+import Zenn from "../home/blog/zenn.astro";
+import WatatakuBlog from "../home/blog/watataku-blog.astro";
 ---
 
 <section class="blogs" id="blog">
@@ -14,8 +14,12 @@ import WatatakuBlog from "../blog/watataku-blog.astro";
         >
       </h3>
       <Qiita />
-      <!-- <h3><a class="link" href="https://watataku-blog.vercel.com" target="_blank">- Zenn<(もっとみる)/a></h3>
-      <Zenn /> -->
+    </div>
+    <!-- <div class="blogs__blog__inner">
+      <h3><a class="link" href="https://watataku-blog.vercel.com" target="_blank">- Zenn(もっとみる)</a></h3>
+      <Zenn />
+    </div> -->
+    <div class="blogs__blog__inner">
       <h3>
         <a class="link" href="https://watataku-blog.vercel.com" target="_blank"
           >- Watataku ブログ(もっとみる)</a
@@ -27,26 +31,8 @@ import WatatakuBlog from "../blog/watataku-blog.astro";
 </section>
 
 <script>
-  import gsap from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  const blogs = ".blogs";
-  const blogsBlogTitle = ".blogs__blog__title";
-
-  gsap.set(blogsBlogTitle, {
-    opacity: 0,
-    y: 10,
-  });
-  gsap.to(blogsBlogTitle, {
-    opacity: 1,
-    y: 0,
-    scrollTrigger: {
-      trigger: blogs,
-      start: "top center",
-    },
-  });
+  intersection(document.querySelectorAll(".blogs__blog__title"));
+  intersection(document.querySelectorAll(".blogs__blog__inner"));
 </script>
 
 <style>
@@ -64,6 +50,39 @@ import WatatakuBlog from "../blog/watataku-blog.astro";
     font-family: "Lobster";
     font-size: 4.5em;
     padding: 0 0 60px 0;
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  @media screen and (max-width: 1026px) {
+    .blogs__blog__title {
+      transform: translateY(30px);
+    }
+  }
+
+  .blogs__blog__title.active {
+    animation: animationName 0.5s ease 0.5s 1 forwards;
+  }
+
+  .blogs__blog__inner:nth-child(2n) {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  .blogs__blog__inner:nth-child(2n + 1) {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  @media screen and (max-width: 1026px) {
+    .blogs__blog__inner:nth-child(2n) {
+      transform: translateY(30px);
+    }
+    .blogs__blog__inner:nth-child(2n + 1) {
+      transform: translateY(30px);
+    }
+  }
+
+  .blogs__blog__inner.active {
+    animation: animationName 0.5s ease 0.5s 1 forwards;
   }
 
   .blogs__blog__inner .link {
@@ -72,5 +91,11 @@ import WatatakuBlog from "../blog/watataku-blog.astro";
 
   .blogs__blog__inner .link:hover {
     color: #eee;
+  }
+  @keyframes animationName {
+    100% {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
   }
 </style>

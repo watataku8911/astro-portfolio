@@ -21,42 +21,13 @@ import TwitterIcon from "/icon/ico_tw.svg";
   </div>
 
   <script>
-    import gsap from "gsap";
-    import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    surroundSpan(".contacts__contact__title");
-
+    intersection(document.querySelectorAll(".contacts__contact__title"));
     intersection(
       document.querySelectorAll(".contacts__contact__inner__message")
     );
     intersection(
       document.querySelectorAll(".contacts__contact__inner__twitter")
     );
-
-    const contacts = ".contacts";
-    const contactsContactTitle = ".contacts__contact__title span";
-
-    gsap.set(contactsContactTitle, {
-      opacity: 0,
-      y: 10,
-    });
-
-    gsap.to(contactsContactTitle, {
-      opacity: 1,
-      y: 0,
-      stagger: {
-        amount: 1,
-        from: "start",
-        ease: "sine.in",
-      },
-      scrollTrigger: {
-        trigger: contacts,
-        start: "top center",
-      },
-      delay: -0.1,
-    });
   </script>
 
   <style>
@@ -79,16 +50,24 @@ import TwitterIcon from "/icon/ico_tw.svg";
       font-family: "Lobster";
       font-size: 4.5em;
       padding: 2% 0 5% 0;
+      opacity: 0;
+      transform: translateX(-30px);
     }
     @media screen and (min-width: 482px) and (max-width: 1025px) {
       .contacts__contact__title {
         font-size: 3.5em;
+        transform: translateY(30px);
       }
     }
     @media screen and (max-width: 481px) {
       .contacts__contact__title {
         font-size: 2.5em;
+        transform: translateY(30px);
       }
+    }
+
+    .contacts__contact__title.active {
+      animation: animationName 0.5s ease 0.5s 1 forwards;
     }
 
     .contacts__contact__inner {
