@@ -34,13 +34,6 @@ type Career = {
   title="ABOUT | Watataku's ポートフォリオサイト"
   description="WatatakuのAboutページです。"
 >
-  <div class="c-loader-bg js-loader-bg">
-    <div class="c-loader-dot js-loader-dot-wrap">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
   <section class="abouts">
     <h1 class="abouts__title">About me.</h1>
     <div class="abouts__about image-box">
@@ -130,56 +123,34 @@ type Career = {
 
   const jsLoaderBg = ".js-loader-bg";
   const jsDot = ".js-loader-dot-wrap > span";
-  const aboutsTitle = ".abouts__title";
-  const aboutsAbout = ".abouts__about";
 
   gsap.set(jsDot, {
     opacity: 0,
     y: -50,
   });
-  gsap.set(aboutsTitle, {
-    opacity: 0,
-    x: -90,
-  });
-  gsap.set(aboutsAbout, {
-    opacity: 0,
-    y: 90,
+
+  const loaded = () => {
+    gsap
+      .timeline()
+      .to(jsDot, {
+        opacity: 0,
+      })
+      .to(jsLoaderBg, {
+        y: "100%",
+        delay: 0.5,
+      });
+  };
+
+  // loading完了
+  window.addEventListener("load", (event) => {
+    setTimeout(() => {
+      loaded();
+    }, 3000);
   });
 
-  gsap
-    .timeline()
-    .to(
-      /* 0.8秒後に起動 */
-      jsDot,
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        delay: 0.8,
-        stagger: {
-          amount: 0.5, //0.5秒おきに
-          from: "start", // 左から
-          ease: "power4.inOut",
-        },
-      }
-    )
-    .to(jsDot, {
-      opacity: 0,
-    })
-    .to(jsLoaderBg, {
-      y: "100%",
-      delay: 0.5,
-    })
-    .to(aboutsTitle, {
-      opacity: 1,
-      x: 0,
-      duration: 0.7,
-    })
-    .to(aboutsAbout, {
-      opacity: 1,
-      y: 0,
-      duration: 0.7,
-    });
+  setTimeout(() => {
+    loaded();
+  }, 9000);
 </script>
 
 <style>

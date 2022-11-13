@@ -2,17 +2,14 @@
 import IconDown from "/icon/icon_down.svg";
 ---
 
-<div class="c-loader-bg js-loader-bg">
-  <div class="c-loader-dot js-loader-dot-wrap">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-</div>
 <section class="first-view">
   <header class="first-view__header">
     <p class="first-view__header__logo"><a href="#">Watataku's</a></p>
   </header>
+
+  <div class="first-view__image-box">
+    <img class="first-view__image" src="/img/typing.png" alt="pc" />
+  </div>
 
   <div class="first-view__circle"></div>
 
@@ -39,11 +36,12 @@ import IconDown from "/icon/icon_down.svg";
   const jsLoaderBg = ".js-loader-bg";
   const jsDot = ".js-loader-dot-wrap > span";
   const firstViewCircle = ".first-view__circle";
+  const firstViewImageBox = ".first-view__image-box";
   const firstViewTitle = ".first-view__title__text span";
   const firstViewtext = ".first-view__text span";
   const picDown = ".pic_down";
 
-  gsap.set([jsDot, firstViewTitle, firstViewtext], {
+  gsap.set([jsDot, firstViewTitle, firstViewtext, firstViewImageBox], {
     opacity: 0,
     y: -50,
   });
@@ -52,22 +50,7 @@ import IconDown from "/icon/icon_down.svg";
     y: 30,
   });
 
-  gsap.timeline().to(
-    /* 0.8秒後に起動 */
-    jsDot,
-    {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      delay: 0.8,
-      stagger: {
-        amount: 0.5, //0.5秒おきに
-        from: "start", // 左から
-        ease: "power4.inOut",
-      },
-    }
-  );
-  window.addEventListener("load", (event) => {
+  const loaded = () => {
     gsap
       .timeline()
       .to(jsDot, {
@@ -79,6 +62,18 @@ import IconDown from "/icon/icon_down.svg";
       })
       .to(
         firstViewCircle,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: {
+            amount: 0.6,
+          },
+        },
+        "+=0.2"
+      )
+      .to(
+        firstViewImageBox,
         {
           opacity: 1,
           y: 0,
@@ -126,42 +121,21 @@ import IconDown from "/icon/icon_down.svg";
         },
         "+=0.2"
       );
+  };
+
+  // loading完了
+  window.addEventListener("load", (event) => {
+    setTimeout(() => {
+      loaded();
+    }, 3000);
   });
+
+  setTimeout(() => {
+    loaded();
+  }, 9000);
 </script>
 
 <style>
-  .c-loader-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    z-index: 100;
-    display: grid;
-    place-items: center;
-    pointer-events: none;
-  }
-
-  .c-loader-dot {
-    display: inline-flex;
-    align-items: center;
-    justify-content: start;
-    pointer-events: none;
-  }
-
-  .c-loader-dot > span {
-    display: block;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #fff;
-  }
-
-  .c-loader-dot > span + span {
-    margin-left: 3rem;
-  }
-
   /* メイン */
   .first-view {
     position: relative;
@@ -176,6 +150,28 @@ import IconDown from "/icon/icon_down.svg";
 
   .first-view__header__logo a {
     color: #333;
+  }
+
+  .first-view__image-box {
+    position: absolute;
+    right: 0;
+  }
+
+  .first-view__image {
+    width: 450px;
+    height: 500px;
+  }
+  @media screen and (min-width: 482px) and (max-width: 1025px) {
+    .first-view__image {
+      width: calc(15vh + 150px);
+      height: calc(15vh + 150px);
+    }
+  }
+  @media screen and (max-width: 481px) {
+    .first-view__image {
+      width: 200px;
+      height: 200px;
+    }
   }
 
   /* text */
@@ -239,27 +235,35 @@ import IconDown from "/icon/icon_down.svg";
   /* 円 */
   .first-view__circle {
     position: absolute;
-    bottom: -50%;
-    left: -10%;
-    width: 1100px;
-    height: 1100px;
-    border-radius: 50%;
-    background-color: #addff2;
+    width: 70vw;
+    height: 70vw;
+    bottom: 0%;
+  }
+  .first-view__circle:after {
+    content: "";
+    position: absolute;
+    border: solid #addff2;
+    border-width: 70vw 70vw 0 0;
+    border-top-right-radius: 70vw;
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
     .first-view__circle {
-      bottom: -20vw;
-      left: -40vw;
-      width: 100vh;
-      height: 100vh;
+      width: calc(45vw + 50vh);
+      height: calc(45vw + 50vh);
+    }
+    .first-view__circle:after {
+      border-width: calc(45vw + 50vh) calc(45vw + 50vh) 0 0;
+      border-top-right-radius: calc(45vw + 50vh);
     }
   }
   @media screen and (max-width: 481px) {
     .first-view__circle {
-      bottom: -60vw;
-      left: -85vw;
-      width: 100vh;
-      height: 100vh;
+      width: 70vh;
+      height: 70vh;
+    }
+    .first-view__circle:after {
+      border-width: 70vh 70vh 0 0;
+      border-top-right-radius: 70vh;
     }
   }
 
@@ -268,11 +272,7 @@ import IconDown from "/icon/icon_down.svg";
     position: absolute;
     right: 2vw;
     bottom: 2%;
-    animation-name: picdown;
-    animation-duration: 1s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease;
-    will-change: transform;
+    animation: picdown 1s ease 0.2s infinite;
   }
   @keyframes picdown {
     /*タイプライターライクなアニメーション*/
