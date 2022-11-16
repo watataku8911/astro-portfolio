@@ -1,6 +1,24 @@
-<header class="header">
-  <div class="header__logo"></div>
-  <div class="navToggle">
+<header class="header grid">
+  <div class="header__inner grid between">
+  <div class="header__logo"><a class="black" href="/">T.W</a></div>
+  <nav class="header__navi">
+    <ul class="grid between">
+      <li>
+        <a class="black" href="/">Home</a>
+      </li>
+      <li>
+        <a class="black" href="/about">About me</a>
+      </li>
+      <li>
+        <a class="black" href="/work">Works</a>
+      </li>
+      <li>
+        <a class="black" href="/blog">Tech Blogs</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+  <!-- <div class="navToggle">
     <span></span>
     <span></span>
     <span></span>
@@ -14,30 +32,83 @@
         <a href="/#work">Work</a>
       </li>
       <li>
-        <a href="/#contact">Tech Blog</a>
+        <a href="/#blog">Tech Blog</a>
       </li>
       <li>
         <a href="/#contact">Contact</a>
       </li>
     </ul>
-  </nav>
+  </nav> -->
 </header>
 
+<!-- <script>
+  const navToggle = document.querySelector(".navToggle") as Element;
+  const navi = document.querySelector(".navi") as Element;
+
+  if (navToggle != null) {
+    console.log("error: navToggle get element");
+  }
+  if (navi != null) {
+    console.log("error: navi get element");
+  }
+  navToggle.addEventListener("click", () => {
+    navToggle.classList.toggle("is-active");
+    navi.classList.toggle("is-open");
+  });
+</script> -->
+
 <style>
+
+  .black {
+    color: #000;
+  }
+
+  .between {
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .grid {
+    display: flex;
+  }
+
+  .header {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 70px;
+    align-items: center;
+  }
+
+  .header__inner{
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .header__logo {
+    font-family: 'Great Vibes', cursive;
+    font-size: 43px;
+  }
+
+  .header__navi {
+    width: 40%;
+  }
+
   .navToggle {
+    z-index: 2;
     display: block;
-    position: fixed; /* bodyに対しての絶対位置指定 */
+    /* position: fixed;
     right: 8px;
-    top: 12px;
+    top: 12px; */
     width: 42px;
     height: 51px;
     cursor: pointer;
-    z-index: 999;
     text-align: center;
   }
   .navToggle span {
     display: block;
-    position: absolute; /* .navToggleに対して */
+    position: absolute;
     width: 30px;
     border-bottom: solid 4px #555;
     -webkit-transition: 0.35s ease-in-out;
@@ -75,5 +146,43 @@
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
     transform: rotate(45deg);
+  }
+
+  .navi {
+    display: none;
+    width: 100%;
+    background-color: #ece4e4;
+    text-align: center;
+    position: fixed;
+    top: 0%;
+    z-index: 1;
+    height: 100vh;
+  }
+
+  .navi.is-open {
+    display: block;
+    /* animation: animationName ease 1 forwards; */
+  }
+  .navi__wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .navi li {
+    width: 100%;
+    padding: 5px;
+  }
+  .navi li a {
+    font-size: 3em;
+    letter-spacing: 5px;
+    color: black;
+  }
+
+  @keyframes animationName {
+    100% {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
   }
 </style>
