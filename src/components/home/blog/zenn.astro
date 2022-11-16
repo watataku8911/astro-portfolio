@@ -44,33 +44,7 @@ const getFetchData: Zenn = await res.json();
   }
 </div>
 
-<script>
-  import gsap from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  const blogsInner = ".blogs__inner";
-  const qiita = ".qiita";
-
-  gsap.set(blogsInner, {
-    opacity: 0,
-    y: 90,
-  });
-  gsap.set(qiita, {
-    opacity: 0,
-    y: 90,
-  });
-
-  gsap.to(qiita, {
-    opacity: 1,
-    y: 0,
-    scrollTrigger: {
-      trigger: blogsInner,
-      start: "top center",
-    },
-  });
-</script>
+<script></script>
 <style>
   .zenn {
     height: 300px;

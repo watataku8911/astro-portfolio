@@ -1,31 +1,27 @@
 ---
 type Props = {
   href: string;
+  target: "_blank" | "_self" | "_top" | "_parent";
   msg: string;
 };
 
-const { href, msg } = Astro.props;
+const { href, target, msg } = Astro.props;
 ---
 
-<a href={href} target="_blank" class="linker__title">
-  {msg}
+<a class="linker__title" href={href} target={target}>
+  {msg}→
 </a>
 
 <style>
   .linker__title {
-    display: block;
-    letter-spacing: 2px;
-    color: white;
-    font-size: 1.5em;
-    text-align: center;
-    border-radius: 30px;
-    background-color: rgb(22, 214, 156);
-    width: 130px;
-    height: 40px;
-    box-shadow: 0px 0px 27px -6px rgba(0, 0, 0, 0.6);
+    color: black;
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 3px;
   }
 
   .linker__title:hover {
-    transform: translateX(8px);
+    color: #111;
+    background-color: #eee;
   }
 </style>

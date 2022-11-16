@@ -4,18 +4,20 @@ import IconTag from "/icon/icon_tag_navy.svg";
 type Props = {
   image: string;
   title: string;
-  tag: string;
+  use_tech: string;
   href: string;
   comment: string;
 };
 
-const { image, href, title, tag, comment } = Astro.props;
+const { image, href, title, use_tech, comment } = Astro.props;
 ---
 
 <article class="work-card">
   <a href={href} target="_blank" class="link">
     <img src={image} alt={title} class="work-card__thunbnail" />
-    <p class="work-card__tag black"><img src={IconTag} alt="タグ" />{tag}</p>
+    <p class="work-card__tag black">
+      <img src={IconTag} alt="タグ" />{use_tech}
+    </p>
     <h4 class="work-card__title black">
       {title}
     </h4>

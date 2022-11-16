@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@ashthornton/asscroll": "^2.0.11",
+    "@types/react-dom": "^18.0.8",
     "astro": "^1.6.0",
     "date-fns": "^2.29.3",
     "gsap": "^3.11.3"

@@ -2,11 +2,14 @@
 import Qiita from "../home/blog/qiita.astro";
 import Zenn from "../home/blog/zenn.astro";
 import WatatakuBlog from "../home/blog/watataku-blog.astro";
+import Linker from "../UIKit/Linker.astro";
 ---
 
 <section class="blogs" id="blog">
   <div class="blogs__blog">
-    <h2 class="blogs__blog__title">Tech&nbsp;Blog.</h2>
+    <h2 class="blogs__blog__title">
+      Tech&nbsp;Blogs<span class="blogs__blog__title__sub">技術ブログ</span>
+    </h2>
     <div class="blogs__blog__inner">
       <h3>
         <a class="link" href="https://qiita.com/watatatku8911" target="_blank"
@@ -27,18 +30,22 @@ import WatatakuBlog from "../home/blog/watataku-blog.astro";
       </h3>
       <WatatakuBlog />
     </div>
+    <div class="blogs__blog__linker">
+      <Linker href="/blog" msg="Tech Blogs" target={"_self"} />
+    </div>
   </div>
 </section>
 
 <script>
   intersection(document.querySelectorAll(".blogs__blog__title"));
   intersection(document.querySelectorAll(".blogs__blog__inner"));
+  intersection(document.querySelectorAll(".blogs__blog__linker"));
 </script>
 
 <style>
   .blogs {
     background-color: #addff2;
-    height: 1200px;
+    padding: 0px 0 60px 0;
   }
 
   .blogs__blog {
@@ -47,17 +54,36 @@ import WatatakuBlog from "../home/blog/watataku-blog.astro";
   }
 
   .blogs__blog__title {
-    font-family: "Lobster";
     font-size: 4.5em;
     padding: 0 0 60px 0;
     opacity: 0;
     transform: translateX(-30px);
   }
-
-  @media screen and (max-width: 1026px) {
+  @media screen and (min-width: 482px) and (max-width: 1026px) {
     .blogs__blog__title {
+      font-size: 3.5em;
       transform: translateY(30px);
     }
+  }
+  @media screen and (max-width: 481px) {
+    .blogs__blog__title {
+      font-size: 2.5em;
+      padding: 0 0 30px 0;
+      transform: translateY(30px);
+    }
+  }
+
+  .blogs__blog__title__sub {
+    font-size: 0.25em;
+    color: #444;
+  }
+
+  .blogs__blog__title__sub::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    border-bottom: solid 1px #333;
+    margin: 0 5px 0 5px;
   }
 
   .blogs__blog__title.active {
@@ -92,6 +118,24 @@ import WatatakuBlog from "../home/blog/watataku-blog.astro";
   .blogs__blog__inner .link:hover {
     color: #eee;
   }
+
+  .blogs__blog__linker {
+    font-size: 24px;
+    text-align: right;
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  @media screen and (max-width: 1026px) {
+    .blogs__blog__linker {
+      font-size: 18px;
+      transform: translateY(30px);
+    }
+  }
+
+  .blogs__blog__linker.active {
+    animation: animationName 0.5s ease 0.5s 1 forwards;
+  }
+
   @keyframes animationName {
     100% {
       opacity: 1;
