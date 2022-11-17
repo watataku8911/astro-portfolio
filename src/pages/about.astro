@@ -35,85 +35,94 @@ type Career = {
   description="WatatakuのAboutページです。"
 >
   <section class="abouts">
-    <h1 class="abouts__title">About me.</h1>
-    <div class="abouts__about image-box">
-      <img
-        class="abouts__about__img"
-        src="/img/Hight_icon_watataku's_radius.png"
-        alt="Watataku"
-      />
-      <p class="abouts__about__name">Watataku</p>
-      <div class="abouts__about__sns">
-        <p>
-          <a
-            class="link"
-            href="https://twitter.com/watataku8911"
-            target="_blank"
-            ><img class="sns-icon" src={IconTw} alt="twitter" />
-          </a>
-        </p>
-        <p>
-          <a
-            class="link"
-            href="https://instagram.com/watataku8911"
-            target="_blank"
-            ><img class="sns-icon" src={IconInst} alt="instagram" />
-          </a>
-        </p>
-        <p>
-          <a class="link" href="https://github.com/watataku8911" target="_blank"
-            ><img class="sns-icon" src={IconGit} alt="github" />
-          </a>
-        </p>
+    <div class="abouts__about">
+      <h1 class="abouts__about__title--large">
+        About&nbsp;me<span class="abouts__about__title--large__sub"
+          >私について</span
+        >
+      </h1>
+      <div class="abouts__about image-box">
+        <img
+          class="abouts__about__img"
+          src="/img/Hight_icon_watataku's_radius.png"
+          alt="Watataku"
+        />
+        <p class="abouts__about__name">Watataku</p>
+        <div class="abouts__about__sns">
+          <p>
+            <a
+              class="link"
+              href="https://twitter.com/watataku8911"
+              target="_blank"
+              ><img class="sns-icon" src={IconTw} alt="twitter" />
+            </a>
+          </p>
+          <p>
+            <a
+              class="link"
+              href="https://instagram.com/watataku8911"
+              target="_blank"
+              ><img class="sns-icon" src={IconInst} alt="instagram" />
+            </a>
+          </p>
+          <p>
+            <a
+              class="link"
+              href="https://github.com/watataku8911"
+              target="_blank"
+              ><img class="sns-icon" src={IconGit} alt="github" />
+            </a>
+          </p>
+        </div>
       </div>
-    </div>
-    <div class="abouts__about__inner">
-      <h2 class="abouts__about__title">
-        Service<span class="abouts__about__title__sub">サービス</span>
-      </h2>
-      <div class="abouts__about__service">
-        {
-          serviceList.map((service: Service) => (
-            <ServiceCard
-              image={service.image}
-              title={service.service}
-              text={service.text}
-            />
-          ))
-        }
+      <div class="abouts__about__inner">
+        <h2 class="abouts__about__title">
+          Service<span class="abouts__about__title__sub">サービス</span>
+        </h2>
+        <div class="abouts__about__service">
+          {
+            serviceList.map((service: Service) => (
+              <ServiceCard
+                image={service.image}
+                title={service.service}
+                text={service.text}
+              />
+            ))
+          }
+        </div>
       </div>
-    </div>
-    <div class="abouts__about__inner">
-      <h2 class="abouts__about__title">
-        Interest<span class="abouts__about__title__sub">興味がある</span>
-      </h2>
-      <ul>
-        {
-          interestList.map((interest: Interest) => (
-            <li class="abouts__about__li">{interest.interest}</li>
-          ))
-        }
-      </ul>
-    </div>
-    <div class="abouts__about__inner">
-      <h2 class="abouts__about__title">
-        Career<span class="abouts__about__title__sub">キャリア</span>
-      </h2>
-      <ul class="abouts__about__timeline">
-        {
-          careerList.map((career: Career) => (
-            <li>
-              <p class="abouts__about__timeline__date">
-                {career.timeline_date}
-              </p>
-              <div class="abouts__about__timeline__content">
-                <h3>{career.timeline_title}</h3>
-                <p>{career.timeline_content}</p>
-              </div>
-            </li>
-          ))
-        }
-      </ul>
+      <div class="abouts__about__inner">
+        <h2 class="abouts__about__title">
+          Interest<span class="abouts__about__title__sub">興味がある</span>
+        </h2>
+        <ul>
+          {
+            interestList.map((interest: Interest) => (
+              <li class="abouts__about__li">{interest.interest}</li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="abouts__about__inner">
+        <h2 class="abouts__about__title">
+          Career<span class="abouts__about__title__sub">キャリア</span>
+        </h2>
+        <ul class="abouts__about__timeline">
+          {
+            careerList.map((career: Career) => (
+              <li>
+                <p class="abouts__about__timeline__date">
+                  {career.timeline_date}
+                </p>
+                <div class="abouts__about__timeline__content">
+                  <h3>{career.timeline_title}</h3>
+                  <p>{career.timeline_content}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
     </div>
   </section>
 </Layout>
@@ -154,67 +163,44 @@ type Career = {
 </script>
 
 <style>
-  .c-loader-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    z-index: 100;
-    display: grid;
-    place-items: center;
-    pointer-events: none;
-  }
-
-  .c-loader-dot {
-    display: inline-flex;
-    align-items: center;
-    justify-content: start;
-    pointer-events: none;
-  }
-
-  .c-loader-dot > span {
-    display: block;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #fff;
-  }
-
-  .c-loader-dot > span + span {
-    margin-left: 3rem;
-  }
-
   /* メイン */
   .abouts {
-    width: 1250px;
-    margin: 0 auto;
-  }
-  @media screen and (max-width: 1026px) {
-    .abouts {
-      width: 100%;
-    }
+    background-color: #addff2;
+    padding: 60px 0 60px 0;
   }
 
-  .abouts__title {
-    font-family: "Lobster";
+  .abouts__about {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .abouts__about__title--large {
     font-size: 4.5em;
     padding: 2% 0 60px 0;
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
-    .abouts__title {
+    .abouts__about__title--large {
       font-size: 3.5em;
     }
   }
   @media screen and (max-width: 481px) {
-    .abouts__title {
+    .abouts__about__title--large {
       font-size: 2.5em;
+      padding: 2% 0 30px 0;
     }
   }
 
-  .abouts__about {
-    margin: 0 0 30px 0;
+  .abouts__about__title--large__sub {
+    font-size: 0.25em;
+    color: #333;
+  }
+
+  .abouts__about__title--large__sub::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    border-bottom: solid 1px #333;
+    margin: 0 5px 0 5px;
   }
 
   .image-box {
@@ -253,20 +239,20 @@ type Career = {
   .abouts__about__sns {
     width: 50%;
     margin: 0 auto;
-    padding: 60px 0 20px 0;
+    padding: 30px 0 20px 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
   .sns-icon {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
   }
   @media screen and (max-width: 1026px) {
     .sns-icon {
-      width: 50px;
-      height: 50px;
+      width: 40px;
+      height: 40px;
     }
   }
 
