@@ -29,6 +29,7 @@ const res = await fetch(myMicroCMSApiUrl, {
 });
 const getFetchData: Work = await res.json();
 ---
+
 <Layout title="WORKS | Watataku's ポートフォリオ" description="作品集です">
   <section class="works" id="work">
     <div class="works__work">
@@ -76,7 +77,7 @@ const getFetchData: Work = await res.json();
 
   .works__work__title {
     font-size: 4.5em;
-    padding: 0 0 60px 0;
+    padding: 2% 0 60px 0;
     opacity: 0;
     transform: translateX(-30px);
   }

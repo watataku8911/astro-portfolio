@@ -1,7 +1,7 @@
 ---
-import IconTw from "/icon/icon_twitter_black.svg"
-import IconInst from "/icon/ico_inst_foot.svg"
-import IconGit from "/icon/github_logo.svg"
+import IconTw from "/icon/icon_twitter_black.svg";
+import IconInst from "/icon/ico_inst_foot.svg";
+import IconGit from "/icon/github_logo.svg";
 ---
 
 <footer class="footer">
@@ -17,9 +17,15 @@ import IconGit from "/icon/github_logo.svg"
   <div class="footer__copy">
     <small class="grid">&copy;2022 Watataku.</small>
     <div class="footer__copy__icons grid">
-      <img src={IconTw} alt="twitter" width="20" height="20" />
-      <img src={IconInst} alt="Instagram" width="20" height="20" />
-      <img src={IconGit} alt="github" width="20" height="20" />
+      <a href="https://twitter.com/watataku8911" target="_blank"
+        ><img src={IconTw} alt="twitter" width="20" height="20" />
+      </a>
+      <a href="https://instagram.com/watataku8911" target="_blank"
+        ><img src={IconInst} alt="Instagram" width="20" height="20" />
+      </a>
+      <a href="https://github.com/watataku8911" target="_blank"
+        ><img src={IconGit} alt="github" width="20" height="20" />
+      </a>
     </div>
   </div>
 </footer>
@@ -45,9 +51,14 @@ import IconGit from "/icon/github_logo.svg"
   .footer__inner {
     height: 100px;
   }
+  @media screen and (max-width: 481px) {
+    .footer__inner {
+      height: 200px;
+    }
+  }
 
   .footer__logo {
-    font-family: 'Great Vibes', cursive;
+    font-family: "Great Vibes", cursive;
     font-size: 43px;
   }
 
@@ -72,7 +83,7 @@ import IconGit from "/icon/github_logo.svg"
     bottom: -2px;
     left: 0;
     width: 100%;
-    height: 2px;
+    height: 1px;
     background-color: #000;
     transform: translate(-15%, 0);
     transition: transform cubic-bezier(0.215, 0.61, 0.355, 1) 0.4s;
@@ -86,11 +97,12 @@ import IconGit from "/icon/github_logo.svg"
   }
 
   .footer__copy small {
+    letter-spacing: 1px;
     font-size: 18px;
   }
 
   .footer__copy__icons {
-    padding: 15px 0 15px 0;
+    padding: 25px 0 25px 0;
     width: 100px;
     margin: 0 auto;
   }
