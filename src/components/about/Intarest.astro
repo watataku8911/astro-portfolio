@@ -1,0 +1,23 @@
+---
+import interestList from "../../../public/data/interest.json";
+
+type Interest = {
+  id: number;
+  interest: string;
+};
+---
+
+<ul>
+  {
+    interestList.map((interest: Interest) => (
+      <li class="abouts__about__li">{interest.interest}</li>
+    ))
+  }
+</ul>
+
+<style>
+  .abouts__about__li {
+    margin-left: 25px;
+    list-style: disc;
+  }
+</style>

@@ -10,39 +10,39 @@ type Props = {
 const { image, title, text } = Astro.props;
 ---
 
-<article class="card">
-  <img src={image} alt={title} class="card__thunbnail" />
-  <h4 class="card__title black">
+<article class="service-card">
+  <img src={image} alt={title} class="service-card__thunbnail" />
+  <h4 class="service-card__title black">
     {title}
   </h4>
-  <p class="card__text black text">
+  <p class="service-card__text black text">
     {text}
   </p>
 </article>
 
 <style>
-  .card {
+  .service-card {
     position: relative;
-    width: 25vw;
-    height: 500px;
+    width: 28vw;
+    height: 550px;
     background-color: #fffdf9;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
-    .card {
-      width: 30vw;
+    .service-card {
+      width: 28vw;
       height: 400px;
     }
   }
   @media screen and (max-width: 481px) {
-    .card {
+    .service-card {
       width: 95vw;
       height: 500px;
       margin-bottom: 20px;
     }
   }
 
-  .card__thunbnail {
+  .service-card__thunbnail {
     max-width: 100%;
     height: auto;
   }
@@ -56,11 +56,11 @@ const { image, title, text } = Astro.props;
     color: #222;
   }
 
-  .card__tag {
+  .service-card__tag {
     font-size: 1rem;
   }
 
-  .card__title {
+  .service-card__title {
     text-align: center;
     font-size: 1.35rem;
     margin-bottom: 10px;

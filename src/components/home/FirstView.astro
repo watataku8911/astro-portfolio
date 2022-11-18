@@ -3,6 +3,13 @@ import IconDown from "/icon/icon_down.svg";
 ---
 
 <section class="first-view">
+  <div class="c-loader-bg js-loader-bg">
+    <div class="c-loader-dot js-loader-dot-wrap">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
   <div class="first-view__image-box">
     <img class="first-view__image" src="/img/typing.png" alt="pc" />
   </div>
@@ -29,26 +36,47 @@ import IconDown from "/icon/icon_down.svg";
   surroundSpan(".first-view__title__text");
   surroundSpan(".first-view__text");
 
-  const jsLoaderBg = ".js-loader-bg";
-  const jsDot = ".js-loader-dot-wrap > span";
-  const firstViewCircle = ".first-view__circle";
-  const firstViewImageBox = ".first-view__image-box";
-  const firstViewTitle = ".first-view__title__text span";
-  const firstViewtext = ".first-view__text span";
-  const picDown = ".pic_down";
-
-  gsap.set([jsDot, firstViewTitle, firstViewtext, firstViewImageBox], {
-    opacity: 0,
-    y: -50,
-  });
-  gsap.set([firstViewCircle, picDown], {
-    opacity: 0,
-    y: 30,
-  });
-
-  const loaded = () => {
+  const firstAnimation = () => {
+    const jsLoaderBg = ".js-loader-bg";
+    const jsDot = ".js-loader-dot-wrap > span";
+    const firstViewCircle = ".first-view__circle";
+    const firstViewImageBox = ".first-view__image-box";
+    const firstViewTitle = ".first-view__title__text span";
+    const firstViewtext = ".first-view__text span";
+    const picDown = ".pic_down";
+    gsap.set([jsDot, firstViewTitle, firstViewtext, firstViewImageBox], {
+      opacity: 0,
+      y: -50,
+    });
+    gsap.set([firstViewCircle, picDown], {
+      opacity: 0,
+      y: 30,
+    });
     gsap
       .timeline()
+      .to(
+        /* 0.8秒後に起動 */
+        jsDot,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          delay: 0.8,
+          stagger: {
+            amount: 0.5, //0.5秒おきに
+            from: "start", // 左から
+            ease: "power4.inOut",
+          },
+        }
+      )
+      .to(jsDot, {
+        opacity: 0,
+      })
+      .to(jsLoaderBg, {
+        display: "none",
+        y: "100%",
+        delay: 0.5,
+      })
       .to(jsDot, {
         opacity: 0,
       })
@@ -119,19 +147,84 @@ import IconDown from "/icon/icon_down.svg";
       );
   };
 
-  // loading完了
-  window.addEventListener("load", (event) => {
-    setTimeout(() => {
-      loaded();
-    }, 3000);
-  });
-
-  setTimeout(() => {
-    loaded();
-  }, 9000);
+  if (!sessionStorage.getItem("visited")) {
+    sessionStorage.setItem("visited", "true");
+    firstAnimation();
+  } else {
+    const jsLoaderBg = ".js-loader-bg";
+    const jsDot = ".js-loader-dot-wrap > span";
+    gsap.set(jsDot, {
+      opacity: 0,
+      y: -50,
+    });
+    gsap
+      .timeline()
+      .to(
+        /* 0.8秒後に起動 */
+        jsDot,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          delay: 0.8,
+          stagger: {
+            amount: 0.5, //0.5秒おきに
+            from: "start", // 左から
+            ease: "power4.inOut",
+          },
+        }
+      )
+      .to(jsDot, {
+        opacity: 0,
+      })
+      .to(jsLoaderBg, {
+        display: "none",
+        y: "100%",
+        delay: 0.5,
+      });
+  }
 </script>
 
 <style>
+  .c-loader-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #444;
+    z-index: 999;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+    visibility: visible;
+    transition: 0.3s;
+    opacity: 1;
+  }
+
+  .c-loader-bg.load {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .c-loader-dot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: start;
+    pointer-events: none;
+  }
+
+  .c-loader-dot > span {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #fff;
+  }
+
+  .c-loader-dot > span + span {
+    margin-left: 3rem;
+  }
   /* メイン */
   .first-view {
     position: relative;

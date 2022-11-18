@@ -3,24 +3,11 @@ import IconTw from "/icon/ico_tw.svg";
 import IconInst from "/icon/ico_inst.svg";
 import IconGit from "/icon/github_logo.svg";
 
-import serviceList from "../../public/data/service.json";
-import interestList from "../../public/data/interest.json";
 import careerList from "../../public/data/career.json";
 
 import Layout from "../layouts/Layout.astro";
-import ServiceCard from "../components/UIKit/ServiceCard.astro";
-
-type Service = {
-  id: number;
-  image: string;
-  service: string;
-  text: string;
-};
-
-type Interest = {
-  id: number;
-  interest: string;
-};
+import Service from "../components/about/Service.astro";
+import Intrest from "../components/about/Intarest.astro";
 
 type Career = {
   id: number;
@@ -75,92 +62,46 @@ type Career = {
           </p>
         </div>
       </div>
-      <div class="abouts__about__inner">
-        <h2 class="abouts__about__title">
-          Service<span class="abouts__about__title__sub">サービス</span>
-        </h2>
-        <div class="abouts__about__service">
-          {
-            serviceList.map((service: Service) => (
-              <ServiceCard
-                image={service.image}
-                title={service.service}
-                text={service.text}
-              />
-            ))
-          }
-        </div>
-      </div>
-      <div class="abouts__about__inner">
-        <h2 class="abouts__about__title">
-          Interest<span class="abouts__about__title__sub">興味がある</span>
-        </h2>
-        <ul>
-          {
-            interestList.map((interest: Interest) => (
-              <li class="abouts__about__li">{interest.interest}</li>
-            ))
-          }
-        </ul>
-      </div>
-      <div class="abouts__about__inner">
-        <h2 class="abouts__about__title">
-          Career<span class="abouts__about__title__sub">キャリア</span>
-        </h2>
-        <ul class="abouts__about__timeline">
-          {
-            careerList.map((career: Career) => (
-              <li>
-                <p class="abouts__about__timeline__date">
-                  {career.timeline_date}
-                </p>
-                <div class="abouts__about__timeline__content">
-                  <h3>{career.timeline_title}</h3>
-                  <p>{career.timeline_content}</p>
-                </div>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+    </div>
+
+    <div class="abouts__about__inner">
+      <h2 class="abouts__about__title">
+        Service<span class="abouts__about__title__sub">サービス</span>
+      </h2>
+      <Service />
+    </div>
+
+    <div class="abouts__about__inner">
+      <h2 class="abouts__about__title">
+        Interest<span class="abouts__about__title__sub">興味がある分野</span>
+      </h2>
+      <Intrest />
+    </div>
+
+    <div class="abouts__about__inner">
+      <h2 class="abouts__about__title">
+        Career<span class="abouts__about__title__sub">キャリア</span>
+      </h2>
+      <ul class="abouts__about__timeline">
+        {
+          careerList.map((career: Career) => (
+            <li>
+              <p class="abouts__about__timeline__date">
+                {career.timeline_date}
+              </p>
+              <div class="abouts__about__timeline__content">
+                <h3>{career.timeline_title}</h3>
+                <p>{career.timeline_content}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </section>
 </Layout>
 
-<script>
-  import gsap from "gsap";
-
-  const jsLoaderBg = ".js-loader-bg";
-  const jsDot = ".js-loader-dot-wrap > span";
-
-  gsap.set(jsDot, {
-    opacity: 0,
-    y: -50,
-  });
-
-  const loaded = () => {
-    gsap
-      .timeline()
-      .to(jsDot, {
-        opacity: 0,
-      })
-      .to(jsLoaderBg, {
-        y: "100%",
-        delay: 0.5,
-      });
-  };
-
-  // loading完了
-  window.addEventListener("load", (event) => {
-    setTimeout(() => {
-      loaded();
-    }, 3000);
-  });
-
-  setTimeout(() => {
-    loaded();
-  }, 9000);
-</script>
+<script></script>
 
 <style>
   /* メイン */
@@ -207,17 +148,6 @@ type Career = {
     text-align: center;
   }
 
-  .abouts__about__service {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-  @media screen and (max-width: 481px) {
-    .abouts__about__service {
-      flex-direction: column;
-    }
-  }
-
   .abouts__about .abouts__about__img {
     max-width: 20%;
   }
@@ -261,7 +191,8 @@ type Career = {
   }
 
   .abouts__about__inner {
-    margin: 0 0 20px 0;
+    width: 90%;
+    margin: 0 auto 30px;
   }
 
   .abouts__about__title {
@@ -282,11 +213,8 @@ type Career = {
     border-bottom: 1px solid #444;
   }
 
-  .abouts__about__li {
-    margin-left: 25px;
-    list-style: disc;
-  }
-
+  /* ----------------------------------------------------------------- */
+  /* タイムライン */
   .abouts__about__timeline > li {
     overflow: hidden;
     margin: 0;
