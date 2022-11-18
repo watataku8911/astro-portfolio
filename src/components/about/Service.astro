@@ -1,0 +1,36 @@
+---
+import serviceList from "../../../public/data/service.json";
+import ServiceCard from "../UIKit/ServiceCard.astro";
+
+type Service = {
+  id: number;
+  image: string;
+  service: string;
+  text: string;
+};
+---
+
+<div class="abouts__about__service">
+  {
+    serviceList.map((service: Service) => (
+      <ServiceCard
+        image={service.image}
+        title={service.service}
+        text={service.text}
+      />
+    ))
+  }
+</div>
+
+<style>
+  .abouts__about__service {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  @media screen and (max-width: 481px) {
+    .abouts__about__service {
+      flex-direction: column;
+    }
+  }
+</style>
