@@ -15,9 +15,31 @@ type Interest = {
   }
 </ul>
 
+<script>
+  intersection(document.querySelectorAll(".abouts__about__li"));
+</script>
+
 <style>
   .abouts__about__li {
     margin-left: 25px;
     list-style: disc;
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  @media screen and (max-width: 1025px) {
+    .abouts__about__li {
+      transform: translateY(30px);
+    }
+  }
+
+  .abouts__about__li.active {
+    animation: animationName 0.5s ease 0.5s 1 forwards;
+  }
+
+  @keyframes animationName {
+    100% {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
   }
 </style>

@@ -1,6 +1,7 @@
 ---
 import WorkCard from "../UIKit/WorkCard .astro";
 import Linker from "../UIKit/Linker.astro";
+
 type Work = {
   contents: Contents[];
 };
@@ -18,12 +19,12 @@ type Image = {
 };
 
 const myMicroCMSApiUrl = `https://${
-  import.meta.env.MICROCMS_SERVICE_DOMAIN
+  import.meta.env.MICROCMS_SERVICE_DOMAIN_PORTFOLIO
 }.microcms.io/api/v1/works?orders=-publishedAt&limit=2`;
 
 const res = await fetch(myMicroCMSApiUrl, {
   headers: {
-    "X-MICROCMS-API-KEY": import.meta.env.MICROCMS_API_KEY,
+    "X-MICROCMS-API-KEY": import.meta.env.MICROCMS_API_KEY_PORTFOLIO,
   },
 });
 const getFetchData: Work = await res.json();
@@ -55,7 +56,6 @@ const getFetchData: Work = await res.json();
 
 <script>
   intersection(document.querySelectorAll(".works__work__title"));
-  intersection(document.querySelectorAll(".work-card"));
   intersection(document.querySelectorAll(".works__work__linker"));
 </script>
 

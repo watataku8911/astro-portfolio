@@ -19,24 +19,24 @@ type Image = {
 };
 
 const myMicroCMSApiUrl = `https://${
-  import.meta.env.MICROCMS_SERVICE_DOMAIN
+  import.meta.env.MICROCMS_SERVICE_DOMAIN_PORTFOLIO
 }.microcms.io/api/v1/works?orders=-publishedAt&limit=999`;
 
 const res = await fetch(myMicroCMSApiUrl, {
   headers: {
-    "X-MICROCMS-API-KEY": import.meta.env.MICROCMS_API_KEY,
+    "X-MICROCMS-API-KEY": import.meta.env.MICROCMS_API_KEY_PORTFOLIO,
   },
 });
 const getFetchData: Work = await res.json();
 ---
 
 <Layout title="WORKS | Watataku's ポートフォリオ" description="作品集です">
-  <section class="works" id="work">
-    <div class="works__work">
-      <h2 class="works__work__title">
-        Works<span class="works__work__title__sub">作品</span>
+  <section class="works-page" id="work">
+    <div class="works-page__work">
+      <h2 class="works-page__work__title">
+        Works<span class="works-page__work__title--sub">作品</span>
       </h2>
-      <div class="works__work__inner">
+      <div class="works-page__work__inner">
         {
           getFetchData.contents.map((work: Contents) => (
             <WorkCard
@@ -54,53 +54,51 @@ const getFetchData: Work = await res.json();
 </Layout>
 
 <script>
-  intersection(document.querySelectorAll(".works__work__title"));
-  intersection(document.querySelectorAll(".work-card"));
-  intersection(document.querySelectorAll(".works__work__linker"));
+  intersection(document.querySelectorAll(".works-page__work__title"));
 </script>
 
 <style>
-  .works {
+  .works-page {
     background-color: #addff2;
     padding: 60px 0 60px 0;
   }
 
-  .works::after {
+  .works-page::after {
     content: "";
     width: 40vw;
   }
 
-  .works__work {
+  .works-page__work {
     width: 90%;
     margin: 0 auto;
   }
 
-  .works__work__title {
+  .works-page__work__title {
     font-size: 4.5em;
     padding: 2% 0 60px 0;
     opacity: 0;
     transform: translateX(-30px);
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
-    .works__work__title {
+    .works-page__work__title {
       font-size: 3.5em;
       transform: translateY(30px);
     }
   }
   @media screen and (max-width: 481px) {
-    .works__work__title {
+    .works-page__work__title {
       font-size: 2.5em;
       transform: translateY(30px);
       padding: 0 0 30px 0;
     }
   }
 
-  .works__work__title__sub {
+  .works-page__work__title--sub {
     font-size: 0.25em;
     color: #444;
   }
 
-  .works__work__title__sub::before {
+  .works-page__work__title--sub::before {
     content: "";
     display: inline-block;
     width: 20px;
@@ -108,11 +106,11 @@ const getFetchData: Work = await res.json();
     margin: 0 5px 0 5px;
   }
 
-  .works__work__title.active {
+  .works-page__work__title.active {
     animation: animationName 0.5s ease 0.5s 1 forwards;
   }
 
-  .works__work__inner {
+  .works-page__work__inner {
     width: 90%;
     margin: 0 auto;
     display: flex;
@@ -120,12 +118,12 @@ const getFetchData: Work = await res.json();
     align-items: center;
   }
   @media screen and (min-width: 482px) and (max-width: 1026px) {
-    .works__work__inner {
+    .works-page__work__inner {
       width: 100%;
     }
   }
   @media screen and (max-width: 481px) {
-    .works__work__inner {
+    .works-page__work__inner {
       flex-direction: column;
     }
   }

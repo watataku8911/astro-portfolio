@@ -3,39 +3,31 @@ import IconTw from "/icon/ico_tw.svg";
 import IconInst from "/icon/ico_inst.svg";
 import IconGit from "/icon/github_logo.svg";
 
-import careerList from "../../public/data/career.json";
-
 import Layout from "../layouts/Layout.astro";
 import Service from "../components/about/Service.astro";
 import Intrest from "../components/about/Intarest.astro";
-
-type Career = {
-  id: number;
-  timeline_date: string;
-  timeline_title: string;
-  timeline_content: string;
-};
+import Career from "../components/about/Career.astro";
 ---
 
 <Layout
   title="ABOUT | Watataku's ポートフォリオサイト"
   description="WatatakuのAboutページです。"
 >
-  <section class="abouts">
-    <div class="abouts__about">
-      <h1 class="abouts__about__title--large">
-        About&nbsp;me<span class="abouts__about__title--large__sub"
+  <section class="abouts-page">
+    <div class="abouts-page__about">
+      <h1 class="abouts-page__about__title--large">
+        About&nbsp;me<span class="abouts-page__about__title--large--sub"
           >私について</span
         >
       </h1>
-      <div class="abouts__about image-box">
+      <div class="image-box">
         <img
-          class="abouts__about__img"
+          class="abouts-page__about__img"
           src="/img/Hight_icon_watataku's_radius.png"
           alt="Watataku"
         />
-        <p class="abouts__about__name">Watataku</p>
-        <div class="abouts__about__sns">
+        <p class="abouts-page__about__name">Watataku</p>
+        <div class="abouts-page__about__sns">
           <p>
             <a
               class="link"
@@ -64,79 +56,79 @@ type Career = {
       </div>
     </div>
 
-    <div class="abouts__about__inner">
-      <h2 class="abouts__about__title">
-        Service<span class="abouts__about__title__sub">サービス</span>
+    <div class="abouts-page__about__inner">
+      <h2 class="abouts-page__about__title">
+        Service<span class="abouts-page__about__title__sub">サービス</span>
       </h2>
       <Service />
     </div>
 
-    <div class="abouts__about__inner">
-      <h2 class="abouts__about__title">
-        Interest<span class="abouts__about__title__sub">興味がある分野</span>
+    <div class="abouts-page__about__inner">
+      <h2 class="abouts-page__about__title">
+        Interest<span class="abouts-page__about__title__sub"
+          >興味がある分野</span
+        >
       </h2>
       <Intrest />
     </div>
 
-    <div class="abouts__about__inner">
-      <h2 class="abouts__about__title">
-        Career<span class="abouts__about__title__sub">キャリア</span>
+    <div class="abouts-page__about__inner">
+      <h2 class="abouts-page__about__title">
+        Career<span class="abouts-page__about__title__sub">キャリア</span>
       </h2>
-      <ul class="abouts__about__timeline">
-        {
-          careerList.map((career: Career) => (
-            <li>
-              <p class="abouts__about__timeline__date">
-                {career.timeline_date}
-              </p>
-              <div class="abouts__about__timeline__content">
-                <h3>{career.timeline_title}</h3>
-                <p>{career.timeline_content}</p>
-              </div>
-            </li>
-          ))
-        }
-      </ul>
+      <Career />
     </div>
   </section>
 </Layout>
 
-<script></script>
+<script>
+  intersection(document.querySelectorAll(".abouts-page__about__title--large"));
+  intersection(document.querySelectorAll(".image-box"));
+  intersection(document.querySelectorAll(".abouts-page__about__title"));
+</script>
 
 <style>
   /* メイン */
-  .abouts {
+  .abouts-page {
     background-color: #addff2;
     padding: 60px 0 60px 0;
   }
 
-  .abouts__about {
+  .abouts-page__about {
     width: 90%;
     margin: 0 auto;
   }
 
-  .abouts__about__title--large {
+  .abouts-page__about__title--large {
     font-size: 4.5em;
     padding: 2% 0 60px 0;
+    opacity: 0;
+    transform: translateX(-30px);
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
-    .abouts__about__title--large {
+    .abouts-page__about__title--large {
       font-size: 3.5em;
+      transform: translateY(30px);
     }
   }
   @media screen and (max-width: 481px) {
-    .abouts__about__title--large {
+    .abouts-page__about__title--large {
       font-size: 2.5em;
       padding: 2% 0 30px 0;
+      transform: translateY(30px);
     }
   }
 
-  .abouts__about__title--large__sub {
+  .abouts-page__about__title--large.active {
+    animation: animationName 0.5s ease 0.5s 1 forwards;
+  }
+
+  .abouts-page__about__title--large--sub {
     font-size: 0.25em;
     color: #333;
   }
 
-  .abouts__about__title--large__sub::before {
+  .abouts-page__about__title--large--sub::before {
     content: "";
     display: inline-block;
     width: 20px;
@@ -146,27 +138,33 @@ type Career = {
 
   .image-box {
     text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
   }
 
-  .abouts__about .abouts__about__img {
+  .image-box.active {
+    animation: animationName 0.5s ease 0.5s 1 forwards;
+  }
+
+  .abouts-page__about .abouts-page__about__img {
     max-width: 20%;
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
-    .abouts__about .abouts__about__img {
+    .abouts-page__about .abouts-page__about__img {
       max-width: 25%;
     }
   }
   @media screen and (max-width: 481px) {
-    .abouts__about .abouts__about__img {
+    .abouts-page__about .abouts-page__about__img {
       max-width: 40%;
     }
   }
 
-  .abouts__about__name {
+  .abouts-page__about__name {
     font-size: 30px;
   }
 
-  .abouts__about__sns {
+  .abouts-page__about__sns {
     width: 50%;
     margin: 0 auto;
     padding: 30px 0 20px 0;
@@ -190,22 +188,39 @@ type Career = {
     opacity: 0.5;
   }
 
-  .abouts__about__inner {
+  .abouts-page__about__inner {
     width: 90%;
     margin: 0 auto 30px;
   }
-
-  .abouts__about__title {
-    font-size: 25px;
-    margin-bottom: 15px;
+  @media screen and (min-width: 481px) {
+    .abouts-page__about__inner {
+      margin: 0 auto 10px;
+    }
   }
 
-  .abouts__about__title__sub {
+  .abouts-page__about__title {
+    font-size: 25px;
+    margin-bottom: 15px;
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  @media screen and (max-width: 1026px) {
+    .abouts-page__about__title {
+      transform: translateY(30px);
+      margin-bottom: 8px;
+    }
+  }
+
+  .abouts-page__about__title.active {
+    animation: animationName 0.5s ease 0.5s 1 forwards;
+  }
+
+  .abouts-page__about__title__sub {
     font-size: 0.5em;
     color: #444;
   }
 
-  .abouts__about__title__sub::before {
+  .abouts-page__about__title__sub::before {
     display: inline-block;
     content: "";
     width: 20px;
@@ -213,57 +228,10 @@ type Career = {
     border-bottom: 1px solid #444;
   }
 
-  /* ----------------------------------------------------------------- */
-  /* タイムライン */
-  .abouts__about__timeline > li {
-    overflow: hidden;
-    margin: 0;
-    position: relative;
-  }
-
-  .abouts__about__timeline__date {
-    width: 130px;
-    float: left;
-    margin-top: 20px;
-  }
-
-  .abouts__about__timeline__content {
-    width: 75%;
-    float: left;
-    border-left: 3px #5bbee5 solid;
-    padding-left: 30px;
-    padding-bottom: 10px;
-  }
-  @media screen and (max-width: 481px) {
-    .abouts__about__timeline__content {
-      width: 100%;
-      border-left: none;
-    }
-  }
-
-  .abouts__about__timeline__content h3 {
-    font-size: 22px;
-    font-weight: bold;
-  }
-  @media screen and (max-width: 481px) {
-    .abouts__about__timeline__content h3 {
-      padding: 0 0 10px 0;
-    }
-  }
-
-  .abouts__about__timeline__content:before {
-    content: "";
-    width: 12px;
-    height: 12px;
-    background-color: #5bbee5;
-    position: absolute;
-    left: 126px;
-    top: 24px;
-    border-radius: 100%;
-  }
-  @media screen and (max-width: 481px) {
-    .abouts__about__timeline__content:before {
-      display: none;
+  @keyframes animationName {
+    100% {
+      opacity: 1;
+      transform: translate(0, 0);
     }
   }
 </style>
