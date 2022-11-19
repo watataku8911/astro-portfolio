@@ -1,0 +1,105 @@
+---
+type Career = {
+  contents: Contents[];
+};
+
+type Contents = {
+  timeline_date: string;
+  timeline_title: string;
+  timeline_content: string;
+};
+
+const myMicroCMSApiUrl = `https://${
+  import.meta.env.MICROCMS_SERVICE_DOMAIN_PORTFOLIO
+}.microcms.io/api/v1/career?orders=publishedAt&limit=999`;
+
+const res = await fetch(myMicroCMSApiUrl, {
+  headers: {
+    "X-MICROCMS-API-KEY": import.meta.env.MICROCMS_API_KEY_PORTFOLIO,
+  },
+});
+const getFetchData: Career = await res.json();
+---
+
+<ul class="abouts__about__timeline">
+  {
+    getFetchData.contents.map((career: Contents) => (
+      <li>
+        <p class="abouts__about__timeline__date">{career.timeline_date}</p>
+        <div class="abouts__about__timeline__content">
+          <h3>{career.timeline_title}</h3>
+          <p>{career.timeline_content}</p>
+        </div>
+      </li>
+    ))
+  }
+</ul>
+
+<script>
+  intersection(document.querySelectorAll(".abouts__about__timeline"));
+</script>
+
+<style>
+  .abouts__about__timeline {
+    opacity: 0;
+    transform: translateY(30);
+  }
+
+  .abouts__about__timeline.active {
+    animation: animationName 0.5s ease 0.5s 1 forwards;
+  }
+
+  .abouts__about__timeline > li {
+    overflow: hidden;
+    margin: 0;
+    position: relative;
+  }
+
+  .abouts__about__timeline__date {
+    width: 130px;
+    float: left;
+    margin-top: 20px;
+  }
+
+  .abouts__about__timeline__content {
+    width: 75%;
+    float: left;
+    border-left: 3px #5bbee5 solid;
+    padding-left: 30px;
+    padding-bottom: 10px;
+  }
+  @media screen and (max-width: 481px) {
+    .abouts__about__timeline__content {
+      width: 100%;
+      border-left: none;
+    }
+  }
+
+  .abouts__about__timeline__content h3 {
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .abouts__about__timeline__content:before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background-color: #5bbee5;
+    position: absolute;
+    left: 126px;
+    top: 24px;
+    border-radius: 100%;
+  }
+  @media screen and (max-width: 481px) {
+    .abouts__about__timeline__content:before {
+      display: none;
+    }
+  }
+
+  @keyframes animationName {
+    100% {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
+</style>

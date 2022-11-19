@@ -18,11 +18,11 @@ type Thumbnail = {
 
 export async function getStaticPaths() {
   const myMicroCMSApiUrl = `https://${
-    import.meta.env.MICROCMS_SERVICE_DOMAIN
+    import.meta.env.MICROCMS_SERVICE_DOMAIN_BLOG
   }.microcms.io/api/v1/blog`;
   const res = await fetch(myMicroCMSApiUrl, {
     headers: {
-      "X-MICROCMS-API-KEY": import.meta.env.MICROCMS_API_KEY,
+      "X-MICROCMS-API-KEY": import.meta.env.MICROCMS_API_KEY_BLOG,
     },
   });
   const getFetchData: WatatakuBlog = await res.json();
@@ -39,11 +39,11 @@ const { blogId } = Astro.params;
 console.log(blogId);
 
 const myMicroCMSApiUrl = `https://${
-  import.meta.env.MICROCMS_SERVICE_DOMAIN
+  import.meta.env.MICROCMS_SERVICE_DOMAIN_BLOG
 }.microcms.io/api/v1/blog/${blogId}`;
 const res = await fetch(myMicroCMSApiUrl, {
   headers: {
-    "X-MICROCMS-API-KEY": import.meta.env.MICROCMS_API_KEY,
+    "X-MICROCMS-API-KEY": import.meta.env.MICROCMS_API_KEY_BLOG,
   },
 });
 const getFetchBlogDetail: Contents = await res.json();

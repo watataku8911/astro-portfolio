@@ -17,12 +17,12 @@ type Thumbnail = {
 };
 
 const myMicroCMSApiUrl = `https://${
-  import.meta.env.MICROCMS_SERVICE_DOMAIN
+  import.meta.env.MICROCMS_SERVICE_DOMAIN_BLOG
 }.microcms.io/api/v1/blog?orders=-publishedAt&limit=4`;
 
 const res = await fetch(myMicroCMSApiUrl, {
   headers: {
-    "X-MICROCMS-API-KEY": import.meta.env.MICROCMS_API_KEY,
+    "X-MICROCMS-API-KEY": import.meta.env.MICROCMS_API_KEY_BLOG,
   },
 });
 const getFetchData: WatatakuBlog = await res.json();

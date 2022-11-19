@@ -32,13 +32,6 @@ const { image, href, title, use_tech, comment } = Astro.props;
 </script>
 
 <style>
-  @keyframes animationName {
-    100% {
-      opacity: 1;
-      transform: translate(0, 0);
-    }
-  }
-
   .link {
     display: block;
   }
@@ -69,12 +62,18 @@ const { image, href, title, use_tech, comment } = Astro.props;
   .work-card.active:nth-child(2n + 1) {
     animation: animationName 0.5s ease 0.5s 1 forwards;
   }
+
   .work-card.active:nth-child(2n) {
     animation: animationName 0.5s ease 1s 1 forwards;
   }
+  @media screen and (max-width: 481px) {
+    .work-card.active:nth-child(2n) {
+      animation: animationName 0.5s ease 0.5s 1 forwards;
+    }
+  }
 
   .work-card:hover {
-    transform: translateY(-10px);
+    background-color: #eee;
   }
 
   .work-card__thunbnail {
@@ -94,5 +93,12 @@ const { image, href, title, use_tech, comment } = Astro.props;
   .work-card__title {
     font-size: 1.35rem;
     margin-bottom: 10px;
+  }
+
+  @keyframes animationName {
+    100% {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
   }
 </style>
