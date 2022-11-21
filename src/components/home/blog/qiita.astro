@@ -1,13 +1,17 @@
 ---
 import Card from "../../UIKit/Card.astro";
+type Props = {
+  perPage: string;
+};
+
+const { perPage } = Astro.props;
 
 type Qiita = {
   url: string;
   title: string;
   created_at: string;
 };
-const myQiitaApiUrl =
-  "https://qiita.com/api/v2/items?page=1&per_page=4&query=user:watataku8911";
+const myQiitaApiUrl = `https://qiita.com/api/v2/items?page=1&per_page=${perPage}&query=user:watataku8911`;
 
 const res = await fetch(myQiitaApiUrl);
 const getFetchData: Qiita[] = await res.json();
@@ -15,15 +19,19 @@ const getFetchData: Qiita[] = await res.json();
 
 <div class="qiita">
   {
-    getFetchData.map((qiita: Qiita) => (
-      <Card
-        target={"_blank"}
-        image="/img/qiita-ogp.png"
-        href={qiita.url}
-        title={qiita.title}
-        time={qiita.created_at}
-      />
-    ))
+    getFetchData ? (
+      getFetchData.map((qiita: Qiita) => (
+        <Card
+          target={"_blank"}
+          image="/img/qiita-ogp.png"
+          href={qiita.url}
+          title={qiita.title}
+          time={qiita.created_at}
+        />
+      ))
+    ) : (
+      <h3>qiitaを取得できませんでした。</h3>
+    )
   }
 </div>
 
@@ -31,7 +39,6 @@ const getFetchData: Qiita[] = await res.json();
 
 <style>
   .qiita {
-    height: 300px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -41,32 +48,22 @@ const getFetchData: Qiita[] = await res.json();
 
   .qiita::before {
     content: "";
-    width: 20vw;
+    width: 21vw;
     order: 1;
   }
 
   .qiita::after {
     content: "";
-    width: 20vw;
-  }
-
-  @media screen and (min-width: 482px) and (max-width: 1025px) {
-    .qiita {
-      height: 220px;
-    }
+    width: 21vw;
   }
 
   @media screen and (max-width: 481px) {
-    .qiita {
-      height: 450px;
-    }
-
     .qiita::before {
-      width: 45vw;
+      width: 43vw;
     }
 
     .qiita::after {
-      width: 45vw;
+      width: 43vw;
     }
   }
 </style>

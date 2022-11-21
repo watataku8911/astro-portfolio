@@ -1,6 +1,12 @@
 ---
 import Card from "../../UIKit/Card.astro";
 
+type Props = {
+  count: string;
+};
+
+const { count } = Astro.props;
+
 type Zenn = {
   items: Items[];
 };
@@ -20,34 +26,34 @@ const myZennApiUrl =
   feed +
   "&api_key=" +
   import.meta.env.RSS_TO_JSON_API_KEY +
-  "&count=4";
-
-// console.log(myZennApiUrl);
+  "&count=" +
+  count;
 
 const res = await fetch(myZennApiUrl);
 const getFetchData: Zenn = await res.json();
-
-// console.log(getFetchData.items);
 ---
 
 <div class="zenn">
   {
-    getFetchData.items.map((zenn: Items) => (
-      <Card
-        target={"_blank"}
-        image={"/img/zenn.png"}
-        href={zenn.link}
-        title={zenn.title}
-        time={zenn.pubDate}
-      />
-    ))
+    getFetchData ? (
+      getFetchData.items.map((zenn: Items) => (
+        <Card
+          target={"_blank"}
+          image={"/img/zenn.png"}
+          href={zenn.link}
+          title={zenn.title}
+          time={zenn.pubDate}
+        />
+      ))
+    ) : (
+      <h3>Zennを取得できませんでした。</h3>
+    )
   }
 </div>
 
 <script></script>
 <style>
   .zenn {
-    height: 300px;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -56,32 +62,22 @@ const getFetchData: Zenn = await res.json();
 
   .zenn::before {
     content: "";
-    width: 20vw;
+    width: 21vw;
     order: 1;
   }
 
   .zenn::after {
     content: "";
-    width: 20vw;
-  }
-
-  @media screen and (min-width: 482px) and (max-width: 1025px) {
-    .zenn {
-      height: 220px;
-    }
+    width: 21vw;
   }
 
   @media screen and (max-width: 481px) {
-    .zenn {
-      height: 450px;
-    }
-
     .zenn::before {
-      width: 45vw;
+      width: 43vw;
     }
 
     .zenn::after {
-      width: 45vw;
+      width: 43vw;
     }
   }
 </style>

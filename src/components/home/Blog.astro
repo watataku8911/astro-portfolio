@@ -11,27 +11,19 @@ import Linker from "../UIKit/Linker.astro";
       Tech&nbsp;Blogs<span class="blogs__blog__title__sub">技術ブログ</span>
     </h2>
     <div class="blogs__blog__inner">
-      <h3>
-        <a class="link" href="https://qiita.com/watatatku8911" target="_blank"
-          >- Qiita(もっとみる)</a
-        >
-      </h3>
-      <Qiita />
+      <h3 class="blogs__blog__inner__title">- Qiita</h3>
+      <Qiita perPage={"4"} />
     </div>
-    <!-- <div class="blogs__blog__inner">
-      <h3><a class="link" href="https://watataku-blog.vercel.com" target="_blank">- Zenn(もっとみる)</a></h3>
-      <Zenn />
-    </div> -->
     <div class="blogs__blog__inner">
-      <h3>
-        <a class="link" href="https://watataku-blog.vercel.com" target="_blank"
-          >- Watataku ブログ(もっとみる)</a
-        >
-      </h3>
-      <WatatakuBlog />
+      <h3 class="blogs__blog__inner__title">- Zenn</h3>
+      <Zenn count={"4"} />
+    </div>
+    <div class="blogs__blog__inner">
+      <h3 class="blogs__blog__inner__title">- Watataku ブログ</h3>
+      <WatatakuBlog limit={"4"} />
     </div>
     <div class="blogs__blog__linker">
-      <Linker href="/blog" msg="Tech Blogs" target={"_self"} />
+      <Linker href="/blog" msg="Tech Blogs→" target={"_self"} />
     </div>
   </div>
 </section>
@@ -92,11 +84,11 @@ import Linker from "../UIKit/Linker.astro";
 
   .blogs__blog__inner:nth-child(2n) {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateX(30px);
   }
   .blogs__blog__inner:nth-child(2n + 1) {
     opacity: 0;
-    transform: translateX(30px);
+    transform: translateX(-30px);
   }
   @media screen and (max-width: 1026px) {
     .blogs__blog__inner:nth-child(2n) {
@@ -109,6 +101,10 @@ import Linker from "../UIKit/Linker.astro";
 
   .blogs__blog__inner.active {
     animation: animationName 0.5s ease 0.5s 1 forwards;
+  }
+
+  .blogs__blog__inner__title {
+    margin-bottom: 10px;
   }
 
   .blogs__blog__inner .link {

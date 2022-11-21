@@ -14,13 +14,13 @@ import Linker from "../components/UIKit/Linker.astro";
           またフォローの方もお待ちしております。
         </p>
       </div>
-      <p class="contacts__contact__inner__twitter">
+      <!-- <p class="contacts__contact__inner__twitter">
         <Linker
           href="https://twitter.com/watataku8911"
           msg="twitter"
           target={"_blank"}
         />
-      </p>
+      </p> -->
     </div>
   </div>
 
@@ -38,7 +38,6 @@ import Linker from "../components/UIKit/Linker.astro";
     .contacts {
       background-color: #addff2;
       z-index: 1;
-      height: 100vh;
       padding: 0px 0 60px 0;
     }
 
@@ -85,6 +84,7 @@ import Linker from "../components/UIKit/Linker.astro";
     }
 
     .contacts__contact__inner {
+      text-align: center;
       display: flex;
       flex-direction: column;
       align-content: space-between;
@@ -93,6 +93,7 @@ import Linker from "../components/UIKit/Linker.astro";
     .contacts__contact__inner__message {
       opacity: 0;
       transform: translateY(30px);
+      padding: 0 0 80px 0;
     }
 
     .contacts__contact__inner__message.active {

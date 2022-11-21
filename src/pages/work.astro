@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
 import WorkCard from "../components/UIKit/WorkCard .astro";
 
 type Work = {
@@ -31,6 +32,7 @@ const getFetchData: Work = await res.json();
 ---
 
 <Layout title="WORKS | Watataku's ポートフォリオ" description="作品集です">
+  <Header id="top" />
   <section class="works-page" id="work">
     <div class="works-page__work">
       <h2 class="works-page__work__title">
@@ -55,12 +57,18 @@ const getFetchData: Work = await res.json();
 
 <script>
   intersection(document.querySelectorAll(".works-page__work__title"));
+  intersection(document.querySelectorAll(".works-page__work__inner"));
 </script>
 
 <style>
   .works-page {
     background-color: #addff2;
-    padding: 60px 0 60px 0;
+    padding: 20px 0 60px 0;
+  }
+  @media screen and (max-width: 481px) {
+    .works-page {
+      padding: 60px 0 60px 0;
+    }
   }
 
   .works-page::after {
@@ -116,6 +124,8 @@ const getFetchData: Work = await res.json();
     display: flex;
     justify-content: space-between;
     align-items: center;
+    opacity: 0;
+    transform: translateY(30px);
   }
   @media screen and (min-width: 482px) and (max-width: 1026px) {
     .works-page__work__inner {
@@ -126,6 +136,10 @@ const getFetchData: Work = await res.json();
     .works-page__work__inner {
       flex-direction: column;
     }
+  }
+
+  .works-page__work__inner.active {
+    animation: animationName 0.5s ease 0.5s 1 forwards;
   }
 
   @keyframes animationName {

@@ -1,8 +1,21 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Qiita from "../components/home/blog/qiita.astro";
+import Zenn from "../components/home/blog/zenn.astro";
+import WatatakuBlog from "../components/home/blog/watataku-blog.astro";
+import Linker from "../components/UIKit/Linker.astro";
 ---
 
 <Layout title="BLOG | Watataku's ポートフォリオ" description="BLOGページです。">
+  <!-- <div class="c-loader-bg js-loader-bg">
+    <div class="c-loader-dot js-loader-dot-wrap">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div> -->
+  <Header id="top" />
   <section class="blogs-page">
     <div class="blogs-page__blog">
       <h1 class="blogs-page__blog__title">
@@ -10,18 +23,141 @@ import Layout from "../layouts/Layout.astro";
           >技術ブログ</span
         >
       </h1>
+      <div class="blogs-page__blog__inner">
+        <h3 class="blogs-page__blog__inner__title">- Qiita</h3>
+        <Qiita perPage={"8"} />
+        <div class="blogs-page__inner__linker">
+          <Linker
+            href={"https://qiita.com/watataku8911"}
+            msg={"もっとみる"}
+            target={"_blank"}
+          />
+        </div>
+      </div>
+      <div class="blogs-page__blog__inner">
+        <h3 class="blogs-page__blog__inner__title">- Zenn</h3>
+        <Zenn count={"8"} />
+        <div class="blogs-page__inner__linker">
+          <Linker
+            href={"https://zenn.dev/watataku"}
+            msg={"もっとみる"}
+            target={"_blank"}
+          />
+        </div>
+      </div>
+      <div class="blogs-page__blog__inner">
+        <h3 class="blogs-page__blog__inner__title">- Watataku ブログ</h3>
+        <WatatakuBlog limit={"8"} />
+        <div class="blogs-page__inner__linker">
+          <Linker
+            href={"https://watataku-blog.vercel.app"}
+            msg={"もっとみる"}
+            target={"_blank"}
+          />
+        </div>
+      </div>
     </div>
   </section>
 </Layout>
 
 <script>
+  import gsap from "gsap";
   intersection(document.querySelectorAll(".blogs-page__blog__title"));
+  intersection(document.querySelectorAll(".blogs-page__blog__inner"));
+
+  // const jsLoaderBg = ".js-loader-bg";
+  // const jsDot = ".js-loader-dot-wrap > span";
+
+  // const displayLoadingScreen = () => {
+  //   gsap.set(jsDot, {
+  //     opacity: 0,
+  //     y: -50,
+  //   });
+  //   gsap.timeline().to(jsDot, {
+  //     opacity: 1,
+  //     y: 0,
+  //     duration: 0.8,
+  //     delay: 0.8,
+  //     stagger: {
+  //       amount: 0.5,
+  //       from: "start",
+  //       ease: "power4.inOut",
+  //     },
+  //   });
+  // };
+
+  // const closeLoadingScreen = () => {
+  //   gsap
+  //     .timeline()
+  //     .to(jsDot, {
+  //       opacity: 0,
+  //     })
+  //     .to(jsLoaderBg, {
+  //       display: "none",
+  //       y: "100%",
+  //       delay: 0.5,
+  //     });
+  // };
+  // // ------------------------------------------------------------------------
+
+  // //メイン
+  // displayLoadingScreen();
+  // window.onload = () => {
+  //   setTimeout(() => {
+  //     closeLoadingScreen();
+  //   }, 2500);
+  // };
 </script>
 
 <style>
+  /* .c-loader-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #444;
+    z-index: 999;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+    visibility: visible;
+    transition: 0.3s;
+    opacity: 1;
+  }
+
+  .c-loader-bg.load {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .c-loader-dot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: start;
+    pointer-events: none;
+  }
+
+  .c-loader-dot > span {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #fff;
+  }
+
+  .c-loader-dot > span + span {
+    margin-left: 3rem;
+  } */
+
   .blogs-page {
     background-color: #addff2;
-    padding: 60px 0 60px 0;
+    padding: 20px 0 60px 0;
+  }
+  @media screen and (max-width: 481px) {
+    .blogs-page {
+      padding: 60px 0 60px 0;
+    }
   }
 
   .blogs-page__blog {
@@ -31,7 +167,7 @@ import Layout from "../layouts/Layout.astro";
 
   .blogs-page__blog__title {
     font-size: 4.5em;
-    padding: 0 0 60px 0;
+    padding: 2% 0 60px 0;
     opacity: 0;
     transform: translateX(-30px);
   }
@@ -44,7 +180,7 @@ import Layout from "../layouts/Layout.astro";
   @media screen and (max-width: 481px) {
     .blogs-page__blog__title {
       font-size: 2.5em;
-      padding: 0 0 30px 0;
+      padding: 2% 0 30px 0;
       transform: translateY(30px);
     }
   }
@@ -64,6 +200,35 @@ import Layout from "../layouts/Layout.astro";
 
   .blogs-page__blog__title.active {
     animation: animationName 0.5s ease 0.5s 1 forwards;
+  }
+
+  .blogs-page__blog__inner:nth-child(2n) {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  .blogs-page__blog__inner:nth-child(2n + 1) {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  @media screen and (max-width: 1026px) {
+    .blogs-page__blog__inner:nth-child(2n) {
+      transform: translateY(30px);
+    }
+    .blogs-page__blog__inner:nth-child(2n + 1) {
+      transform: translateY(30px);
+    }
+  }
+
+  .blogs-page__blog__inner.active {
+    animation: animationName 0.5s ease 0.5s 1 forwards;
+  }
+
+  .blogs-page__blog__inner__title {
+    margin-bottom: 10px;
+  }
+
+  .blogs-page__inner__linker {
+    text-align: right;
   }
 
   @keyframes animationName {
