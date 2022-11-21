@@ -13,7 +13,7 @@ const { image, href, title, use_tech, comment } = Astro.props;
 ---
 
 <article class="work-card">
-  <a href={href} target="_blank" class="link">
+  <a href={href} target="_blank">
     <img src={image} alt={title} class="work-card__thunbnail" />
     <p class="work-card__tag black">
       <img src={IconTag} alt="タグ" />{use_tech}
@@ -27,23 +27,16 @@ const { image, href, title, use_tech, comment } = Astro.props;
   </a>
 </article>
 
-<script>
-  intersection(document.querySelectorAll(".work-card"));
-</script>
+<script></script>
 
 <style>
-  .link {
-    display: block;
-  }
-
   .work-card {
     position: relative;
     width: 39vw;
     height: 450px;
     background-color: #fffdf9;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    opacity: 0;
-    transform: translateY(30px);
+    margin-bottom: 20px;
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
     .work-card {
@@ -59,26 +52,19 @@ const { image, href, title, use_tech, comment } = Astro.props;
     }
   }
 
-  .work-card.active:nth-child(2n + 1) {
-    animation: animationName 0.5s ease 0.5s 1 forwards;
-  }
-
-  .work-card.active:nth-child(2n) {
-    animation: animationName 0.5s ease 1s 1 forwards;
-  }
-  @media screen and (max-width: 481px) {
-    .work-card.active:nth-child(2n) {
-      animation: animationName 0.5s ease 0.5s 1 forwards;
-    }
+  .work-card.hover {
+    box-shadow: none;
   }
 
   .work-card:hover {
-    background-color: #eee;
+    transform: translateY(5px);
+    box-shadow: none;
   }
 
   .work-card__thunbnail {
     max-width: 100%;
     height: auto;
+    overflow: hidden;
   }
 
   .black {
@@ -98,7 +84,7 @@ const { image, href, title, use_tech, comment } = Astro.props;
   @keyframes animationName {
     100% {
       opacity: 1;
-      transform: translate(0, 0);
+      transform: translateY(0);
     }
   }
 </style>

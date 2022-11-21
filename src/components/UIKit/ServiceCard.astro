@@ -18,9 +18,7 @@ const { image, title, text } = Astro.props;
   </p>
 </article>
 
-<script>
-  intersection(document.querySelectorAll(".service-card"));
-</script>
+<script></script>
 
 <style>
   .service-card {
@@ -29,8 +27,6 @@ const { image, title, text } = Astro.props;
     height: 550px;
     background-color: #fffdf9;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    opacity: 0;
-    transform: translateY(30px);
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
     .service-card {
@@ -43,28 +39,6 @@ const { image, title, text } = Astro.props;
       width: 95vw;
       height: 500px;
       margin-bottom: 20px;
-    }
-  }
-
-  .service-card.active:nth-child(1) {
-    animation: animationName 0.5s ease 0.5s 1 forwards;
-  }
-
-  .service-card.active:nth-child(2) {
-    animation: animationName 0.5s ease 1s 1 forwards;
-  }
-  @media screen and (max-width: 481px) {
-    .service-card.active:nth-child(2) {
-      animation: animationName 0.5s ease 0.5s 1 forwards;
-    }
-  }
-
-  .service-card.active:nth-child(3) {
-    animation: animationName 0.5s ease 1.5s 1 forwards;
-  }
-  @media screen and (max-width: 481px) {
-    .service-card.active:nth-child(3) {
-      animation: animationName 0.5s ease 0.5s 1 forwards;
     }
   }
 

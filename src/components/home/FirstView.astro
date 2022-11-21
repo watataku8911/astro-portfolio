@@ -1,15 +1,17 @@
 ---
 import IconDown from "/icon/icon_down.svg";
+import Header from "../Header.astro";
 ---
 
-<section class="first-view">
-  <div class="c-loader-bg js-loader-bg">
-    <div class="c-loader-dot js-loader-dot-wrap">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+<div class="c-loader-bg js-loader-bg">
+  <div class="c-loader-dot js-loader-dot-wrap">
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
+</div>
+<Header />
+<section class="first-view">
   <div class="first-view__image-box">
     <img class="first-view__image" src="/img/typing.png" alt="pc" />
   </div>
@@ -33,18 +35,20 @@ import IconDown from "/icon/icon_down.svg";
 <script>
   import gsap from "gsap";
 
+  const jsLoaderBg = ".js-loader-bg";
+  const jsDot = ".js-loader-dot-wrap > span";
+  const firstViewCircle = ".first-view__circle";
+  const firstViewImageBox = ".first-view__image-box";
+  const firstViewTitle = ".first-view__title__text span";
+  const firstViewtext = ".first-view__text span";
+  const picDown = ".pic_down";
+
   surroundSpan(".first-view__title__text");
   surroundSpan(".first-view__text");
 
-  const firstAnimation = () => {
-    const jsLoaderBg = ".js-loader-bg";
-    const jsDot = ".js-loader-dot-wrap > span";
-    const firstViewCircle = ".first-view__circle";
-    const firstViewImageBox = ".first-view__image-box";
-    const firstViewTitle = ".first-view__title__text span";
-    const firstViewtext = ".first-view__text span";
-    const picDown = ".pic_down";
-    gsap.set([jsDot, firstViewTitle, firstViewtext, firstViewImageBox], {
+  // ----------------------------------------関数群------------------------------------
+  const opningAnimation = () => {
+    gsap.set([firstViewTitle, firstViewtext, firstViewImageBox], {
       opacity: 0,
       y: -50,
     });
@@ -54,29 +58,6 @@ import IconDown from "/icon/icon_down.svg";
     });
     gsap
       .timeline()
-      .to(
-        /* 0.8秒後に起動 */
-        jsDot,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          delay: 0.8,
-          stagger: {
-            amount: 0.5, //0.5秒おきに
-            from: "start", // 左から
-            ease: "power4.inOut",
-          },
-        }
-      )
-      .to(jsDot, {
-        opacity: 0,
-      })
-      .to(jsLoaderBg, {
-        display: "none",
-        y: "100%",
-        delay: 0.5,
-      })
       .to(jsDot, {
         opacity: 0,
       })
@@ -111,7 +92,6 @@ import IconDown from "/icon/icon_down.svg";
       .to(
         firstViewTitle,
         {
-          /* 前のアニメーションが完了する0.1秒前に実行 */
           opacity: 1,
           y: 0,
           stagger: {
@@ -125,7 +105,6 @@ import IconDown from "/icon/icon_down.svg";
       .to(
         firstViewtext,
         {
-          /* 前のアニメーションが完了する0.1秒前に実行 */
           opacity: 1,
           y: 0,
           stagger: {
@@ -147,33 +126,27 @@ import IconDown from "/icon/icon_down.svg";
       );
   };
 
-  if (!sessionStorage.getItem("visited")) {
-    sessionStorage.setItem("visited", "true");
-    firstAnimation();
-  } else {
-    const jsLoaderBg = ".js-loader-bg";
-    const jsDot = ".js-loader-dot-wrap > span";
+  const displayLoadingScreen = () => {
     gsap.set(jsDot, {
       opacity: 0,
       y: -50,
     });
+    gsap.timeline().to(jsDot, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      delay: 0.8,
+      stagger: {
+        amount: 0.5,
+        from: "start",
+        ease: "power4.inOut",
+      },
+    });
+  };
+
+  const closeLoadingScreen = () => {
     gsap
       .timeline()
-      .to(
-        /* 0.8秒後に起動 */
-        jsDot,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          delay: 0.8,
-          stagger: {
-            amount: 0.5, //0.5秒おきに
-            from: "start", // 左から
-            ease: "power4.inOut",
-          },
-        }
-      )
       .to(jsDot, {
         opacity: 0,
       })
@@ -182,6 +155,26 @@ import IconDown from "/icon/icon_down.svg";
         y: "100%",
         delay: 0.5,
       });
+  };
+  // ------------------------------------------------------------------------
+
+  //メイン
+  if (!sessionStorage.getItem("visited")) {
+    sessionStorage.setItem("visited", "true");
+    displayLoadingScreen();
+    window.onload = () => {
+      setTimeout(() => {
+        closeLoadingScreen();
+        opningAnimation();
+      }, 2500);
+    };
+  } else {
+    displayLoadingScreen();
+    window.onload = () => {
+      setTimeout(() => {
+        closeLoadingScreen();
+      }, 2500);
+    };
   }
 </script>
 
@@ -225,8 +218,10 @@ import IconDown from "/icon/icon_down.svg";
   .c-loader-dot > span + span {
     margin-left: 3rem;
   }
+
   /* メイン */
   .first-view {
+    background-color: #fff;
     position: relative;
     width: 100%;
     height: 100vh;

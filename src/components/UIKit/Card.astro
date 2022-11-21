@@ -44,11 +44,13 @@ const { target, image, href, title, time } = Astro.props;
 
 <style>
   .card {
+    text-align: center;
     position: relative;
     width: 21vw;
     height: 250px;
     background-color: #fffdf9;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
     .card {
@@ -63,7 +65,8 @@ const { target, image, href, title, time } = Astro.props;
   }
 
   .card:hover {
-    transform: translateY(-10px);
+    box-shadow: none;
+    transform: translateY(5px);
   }
 
   .card__thunbnail {
@@ -72,6 +75,7 @@ const { target, image, href, title, time } = Astro.props;
   }
 
   .card__title {
+    text-align: left;
     word-break: break-all;
     padding: 0 0 0 5px;
     letter-spacing: 1px;

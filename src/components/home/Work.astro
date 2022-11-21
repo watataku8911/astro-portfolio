@@ -49,13 +49,14 @@ const getFetchData: Work = await res.json();
       }
     </div>
     <div class="works__work__linker">
-      <Linker href="/work" msg="Works" target={"_self"} />
+      <Linker href="/work" msg="Works→" target={"_self"} />
     </div>
   </div>
 </section>
 
 <script>
   intersection(document.querySelectorAll(".works__work__title"));
+  intersection(document.querySelectorAll(".works__work__inner"));
   intersection(document.querySelectorAll(".works__work__linker"));
 </script>
 
@@ -118,6 +119,8 @@ const getFetchData: Work = await res.json();
     display: flex;
     justify-content: space-between;
     align-items: center;
+    opacity: 0;
+    transform: translateY(30);
   }
   @media screen and (min-width: 482px) and (max-width: 1026px) {
     .works__work__inner {
@@ -128,6 +131,10 @@ const getFetchData: Work = await res.json();
     .works__work__inner {
       flex-direction: column;
     }
+  }
+
+  .works__work__inner.active {
+    animation: animationName 0.5s ease 0.5s 1 forwards;
   }
 
   .works__work__linker {
