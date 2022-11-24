@@ -1,6 +1,6 @@
 ---
 import IconDown from "/icon/icon_down.svg";
-import Header from "../Header.astro";
+import Header from "../Header/Header";
 ---
 
 <div class="c-loader-bg js-loader-bg">
@@ -10,7 +10,7 @@ import Header from "../Header.astro";
     <span></span>
   </div>
 </div>
-<Header />
+<Header client:load />
 <section class="first-view">
   <div class="first-view__image-box">
     <img class="first-view__image" src="/img/typing.png" alt="pc" />
@@ -28,7 +28,7 @@ import Header from "../Header.astro";
   </p>
 
   <div class="pic_down">
-    <img src={IconDown} alt="↓" />
+    <!-- <img src={IconDown} alt="↓" /> -->
   </div>
 </section>
 
@@ -185,7 +185,7 @@ import Header from "../Header.astro";
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #444;
+    background-color: #addff2;
     z-index: 999;
     display: grid;
     place-items: center;
@@ -212,7 +212,7 @@ import Header from "../Header.astro";
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: #fff;
+    background-color: #000;
   }
 
   .c-loader-dot > span + span {
@@ -221,7 +221,7 @@ import Header from "../Header.astro";
 
   /* メイン */
   .first-view {
-    background-color: #fff;
+    background-color: var(--sub-color);
     position: relative;
     width: 100%;
     height: 100vh;
@@ -229,7 +229,7 @@ import Header from "../Header.astro";
   }
 
   .first-view__header__logo a {
-    color: #333;
+    color: var(--accent-color);
   }
 
   .first-view__image-box {
@@ -257,6 +257,7 @@ import Header from "../Header.astro";
 
   /* text */
   .first-view__text {
+    color: var(--accent-color);
     font-family: "Lobster";
     position: absolute;
     font-size: 4.5em;
@@ -273,6 +274,7 @@ import Header from "../Header.astro";
   }
 
   .first-view__title {
+    color: var(--accent-color);
     font-family: "Lobster";
     width: 100%;
     text-align: left;
@@ -323,7 +325,7 @@ import Header from "../Header.astro";
   .first-view__circle:after {
     content: "";
     position: absolute;
-    border: solid #addff2;
+    border: solid var(--main-color);
     border-width: 70vw 70vw 0 0;
     border-top-right-radius: 70vw;
   }
@@ -351,17 +353,22 @@ import Header from "../Header.astro";
   /* 下矢印 */
   .pic_down {
     position: absolute;
-    right: 2vw;
-    bottom: 2%;
+    right: 4vw;
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    margin: 0 10px;
+    border-bottom: 4px solid var(--accent-color);
+    border-right: 4px solid var(--accent-color);
+    transform: rotate(45deg);
     animation: picdown 1s ease 0.2s infinite;
   }
   @keyframes picdown {
-    /*タイプライターライクなアニメーション*/
     0% {
-      transform: translateY(0);
+      bottom: 2vw;
     }
     100% {
-      transform: translateY(20px);
+      bottom: 3vw;
     }
   }
 </style>

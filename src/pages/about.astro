@@ -4,7 +4,7 @@ import IconInst from "/icon/ico_inst.svg";
 import IconGit from "/icon/github_logo.svg";
 
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
+import Header from "../components/Header/Header";
 import Service from "../components/about/Service.astro";
 import Intrest from "../components/about/Intarest.astro";
 import Career from "../components/about/Career.astro";
@@ -14,7 +14,7 @@ import Career from "../components/about/Career.astro";
   title="ABOUT | Watataku's ポートフォリオサイト"
   description="WatatakuのAboutページです。"
 >
-  <Header id="top" />
+  <Header client:load />
   <section class="abouts-page">
     <div class="abouts-page__about">
       <h1 class="abouts-page__about__title--large">
@@ -86,26 +86,28 @@ import Career from "../components/about/Career.astro";
 <script>
   intersection(document.querySelectorAll(".abouts-page__about__title--large"));
   intersection(document.querySelectorAll(".image-box"));
+  intersection(document.querySelectorAll(".abouts__about__li"));
 </script>
 
 <style>
   /* メイン */
   .abouts-page {
-    background-color: #addff2;
-    padding: 20px 0 60px 0;
+    background-color: var(--main-color);
+    padding: 5% 0 60px 0;
   }
   @media screen and (max-width: 481px) {
     .abouts-page {
-      padding: 60px 0 30px 0;
+      padding: 80px 0 30px 0;
     }
   }
 
   .abouts-page__about {
-    width: 90%;
+    width: var(--base-width);
     margin: 0 auto;
   }
 
   .abouts-page__about__title--large {
+    color: var(--accent-color);
     font-size: 4.5em;
     padding: 2% 0 100px 0;
     opacity: 0;
@@ -114,7 +116,7 @@ import Career from "../components/about/Career.astro";
   @media screen and (min-width: 482px) and (max-width: 1025px) {
     .abouts-page__about__title--large {
       font-size: 3.5em;
-      padding: 2% 0 60px 0;
+      padding: 5% 0 30px 0;
       transform: translateY(30px);
     }
   }
@@ -132,14 +134,14 @@ import Career from "../components/about/Career.astro";
 
   .abouts-page__about__title--large--sub {
     font-size: 0.25em;
-    color: #333;
+    color: var(--subtextColor);
   }
 
   .abouts-page__about__title--large--sub::before {
     content: "";
     display: inline-block;
     width: 20px;
-    border-bottom: solid 1px #333;
+    border-bottom: solid 1px var(--subtextColor);
     margin: 0 5px 0 5px;
   }
 
@@ -168,6 +170,7 @@ import Career from "../components/about/Career.astro";
   }
 
   .abouts-page__about__name {
+    color: var(--accent-color);
     font-size: 24px;
     margin: 10px 0 10px 0;
   }
@@ -206,7 +209,7 @@ import Career from "../components/about/Career.astro";
   }
 
   .abouts-page__about__inner {
-    width: 90%;
+    width: var(--base-width);
     margin: 0 auto 30px;
   }
   @media screen and (max-width: 481px) {
@@ -216,13 +219,14 @@ import Career from "../components/about/Career.astro";
   }
 
   .abouts-page__about__title {
+    color: var(--accent-color);
     font-size: 25px;
     margin-bottom: 15px;
   }
 
   .abouts-page__about__title__sub {
     font-size: 0.5em;
-    color: #444;
+    color: var(--subtextColor);
   }
 
   .abouts-page__about__title__sub::before {
@@ -230,7 +234,7 @@ import Career from "../components/about/Career.astro";
     content: "";
     width: 20px;
     margin: 0 4px 0 4px;
-    border-bottom: 1px solid #444;
+    border-bottom: 1px solid var(--subtextColor);
   }
 
   @keyframes animationName {

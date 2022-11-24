@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
+import Header from "../components/Header/Header";
 import WorkCard from "../components/UIKit/WorkCard .astro";
 
 type Work = {
@@ -32,7 +32,14 @@ const getFetchData: Work = await res.json();
 ---
 
 <Layout title="WORKS | Watataku's ポートフォリオ" description="作品集です">
-  <Header id="top" />
+  <div class="c-loader-bg js-loader-bg">
+    <div class="c-loader-dot js-loader-dot-wrap">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <Header client:load />
   <section class="works-page" id="work">
     <div class="works-page__work">
       <h2 class="works-page__work__title">
@@ -58,83 +65,148 @@ const getFetchData: Work = await res.json();
 <script>
   intersection(document.querySelectorAll(".works-page__work__title"));
   intersection(document.querySelectorAll(".works-page__work__inner"));
+  import gsap from "gsap";
+
+  const jsLoaderBg = ".js-loader-bg";
+  const jsDot = ".js-loader-dot-wrap > span";
+
+  const displayLoadingScreen = () => {
+    gsap.set(jsDot, {
+      opacity: 0,
+      y: -50,
+    });
+    gsap.timeline().to(jsDot, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      delay: 0.8,
+      stagger: {
+        amount: 0.5,
+        from: "start",
+        ease: "power4.inOut",
+      },
+    });
+  };
+
+  const closeLoadingScreen = () => {
+    gsap
+      .timeline()
+      .to(jsDot, {
+        opacity: 0,
+      })
+      .to(jsLoaderBg, {
+        display: "none",
+        y: "100%",
+        delay: 0.5,
+      });
+  };
+  // ------------------------------------------------------------------------
+
+  //メイン
+  displayLoadingScreen();
+  window.onload = () => {
+    setTimeout(() => {
+      closeLoadingScreen();
+    }, 2500);
+  };
 </script>
 
 <style>
-  .works-page {
+  .c-loader-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-color: #addff2;
-    padding: 20px 0 60px 0;
+    z-index: 999;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+    visibility: visible;
+    transition: 0.3s;
+    opacity: 1;
+  }
+
+  .c-loader-bg.load {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .c-loader-dot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: start;
+    pointer-events: none;
+  }
+
+  .c-loader-dot > span {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #000;
+  }
+
+  .c-loader-dot > span + span {
+    margin-left: 3rem;
+  }
+
+  .works-page {
+    background-color: var(--main-color);
+    padding: 5% 0 60px 0;
   }
   @media screen and (max-width: 481px) {
     .works-page {
-      padding: 60px 0 60px 0;
+      padding: 80px 0 60px 0;
     }
   }
 
-  .works-page::after {
-    content: "";
-    width: 40vw;
-  }
-
   .works-page__work {
-    width: 90%;
+    width: var(--base-width);
     margin: 0 auto;
   }
 
   .works-page__work__title {
+    color: var(--accent-color);
     font-size: 4.5em;
-    padding: 2% 0 60px 0;
-    opacity: 0;
-    transform: translateX(-30px);
+    padding: 2% 0 30px 0;
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
     .works-page__work__title {
       font-size: 3.5em;
-      transform: translateY(30px);
+      padding: 5% 0 30px 0;
     }
   }
   @media screen and (max-width: 481px) {
     .works-page__work__title {
       font-size: 2.5em;
-      transform: translateY(30px);
       padding: 0 0 30px 0;
     }
   }
 
   .works-page__work__title--sub {
     font-size: 0.25em;
-    color: #444;
+    color: var(--subtextColor);
   }
 
   .works-page__work__title--sub::before {
     content: "";
     display: inline-block;
     width: 20px;
-    border-bottom: solid 1px #333;
+    border-bottom: solid 1px var(--subtextColor);
     margin: 0 5px 0 5px;
   }
 
-  .works-page__work__title.active {
-    animation: animationName 0.5s ease 0.5s 1 forwards;
-  }
-
   .works-page__work__inner {
-    width: 90%;
+    width: 95%;
     margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     opacity: 0;
     transform: translateY(30px);
   }
-  @media screen and (min-width: 482px) and (max-width: 1026px) {
+  @media screen and (max-width: 1026px) {
     .works-page__work__inner {
       width: 100%;
-    }
-  }
-  @media screen and (max-width: 481px) {
-    .works-page__work__inner {
-      flex-direction: column;
     }
   }
 

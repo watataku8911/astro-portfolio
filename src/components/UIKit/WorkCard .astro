@@ -12,79 +12,124 @@ type Props = {
 const { image, href, title, use_tech, comment } = Astro.props;
 ---
 
-<article class="work-card">
-  <a href={href} target="_blank">
-    <img src={image} alt={title} class="work-card__thunbnail" />
-    <p class="work-card__tag black">
-      <img src={IconTag} alt="タグ" />{use_tech}
-    </p>
-    <h4 class="work-card__title black">
-      {title}
-    </h4>
-    <p class="work-card__comment black">
-      {comment}
-    </p>
-  </a>
-</article>
+<a href={href} class="link" target="_blank">
+  <article class="work-card">
+    <div class="work-card__left">
+      <figure>
+        <img src={image} alt={title} class="work-card__left__thumbnail" />
+      </figure>
+    </div>
+    <div class="work-card__right">
+      <p class="work-card__tag text-color">
+        <img src={IconTag} alt="タグ" />{use_tech}
+      </p>
+      <h4 class="work-card__title text-color">
+        {title}
+      </h4>
+      <p class="work-card__comment text-color">
+        {comment}
+      </p>
+    </div>
+  </article>
 
-<script></script>
+  <script>
+    intersection(document.querySelectorAll(".work-card"));
+  </script>
 
-<style>
-  .work-card {
-    position: relative;
-    width: 39vw;
-    height: 450px;
-    background-color: #fffdf9;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    margin-bottom: 20px;
-  }
-  @media screen and (min-width: 482px) and (max-width: 1025px) {
+  <style>
     .work-card {
-      width: 43vw;
-      height: 350px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 330px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      background-color: var(--card-bgColor);
+      padding: 10px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      opacity: 0;
+      transform: translateY(30px);
     }
-  }
-  @media screen and (max-width: 481px) {
-    .work-card {
-      width: 95vw;
-      height: 400px;
-      margin-bottom: 20px;
+    @media screen and (min-width: 482px) and (max-width: 1025px) {
+      .work-card {
+        height: 250px;
+      }
     }
-  }
-
-  .work-card.hover {
-    box-shadow: none;
-  }
-
-  .work-card:hover {
-    transform: translateY(5px);
-    box-shadow: none;
-  }
-
-  .work-card__thunbnail {
-    max-width: 100%;
-    height: auto;
-    overflow: hidden;
-  }
-
-  .black {
-    padding: 0 0 0 5px;
-    color: #000;
-  }
-
-  .work-card__tag {
-    font-size: 1rem;
-  }
-
-  .work-card__title {
-    font-size: 1.35rem;
-    margin-bottom: 10px;
-  }
-
-  @keyframes animationName {
-    100% {
-      opacity: 1;
-      transform: translateY(0);
+    @media screen and (max-width: 481px) {
+      .work-card {
+        flex-direction: column;
+        height: 400px;
+        margin-bottom: 20px;
+      }
     }
-  }
-</style>
+
+    .work-card.active {
+      animation: animationName 0.5s ease 0.5s 1 forwards;
+    }
+
+    .work-card__left {
+      width: 45%;
+    }
+    @media screen and (max-width: 481px) {
+      .work-card__left {
+        width: 100%;
+      }
+    }
+
+    .work-card__left:nth-child(2n) {
+      order: 2;
+    }
+
+    figure {
+      overflow: hidden;
+      border-radius: 15px;
+    }
+
+    .work-card__left__thumbnail {
+      max-width: 100%;
+      height: auto;
+      border: solid 1px var(--accent-color);
+      /* border-radius: 15px; */
+    }
+
+    .link:hover figure .work-card__left__thumbnail {
+      transform: scale(1.1);
+    }
+
+    .work-card__right {
+      width: 45%;
+    }
+    @media screen and (max-width: 481px) {
+      .work-card__right {
+        width: 100%;
+      }
+    }
+
+    .work-card__right:nth-child(2n) {
+      order: 1;
+    }
+
+    .text-color {
+      padding: 0 0 0 5px;
+      color: var(--accent-color);
+    }
+
+    .work-card__tag {
+      font-size: 18px;
+      word-break: break-all;
+    }
+
+    .work-card__title {
+      font-size: 30px;
+      margin: 10px 0 20px 0;
+      word-break: break-all;
+    }
+
+    @keyframes animationName {
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</a>
