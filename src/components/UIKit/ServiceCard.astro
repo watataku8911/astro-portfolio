@@ -10,29 +10,55 @@ const { image, title, text } = Astro.props;
 
 <article class="service-card">
   <img src={image} alt={title} class="service-card__thunbnail" />
-  <h4 class="service-card__title black">
+  <h4 class="service-card__title text-color">
     {title}
   </h4>
-  <p class="service-card__text black text">
+  <p class="service-card__text text-color">
     {text}
   </p>
 </article>
 
-<script></script>
+<script>
+  intersection(document.querySelectorAll(".service-card"));
+</script>
 
 <style>
   .service-card {
     position: relative;
-    width: 28vw;
+    width: var(--card-size-width-pc);
     height: 550px;
-    background-color: #fffdf9;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background-color: var(--card-bgColor);
+    opacity: 0;
+    transform: translateY(30px);
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
     .service-card {
-      width: 28vw;
       height: 400px;
     }
+  }
+  @media screen and (max-width: 481px) {
+    .service-card {
+      width: 95%;
+      height: 500px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .service-card.active:nth-child(1) {
+    animation: animationName 0.5s ease 0.5s 1 forwards;
+  }
+
+  .service-card.active:nth-child(2) {
+    animation: animationName 0.5s ease 1s 1 forwards;
+  }
+  @media screen and (max-width: 481px) {
+    .service-card.active:nth-child(2) {
+      animation: animationName 0.5s ease 1s 1 forwards;
+    }
+  }
+
+  .service-card.active:nth-child(3) {
+    animation: animationName 0.5s ease 1.5s 1 forwards;
   }
   @media screen and (max-width: 481px) {
     .service-card {
@@ -47,13 +73,9 @@ const { image, title, text } = Astro.props;
     height: auto;
   }
 
-  .black {
+  .text-color {
     padding: 0 0 0 5px;
-    color: black;
-  }
-
-  .text {
-    color: #222;
+    color: var(--accent-color);
   }
 
   .service-card__tag {

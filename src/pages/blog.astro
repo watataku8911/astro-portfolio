@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
+import Header from "../components/Header/Header";
 import Qiita from "../components/home/blog/qiita.astro";
 import Zenn from "../components/home/blog/zenn.astro";
 import WatatakuBlog from "../components/home/blog/watataku-blog.astro";
@@ -8,14 +8,14 @@ import Linker from "../components/UIKit/Linker.astro";
 ---
 
 <Layout title="BLOG | Watataku's ポートフォリオ" description="BLOGページです。">
-  <!-- <div class="c-loader-bg js-loader-bg">
+  <div class="c-loader-bg js-loader-bg">
     <div class="c-loader-dot js-loader-dot-wrap">
       <span></span>
       <span></span>
       <span></span>
     </div>
-  </div> -->
-  <Header id="top" />
+  </div>
+  <Header client:load />
   <section class="blogs-page">
     <div class="blogs-page__blog">
       <h1 class="blogs-page__blog__title">
@@ -25,7 +25,7 @@ import Linker from "../components/UIKit/Linker.astro";
       </h1>
       <div class="blogs-page__blog__inner">
         <h3 class="blogs-page__blog__inner__title">- Qiita</h3>
-        <Qiita perPage={"8"} />
+        <Qiita perPage={"6"} />
         <div class="blogs-page__inner__linker">
           <Linker
             href={"https://qiita.com/watataku8911"}
@@ -36,7 +36,7 @@ import Linker from "../components/UIKit/Linker.astro";
       </div>
       <div class="blogs-page__blog__inner">
         <h3 class="blogs-page__blog__inner__title">- Zenn</h3>
-        <Zenn count={"8"} />
+        <Zenn count={"6"} />
         <div class="blogs-page__inner__linker">
           <Linker
             href={"https://zenn.dev/watataku"}
@@ -47,7 +47,7 @@ import Linker from "../components/UIKit/Linker.astro";
       </div>
       <div class="blogs-page__blog__inner">
         <h3 class="blogs-page__blog__inner__title">- Watataku ブログ</h3>
-        <WatatakuBlog limit={"8"} />
+        <WatatakuBlog limit={"6"} />
         <div class="blogs-page__inner__linker">
           <Linker
             href={"https://watataku-blog.vercel.app"}
@@ -61,62 +61,62 @@ import Linker from "../components/UIKit/Linker.astro";
 </Layout>
 
 <script>
-  import gsap from "gsap";
   intersection(document.querySelectorAll(".blogs-page__blog__title"));
   intersection(document.querySelectorAll(".blogs-page__blog__inner"));
+  import gsap from "gsap";
 
-  // const jsLoaderBg = ".js-loader-bg";
-  // const jsDot = ".js-loader-dot-wrap > span";
+  const jsLoaderBg = ".js-loader-bg";
+  const jsDot = ".js-loader-dot-wrap > span";
 
-  // const displayLoadingScreen = () => {
-  //   gsap.set(jsDot, {
-  //     opacity: 0,
-  //     y: -50,
-  //   });
-  //   gsap.timeline().to(jsDot, {
-  //     opacity: 1,
-  //     y: 0,
-  //     duration: 0.8,
-  //     delay: 0.8,
-  //     stagger: {
-  //       amount: 0.5,
-  //       from: "start",
-  //       ease: "power4.inOut",
-  //     },
-  //   });
-  // };
+  const displayLoadingScreen = () => {
+    gsap.set(jsDot, {
+      opacity: 0,
+      y: -50,
+    });
+    gsap.timeline().to(jsDot, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      delay: 0.8,
+      stagger: {
+        amount: 0.5,
+        from: "start",
+        ease: "power4.inOut",
+      },
+    });
+  };
 
-  // const closeLoadingScreen = () => {
-  //   gsap
-  //     .timeline()
-  //     .to(jsDot, {
-  //       opacity: 0,
-  //     })
-  //     .to(jsLoaderBg, {
-  //       display: "none",
-  //       y: "100%",
-  //       delay: 0.5,
-  //     });
-  // };
-  // // ------------------------------------------------------------------------
+  const closeLoadingScreen = () => {
+    gsap
+      .timeline()
+      .to(jsDot, {
+        opacity: 0,
+      })
+      .to(jsLoaderBg, {
+        display: "none",
+        y: "100%",
+        delay: 0.5,
+      });
+  };
+  // ------------------------------------------------------------------------
 
-  // //メイン
-  // displayLoadingScreen();
-  // window.onload = () => {
-  //   setTimeout(() => {
-  //     closeLoadingScreen();
-  //   }, 2500);
-  // };
+  //メイン
+  displayLoadingScreen();
+  window.onload = () => {
+    setTimeout(() => {
+      closeLoadingScreen();
+    }, 2500);
+  };
 </script>
 
 <style>
-  /* .c-loader-bg {
+  .c-loader-bg {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #444;
+    background-color: #addff2;
     z-index: 999;
     display: grid;
     place-items: center;
@@ -143,29 +143,30 @@ import Linker from "../components/UIKit/Linker.astro";
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: #fff;
+    background-color: #000;
   }
 
   .c-loader-dot > span + span {
     margin-left: 3rem;
-  } */
+  }
 
   .blogs-page {
-    background-color: #addff2;
-    padding: 20px 0 60px 0;
+    background-color: var(--main-color);
+    padding: 5% 0 60px 0;
   }
   @media screen and (max-width: 481px) {
     .blogs-page {
-      padding: 60px 0 60px 0;
+      padding: 80px 0 60px 0;
     }
   }
 
   .blogs-page__blog {
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
   }
 
   .blogs-page__blog__title {
+    color: var(--accent-color);
     font-size: 4.5em;
     padding: 2% 0 60px 0;
     opacity: 0;
@@ -175,6 +176,7 @@ import Linker from "../components/UIKit/Linker.astro";
     .blogs-page__blog__title {
       font-size: 3.5em;
       transform: translateY(30px);
+      padding: 5% 0 30px 0;
     }
   }
   @media screen and (max-width: 481px) {
@@ -187,14 +189,14 @@ import Linker from "../components/UIKit/Linker.astro";
 
   .blogs-page__blog__title--sub {
     font-size: 0.25em;
-    color: #444;
+    color: var(--subtextColor);
   }
 
   .blogs-page__blog__title--sub::before {
     content: "";
     display: inline-block;
     width: 20px;
-    border-bottom: solid 1px #333;
+    border-bottom: solid 1px var(--subtextColor);
     margin: 0 5px 0 5px;
   }
 
@@ -224,6 +226,7 @@ import Linker from "../components/UIKit/Linker.astro";
   }
 
   .blogs-page__blog__inner__title {
+    color: var(--accent-color);
     margin-bottom: 10px;
   }
 

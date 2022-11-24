@@ -1,6 +1,7 @@
 ---
 import Contact from "../components/Contact.astro";
-import Footer from "../components/Footer.astro";
+// import Footer from "../components/Footer.astro";
+import Footer from "../components/Footer/Footer";
 
 export interface Props {
   title: string;
@@ -73,18 +74,30 @@ const { title, description } = Astro.props;
     <Footer />
     <style is:global>
       :root {
-        --accent: 124, 58, 237;
-        --accent-gradient: linear-gradient(
-          45deg,
-          rgb(var(--accent)),
-          #da62c4 30%,
-          white 60%
-        );
+        --main-color: #addff2;
+        --sub-color: #fff;
+        --accent-color: #000;
+        --humberger-color: #555;
+        --text-color: #000;
+        --subtextColor: #444;
+        --card-bgColor: #fffdf9;
+        --hover-bgColor: #eee;
+        --hover-teColor: #111;
+
+        --base-width: 85%;
+        --card-size-width-pc: 31%;
+      }
+      [data-theme="dark"] {
+        --main-color: #8295cc;
+        --sub-color: #141619;
+        --accent-color: #fffdf9;
+        --humberger-color: #fff;
+        --subtextColor: #ddd;
+        --card-bgColor: #2d2d34;
+        --hover-bgColor: #eee;
+        --hover-teColor: #111;
       }
     </style>
   </body>
   <script src="js/script.js" charset="utf-8"></script>
-  <script>
-    smoothScroll();
-  </script>
 </html>

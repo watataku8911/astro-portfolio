@@ -31,8 +31,8 @@ const { target, image, href, title, time } = Astro.props;
 ---
 
 <article class="card">
-  <a href={href} target={target}>
-    <img src={image} alt={title} class="card__thunbnail" />
+  <a href={href} target={target} class="link">
+    <figure><img src={image} alt={title} class="card__thunbnail" /></figure>
     <h4 class="card__title">
       {split(title, 30)}
     </h4>
@@ -43,23 +43,26 @@ const { target, image, href, title, time } = Astro.props;
 </article>
 
 <style>
+  .link {
+    display: block;
+  }
   .card {
     text-align: center;
     position: relative;
-    width: 21vw;
-    height: 250px;
-    background-color: #fffdf9;
+    width: var(--card-size-width-pc);
+    height: 300px;
+    background-color: var(--card-bgColor);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     margin-bottom: 20px;
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
     .card {
-      height: 200px;
+      height: 230px;
     }
   }
   @media screen and (max-width: 481px) {
     .card {
-      width: 43vw;
+      width: 48%;
       height: 200px;
     }
   }
@@ -70,8 +73,18 @@ const { target, image, href, title, time } = Astro.props;
   }
 
   .card__thunbnail {
-    max-width: 100%;
-    height: auto;
+    width: 100%;
+    height: 190px;
+  }
+  @media screen and (min-width: 482px) and (max-width: 1025px) {
+    .card__thunbnail {
+      height: 120px;
+    }
+  }
+  @media screen and (max-width: 481px) {
+    .card__thunbnail {
+      height: 100px;
+    }
   }
 
   .card__title {
@@ -80,7 +93,7 @@ const { target, image, href, title, time } = Astro.props;
     padding: 0 0 0 5px;
     letter-spacing: 1px;
     font-size: 1rem;
-    color: #000;
+    color: var(--accent-color);
   }
   @media screen and (max-width: 1026px) {
     .card__title {
@@ -92,6 +105,6 @@ const { target, image, href, title, time } = Astro.props;
     position: absolute;
     bottom: 5px;
     right: 5px;
-    color: #333;
+    color: var(--subtextColor);
   }
 </style>

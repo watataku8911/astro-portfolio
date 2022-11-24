@@ -6,7 +6,7 @@
 
 html {
   font-family: "Sawarabi Gothic";
-  background-color: #addff2;
+  background-color: var(--main-color);
 }
 
 a {

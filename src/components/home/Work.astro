@@ -56,13 +56,12 @@ const getFetchData: Work = await res.json();
 
 <script>
   intersection(document.querySelectorAll(".works__work__title"));
-  intersection(document.querySelectorAll(".works__work__inner"));
   intersection(document.querySelectorAll(".works__work__linker"));
 </script>
 
 <style>
   .works {
-    background-color: #addff2;
+    background-color: var(--main-color);
     padding: 0 0 60px 0;
   }
 
@@ -72,11 +71,12 @@ const getFetchData: Work = await res.json();
   }
 
   .works__work {
-    width: 90%;
+    width: var(--base-width);
     margin: 0 auto;
   }
 
   .works__work__title {
+    color: var(--accent-color);
     font-size: 4.5em;
     padding: 0 0 60px 0;
     opacity: 0;
@@ -98,14 +98,14 @@ const getFetchData: Work = await res.json();
 
   .works__work__title__sub {
     font-size: 0.25em;
-    color: #444;
+    color: var(--subtextColor);
   }
 
   .works__work__title__sub::before {
     content: "";
     display: inline-block;
     width: 20px;
-    border-bottom: solid 1px #333;
+    border-bottom: solid 1px var(--subtextColor);
     margin: 0 5px 0 5px;
   }
 
@@ -114,29 +114,14 @@ const getFetchData: Work = await res.json();
   }
 
   .works__work__inner {
-    width: 90%;
+    width: 95%;
     margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    opacity: 0;
-    transform: translateY(30);
   }
-  @media screen and (min-width: 482px) and (max-width: 1026px) {
+  @media screen and (max-width: 1026px) {
     .works__work__inner {
       width: 100%;
     }
   }
-  @media screen and (max-width: 481px) {
-    .works__work__inner {
-      flex-direction: column;
-    }
-  }
-
-  .works__work__inner.active {
-    animation: animationName 0.5s ease 0.5s 1 forwards;
-  }
-
   .works__work__linker {
     font-size: 24px;
     margin-top: 30px;

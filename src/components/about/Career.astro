@@ -11,7 +11,7 @@ type Contents = {
 
 const myMicroCMSApiUrl = `https://${
   import.meta.env.MICROCMS_SERVICE_DOMAIN_PORTFOLIO
-}.microcms.io/api/v1/career?orders=publishedAt&limit=999`;
+}.microcms.io/api/v1/career?orders=-publishedAt&limit=999`;
 
 const res = await fetch(myMicroCMSApiUrl, {
   headers: {
@@ -35,7 +35,10 @@ const getFetchData: Career = await res.json();
   }
 </ul>
 
-<script></script>
+<script>
+  intersection(document.querySelectorAll(".abouts__about__timeline__date"));
+  intersection(document.querySelectorAll(".abouts__about__timeline__content"));
+</script>
 
 <style>
   .abouts__about__timeline > li {
@@ -45,23 +48,43 @@ const getFetchData: Career = await res.json();
   }
 
   .abouts__about__timeline__date {
+    color: var(--accent-color);
     width: 130px;
     float: left;
     margin-top: 20px;
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  @media screen and (max-width: 481px) {
+    .abouts__about__timeline__date {
+      transform: translateY(30px);
+    }
+  }
+
+  .abouts__about__timeline__date.active {
+    animation: animationName 0.5s ease 0.5s 1 forwards;
   }
 
   .abouts__about__timeline__content {
+    color: var(--accent-color);
     width: 75%;
     float: left;
     border-left: 3px #5bbee5 solid;
     padding-left: 30px;
     padding-bottom: 10px;
+    opacity: 0;
+    transform: translateX(-30);
   }
   @media screen and (max-width: 481px) {
     .abouts__about__timeline__content {
       width: 100%;
       border-left: none;
+      transform: translateY(30px);
     }
+  }
+
+  .abouts__about__timeline__content.active {
+    animation: animationName 0.5s ease 0.5s 1 forwards;
   }
 
   .abouts__about__timeline__content h3 {
@@ -75,7 +98,7 @@ const getFetchData: Career = await res.json();
     height: 12px;
     background-color: #5bbee5;
     position: absolute;
-    left: 126px;
+    left: -7px;
     top: 24px;
     border-radius: 100%;
   }

@@ -1,10 +1,14 @@
 [
   {
     "id": 0,
-    "interest": "フロントエンド全般"
+    "interest": "React/Vue.js"
   },
   {
     "id": 1,
+    "interest": "フロントエンド全般"
+  },
+  {
+    "id": 2,
     "interest": "Webデザイン"
   }
 ]
