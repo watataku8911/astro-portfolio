@@ -12,10 +12,10 @@ const Switch = () => {
     if (darkTheme !== undefined) {
       if (darkTheme) {
         document.documentElement.setAttribute("data-theme", "dark");
-        window.localStorage.setItem("theme", "dark");
+        window.sessionStorage.setItem("theme", "dark");
       } else {
         document.documentElement.removeAttribute("data-theme");
-        window.localStorage.setItem("theme", "light");
+        window.sessionStorage.removeItem("theme");
       }
     }
   }, [darkTheme]);

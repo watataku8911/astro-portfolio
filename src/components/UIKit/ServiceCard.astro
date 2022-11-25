@@ -19,6 +19,8 @@ const { image, title, text } = Astro.props;
 </article>
 
 <script>
+  import { intersection } from "../../ts/function";
+
   intersection(document.querySelectorAll(".service-card"));
 </script>
 

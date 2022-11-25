@@ -33,6 +33,8 @@ import Linker from "../UIKit/Linker.astro";
 </section>
 
 <script>
+  import { intersection } from "../../ts/function";
+
   intersection(document.querySelectorAll(".profiles__inner__title"));
   intersection(document.querySelectorAll(".profiles__profile__left"));
   intersection(document.querySelectorAll(".profiles__profile__right__message"));

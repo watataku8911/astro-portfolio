@@ -56,17 +56,13 @@
   opacity: 1;
 }
 
-.headder__buttans {
+.header__buttons {
   display: none;
 }
 
 @media screen and (max-width: 1025px) {
-  .headder__buttans {
+  .header__buttons {
     width: 30%;
-    display: block;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
   }
 
   .navToggle {

@@ -13,7 +13,7 @@ const { image, href, title, use_tech, comment } = Astro.props;
 ---
 
 <a href={href} class="link" target="_blank">
-  <article class="work-card">
+  <article class="work-card grid">
     <div class="work-card__left">
       <figure>
         <img src={image} alt={title} class="work-card__left__thumbnail" />
@@ -33,14 +33,19 @@ const { image, href, title, use_tech, comment } = Astro.props;
   </article>
 
   <script>
+    import { intersection } from "../../ts/function";
+
     intersection(document.querySelectorAll(".work-card"));
   </script>
 
   <style>
-    .work-card {
+    .grid {
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+
+    .work-card {
       height: 330px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       background-color: var(--card-bgColor);
@@ -89,7 +94,7 @@ const { image, href, title, use_tech, comment } = Astro.props;
       max-width: 100%;
       height: auto;
       border: solid 1px var(--accent-color);
-      /* border-radius: 15px; */
+      border-radius: 15px;
     }
 
     .link:hover figure .work-card__left__thumbnail {
