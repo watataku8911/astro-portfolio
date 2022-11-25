@@ -63,50 +63,23 @@ const getFetchData: Work = await res.json();
 </Layout>
 
 <script>
+  import {
+    displayLoadingScreen,
+    closeLoadingScreen,
+    intersection,
+  } from "../ts/function";
+
   intersection(document.querySelectorAll(".works-page__work__title"));
   intersection(document.querySelectorAll(".works-page__work__inner"));
-  import gsap from "gsap";
 
   const jsLoaderBg = ".js-loader-bg";
   const jsDot = ".js-loader-dot-wrap > span";
 
-  const displayLoadingScreen = () => {
-    gsap.set(jsDot, {
-      opacity: 0,
-      y: -50,
-    });
-    gsap.timeline().to(jsDot, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      delay: 0.8,
-      stagger: {
-        amount: 0.5,
-        from: "start",
-        ease: "power4.inOut",
-      },
-    });
-  };
-
-  const closeLoadingScreen = () => {
-    gsap
-      .timeline()
-      .to(jsDot, {
-        opacity: 0,
-      })
-      .to(jsLoaderBg, {
-        display: "none",
-        y: "100%",
-        delay: 0.5,
-      });
-  };
-  // ------------------------------------------------------------------------
-
   //メイン
-  displayLoadingScreen();
+  displayLoadingScreen(jsDot);
   window.onload = () => {
     setTimeout(() => {
-      closeLoadingScreen();
+      closeLoadingScreen(jsDot, jsLoaderBg);
     }, 2500);
   };
 </script>

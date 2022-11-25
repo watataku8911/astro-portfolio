@@ -36,6 +36,8 @@ const getFetchData: Career = await res.json();
 </ul>
 
 <script>
+  import { intersection } from "../../ts/function";
+
   intersection(document.querySelectorAll(".abouts__about__timeline__date"));
   intersection(document.querySelectorAll(".abouts__about__timeline__content"));
 </script>

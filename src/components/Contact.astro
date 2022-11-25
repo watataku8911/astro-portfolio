@@ -25,6 +25,8 @@ import Linker from "../components/UIKit/Linker.astro";
   </div>
 
   <script>
+    import { intersection } from "../ts/function";
+
     intersection(document.querySelectorAll(".contacts__contact__title"));
     intersection(
       document.querySelectorAll(".contacts__contact__inner__message")

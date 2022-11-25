@@ -37,7 +37,7 @@ const Header = () => {
           </li>
         </ul>
 
-        <div className={styles["headder__buttans"]}>
+        <div className={`${styles["headder__buttons"]} ${styles["grid"]}`}>
           <Switch />
           <div
             className={`${styles["navToggle"]} ${

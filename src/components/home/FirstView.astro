@@ -27,13 +27,16 @@ import Header from "../Header/Header";
     Markup&nbsp;Enginner/Frontend&nbsp;Enginner.
   </p>
 
-  <div class="pic_down">
-    <!-- <img src={IconDown} alt="↓" /> -->
-  </div>
+  <div class="pic_down"></div>
 </section>
 
 <script>
-  import gsap from "gsap";
+  import {
+    displayLoadingScreen,
+    closeLoadingScreen,
+    opningAnimation,
+    surroundSpan,
+  } from "../../ts/function";
 
   const jsLoaderBg = ".js-loader-bg";
   const jsDot = ".js-loader-dot-wrap > span";
@@ -46,133 +49,29 @@ import Header from "../Header/Header";
   surroundSpan(".first-view__title__text");
   surroundSpan(".first-view__text");
 
-  // ----------------------------------------関数群------------------------------------
-  const opningAnimation = () => {
-    gsap.set([firstViewTitle, firstViewtext, firstViewImageBox], {
-      opacity: 0,
-      y: -50,
-    });
-    gsap.set([firstViewCircle, picDown], {
-      opacity: 0,
-      y: 30,
-    });
-    gsap
-      .timeline()
-      .to(jsDot, {
-        opacity: 0,
-      })
-      .to(jsLoaderBg, {
-        y: "100%",
-        delay: 0.5,
-      })
-      .to(
-        firstViewCircle,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          stagger: {
-            amount: 0.6,
-          },
-        },
-        "+=0.2"
-      )
-      .to(
-        firstViewImageBox,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          stagger: {
-            amount: 0.6,
-          },
-        },
-        "+=0.2"
-      )
-      .to(
-        firstViewTitle,
-        {
-          opacity: 1,
-          y: 0,
-          stagger: {
-            amount: 1,
-            from: "start",
-            ease: "sine.in",
-          },
-        },
-        "-=0.1"
-      )
-      .to(
-        firstViewtext,
-        {
-          opacity: 1,
-          y: 0,
-          stagger: {
-            amount: 1,
-            from: "start",
-            ease: "sine.in",
-          },
-        },
-        "-=0.1"
-      )
-      .to(
-        picDown,
-        {
-          opacity: 2,
-          y: 0,
-          duration: 0.8,
-        },
-        "+=0.2"
-      );
-  };
-
-  const displayLoadingScreen = () => {
-    gsap.set(jsDot, {
-      opacity: 0,
-      y: -50,
-    });
-    gsap.timeline().to(jsDot, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      delay: 0.8,
-      stagger: {
-        amount: 0.5,
-        from: "start",
-        ease: "power4.inOut",
-      },
-    });
-  };
-
-  const closeLoadingScreen = () => {
-    gsap
-      .timeline()
-      .to(jsDot, {
-        opacity: 0,
-      })
-      .to(jsLoaderBg, {
-        display: "none",
-        y: "100%",
-        delay: 0.5,
-      });
-  };
-  // ------------------------------------------------------------------------
-
   //メイン
   if (!sessionStorage.getItem("visited")) {
     sessionStorage.setItem("visited", "true");
-    displayLoadingScreen();
+    displayLoadingScreen(jsDot);
     window.onload = () => {
       setTimeout(() => {
-        closeLoadingScreen();
-        opningAnimation();
+        closeLoadingScreen(jsDot, jsLoaderBg);
+        opningAnimation(
+          jsDot,
+          jsLoaderBg,
+          firstViewTitle,
+          firstViewtext,
+          firstViewImageBox,
+          firstViewCircle,
+          picDown
+        );
       }, 2500);
     };
   } else {
-    displayLoadingScreen();
+    displayLoadingScreen(jsDot);
     window.onload = () => {
       setTimeout(() => {
-        closeLoadingScreen();
+        closeLoadingScreen(jsDot, jsLoaderBg);
       }, 2500);
     };
   }

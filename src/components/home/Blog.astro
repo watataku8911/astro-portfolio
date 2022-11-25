@@ -29,6 +29,8 @@ import Linker from "../UIKit/Linker.astro";
 </section>
 
 <script>
+  import { intersection } from "../../ts/function";
+
   intersection(document.querySelectorAll(".blogs__blog__title"));
   intersection(document.querySelectorAll(".blogs__blog__inner"));
   intersection(document.querySelectorAll(".blogs__blog__linker"));

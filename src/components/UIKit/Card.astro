@@ -1,23 +1,5 @@
 ---
-import { parseISO, format } from "date-fns";
-
-// 日付整形関数
-const datePlasticSurgery = (dateString: string): string => {
-  const date = parseISO(dateString);
-  return format(date, "yyyy年M月d日");
-};
-
-// 文字を丸める関数
-const split = (text: string, maxLength: number): string => {
-  let modStr = "・・・";
-
-  if (text.length > maxLength) {
-    modStr = text.substr(0, maxLength) + "...";
-  } else {
-    modStr = text;
-  }
-  return modStr;
-};
+import { datePlasticSurgery, split } from "../../ts/function";
 
 type Props = {
   target: "_blank" | "_self" | "_top" | "_parent";
@@ -46,6 +28,7 @@ const { target, image, href, title, time } = Astro.props;
   .link {
     display: block;
   }
+
   .card {
     text-align: center;
     position: relative;
