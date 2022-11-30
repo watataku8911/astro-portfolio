@@ -5,9 +5,13 @@ import Footer from "../components/Footer/Footer";
 export interface Props {
   title: string;
   description: string;
+  site_url: string;
+  ogp?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, site_url, ogp } = Astro.props;
+
+const baseUrl = Astro.url.origin;
 ---
 
 <!DOCTYPE html>
@@ -22,6 +26,7 @@ const { title, description } = Astro.props;
       content="watataku,Watataku,わたたく,ワタタク,フロントエンドエンジニア"
     />
     <meta name="description" content={description} />
+    <meta property="url" content={site_url} />
 
     <!-- さわらびゴシック -->
     <link
@@ -44,28 +49,85 @@ const { title, description } = Astro.props;
     />
 
     <!-- OGP  -->
+    <meta property="og:site_name" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://watataku-portfolio.web.app/" />
-    <meta
-      property="og:image"
-      content="https://watataku-portfolio.web.app/img/Hight_main.67495da6.jpeg"
-    />
-    <meta property="og:site_name" content={title} />
+    <meta property="og:url" content={site_url} />
+    {
+      ogp ? (
+        <meta property="og:image" content={ogp} />
+      ) : (
+        <meta property="og:image" content={`${baseUrl}/img/Hight_main.jpeg`} />
+      )
+    }
+
     <!-- /OGP -->
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta
-      name="twitter:image:src"
-      content="https://watataku-portfolio.web.app/img/Hight_main.67495da6.jpeg"
-    />
+    {
+      ogp ? (
+        <meta name="twitter:image:src" content={ogp} />
+      ) : (
+        <meta
+          name="twitter:image:src"
+          content={`${baseUrl}/img/Hight_main.jpeg`}
+        />
+      )
+    }
     <!-- /Twitter -->
+
     <link rel="stylesheet" href="/css/reset.css" />
 
     <title>{title}</title>
+
+    <!-- Dark mode (Inline script to prevent flushing immediately after loading) -->
+    <script is:inline>
+      // const isDarkTheme = () => {
+      //   const theme = localStorage.getItem("theme");
+      //   if (theme) {
+      //     return theme === "dark";
+      //   } else {
+      //     return window.matchMedia("(prefers-color-scheme: dark)").matches;
+      //   }
+      // };
+      // if (isDarkTheme()) {
+      //   document.documentElement.setAttribute("data-theme", "dark");
+      //   console.log("ダーク");
+      // } else {
+      //   document.documentElement.setAttribute("data-theme", "light");
+      //   console.log("light");
+      // }
+
+      // const theme = (() => {
+      //   if (
+      //     typeof localStorage !== "undefined" &&
+      //     localStorage.getItem("theme")
+      //   ) {
+      //     return localStorage.getItem("theme");
+      //   }
+      //   if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      //     return "dark";
+      //   }
+      //   return "light";
+      // })();
+
+      // if (theme != null) {
+      //   if (theme === "light") {
+      //     //document.documentElement.classList.remove("dark");
+      //     document.documentElement.removeAttribute("data-theme");
+      //   } else {
+      //     //document.documentElement.classList.add("dark");
+      //     document.documentElement.setAttribute("data-theme", "dark");
+      //   }
+
+      //   window.localStorage.setItem("theme", theme);
+
+      //   console.log(theme);
+      // }
+    </script>
   </head>
   <body>
     <slot />

@@ -12,15 +12,15 @@ import Linker from "../UIKit/Linker.astro";
     </h2>
     <div class="blogs__blog__inner">
       <h3 class="blogs__blog__inner__title">- Qiita</h3>
-      <Qiita perPage={"3"} />
+      <Qiita perPage={"6"} />
     </div>
     <div class="blogs__blog__inner">
       <h3 class="blogs__blog__inner__title">- Zenn</h3>
-      <Zenn count={"3"} />
+      <Zenn count={"6"} />
     </div>
     <div class="blogs__blog__inner">
       <h3 class="blogs__blog__inner__title">- Watataku ブログ</h3>
-      <WatatakuBlog limit={"3"} />
+      <WatatakuBlog limit={"6"} />
     </div>
     <div class="blogs__blog__linker">
       <Linker href="/blog" msg="Tech Blogs→" target={"_self"} />
@@ -107,7 +107,8 @@ import Linker from "../UIKit/Linker.astro";
   }
 
   .blogs__blog__inner__title {
-    margin-bottom: 10px;
+    color: var(--accent-color);
+    margin-bottom: 20px;
   }
 
   .blogs__blog__linker {

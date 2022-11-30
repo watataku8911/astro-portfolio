@@ -8,11 +8,15 @@ import Header from "../components/Header/Header";
 import Service from "../components/about/Service.astro";
 import Intrest from "../components/about/Intarest.astro";
 import Career from "../components/about/Career.astro";
+
+// サイトのURLを取得
+const site_url = Astro.url.href;
 ---
 
 <Layout
   title="ABOUT | Watataku's ポートフォリオサイト"
   description="WatatakuのAboutページです。"
+  site_url={site_url}
 >
   <div class="c-loader-bg js-loader-bg">
     <div class="c-loader-dot js-loader-dot-wrap">
@@ -36,6 +40,11 @@ import Career from "../components/about/Career.astro";
           alt="Watataku"
         />
         <p class="abouts-page__about__name">Watataku</p>
+        <div class="abouts-page__about__text">
+          <p>
+            1996年大阪府生まれ。Web/ITの専門学校にて、ITとはなんぞや？を学んだ後、新卒でSIerに入社。その後、色々な事があり、現在はSNSや技術ブログを投じて情報発信しながらフロントエンドエンジニア/マークアップエンジニアとして活動中。
+          </p>
+        </div>
         <div class="abouts-page__about__sns">
           <p>
             <a
@@ -125,14 +134,7 @@ import Career from "../components/about/Career.astro";
     display: grid;
     place-items: center;
     pointer-events: none;
-    visibility: visible;
     transition: 0.3s;
-    opacity: 1;
-  }
-
-  .c-loader-bg.load {
-    opacity: 0;
-    visibility: hidden;
   }
 
   .c-loader-dot {
@@ -237,6 +239,19 @@ import Career from "../components/about/Career.astro";
     color: var(--accent-color);
     font-size: 24px;
     margin: 10px 0 10px 0;
+  }
+
+  .abouts-page__about__text {
+    color: var(--accent-color);
+    font-size: 14px;
+    width: 50%;
+    text-align: left;
+    margin: 20px auto;
+  }
+  @media screen and (max-width: 1026px) {
+    .abouts-page__about__text {
+      width: 95%;
+    }
   }
 
   .link {

@@ -8,6 +8,7 @@ type Work = {
 };
 
 type Contents = {
+  id: string;
   image: Image;
   title: string;
   href: string;
@@ -29,9 +30,16 @@ const res = await fetch(myMicroCMSApiUrl, {
   },
 });
 const getFetchData: Work = await res.json();
+
+// サイトのURLを取得
+const site_url = Astro.url.href;
 ---
 
-<Layout title="WORKS | Watataku's ポートフォリオ" description="作品集です">
+<Layout
+  title="WORKS | Watataku's ポートフォリオ"
+  description="作品集です"
+  site_url={site_url}
+>
   <div class="c-loader-bg js-loader-bg">
     <div class="c-loader-dot js-loader-dot-wrap">
       <span></span>
@@ -50,7 +58,7 @@ const getFetchData: Work = await res.json();
           getFetchData.contents.map((work: Contents) => (
             <WorkCard
               image={work.image.url}
-              href={work.href}
+              href={`/work/${work.id}`}
               title={work.title}
               use_tech={work.use_tech}
               comment={work.comment}
@@ -96,14 +104,7 @@ const getFetchData: Work = await res.json();
     display: grid;
     place-items: center;
     pointer-events: none;
-    visibility: visible;
     transition: 0.3s;
-    opacity: 1;
-  }
-
-  .c-loader-bg.load {
-    opacity: 0;
-    visibility: hidden;
   }
 
   .c-loader-dot {

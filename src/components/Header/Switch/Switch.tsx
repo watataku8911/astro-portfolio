@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./Switch.module.css";
 
 const Switch = () => {
-  const [darkTheme, setDarkTheme] = useState<boolean>(false);
+  const [darkTheme, setDarkTheme] = useState<boolean | undefined>(undefined);
 
   const handleToggle = (e: any) => {
     setDarkTheme(e.target.checked);
@@ -12,28 +12,47 @@ const Switch = () => {
     if (darkTheme !== undefined) {
       if (darkTheme) {
         document.documentElement.setAttribute("data-theme", "dark");
-        window.sessionStorage.setItem("theme", "dark");
+        window.localStorage.setItem("theme", "dark");
       } else {
         document.documentElement.removeAttribute("data-theme");
-        window.sessionStorage.removeItem("theme");
+        window.localStorage.setItem("theme", "light");
       }
     }
   }, [darkTheme]);
 
   useEffect(() => {
-    const theme = window.sessionStorage.getItem("theme");
-    console.log(theme);
-    if (theme === "dark") {
-      setDarkTheme(true);
-    } else {
-      setDarkTheme(false);
+    const theme = (() => {
+      if (
+        typeof localStorage !== "undefined" &&
+        localStorage.getItem("theme")
+      ) {
+        return localStorage.getItem("theme");
+      }
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        return "dark";
+      }
+      return "light";
+    })();
+
+    if (theme != null) {
+      if (theme === "light") {
+        setDarkTheme(false);
+      } else {
+        setDarkTheme(true);
+      }
+
+      window.localStorage.setItem("theme", theme);
     }
   }, []);
 
   return (
     <form action="#">
       <label className={styles["switch"]}>
-        <input type="checkbox" checked={darkTheme} onChange={handleToggle} />
+        <input
+          type="checkbox"
+          checked={darkTheme ?? false}
+          onChange={handleToggle}
+        />
         <span className={styles["slider"]}></span>
       </label>
     </form>
