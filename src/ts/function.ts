@@ -35,6 +35,7 @@ export const displayLoadingScreen = (jsDot: string) => {
       from: "start",
       ease: "power4.inOut",
     },
+    repeat: -1,
   });
 };
 

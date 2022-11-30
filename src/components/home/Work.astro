@@ -7,6 +7,7 @@ type Work = {
 };
 
 type Contents = {
+  id: string;
   image: Image;
   title: string;
   href: string;
@@ -40,7 +41,7 @@ const getFetchData: Work = await res.json();
         getFetchData.contents.map((work: Contents) => (
           <WorkCard
             image={work.image.url}
-            href={work.href}
+            href={`/work/${work.id}`}
             title={work.title}
             use_tech={work.use_tech}
             comment={work.comment}
