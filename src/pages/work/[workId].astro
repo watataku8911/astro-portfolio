@@ -1,6 +1,5 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Header from "../../components/Header/Header";
 
 type Work = {
   contents: Contents[];
@@ -60,14 +59,6 @@ const site_url = Astro.url.href;
   site_url={site_url}
   ogp={getFetchWorkDetail.image.url}
 >
-  <div class="c-loader-bg js-loader-bg">
-    <div class="c-loader-dot js-loader-dot-wrap">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-  <Header client:load />
   <section class="work-detail">
     <div class="work-detail__inner">
       <h1 class="work-detail__inner__title">{getFetchWorkDetail.title}</h1>
@@ -104,54 +95,20 @@ const site_url = Astro.url.href;
     intersection,
   } from "../../ts/function";
 
-  // intersection(document.querySelectorAll(".works-page__work__title"));
-  // intersection(document.querySelectorAll(".works-page__work__inner"));
-
   const jsLoaderBg = ".js-loader-bg";
   const jsDot = ".js-loader-dot-wrap > span";
-
-  //メイン
   displayLoadingScreen(jsDot);
   window.onload = () => {
     setTimeout(() => {
       closeLoadingScreen(jsDot, jsLoaderBg);
     }, 2500);
   };
+
+  // intersection(document.querySelectorAll(".works-page__work__title"));
+  // intersection(document.querySelectorAll(".works-page__work__inner"));
 </script>
 
 <style>
-  .c-loader-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #addff2;
-    z-index: 999;
-    display: grid;
-    place-items: center;
-    pointer-events: none;
-    transition: 0.3s;
-  }
-
-  .c-loader-dot {
-    display: inline-flex;
-    align-items: center;
-    justify-content: start;
-    pointer-events: none;
-  }
-
-  .c-loader-dot > span {
-    display: block;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: #000;
-  }
-
-  .c-loader-dot > span + span {
-    margin-left: 4rem;
-  }
   .work-detail {
     background-color: var(--main-color);
     padding: 5% 0 60px 0;

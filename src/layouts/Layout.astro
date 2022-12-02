@@ -1,4 +1,5 @@
 ---
+import Header from "../components/Header/Header";
 import Contact from "../components/Contact.astro";
 import Footer from "../components/Footer/Footer";
 
@@ -82,57 +83,21 @@ const baseUrl = Astro.url.origin;
     <link rel="stylesheet" href="/css/reset.css" />
 
     <title>{title}</title>
-
-    <!-- Dark mode (Inline script to prevent flushing immediately after loading) -->
-    <script is:inline>
-      // const isDarkTheme = () => {
-      //   const theme = localStorage.getItem("theme");
-      //   if (theme) {
-      //     return theme === "dark";
-      //   } else {
-      //     return window.matchMedia("(prefers-color-scheme: dark)").matches;
-      //   }
-      // };
-      // if (isDarkTheme()) {
-      //   document.documentElement.setAttribute("data-theme", "dark");
-      //   console.log("ダーク");
-      // } else {
-      //   document.documentElement.setAttribute("data-theme", "light");
-      //   console.log("light");
-      // }
-
-      // const theme = (() => {
-      //   if (
-      //     typeof localStorage !== "undefined" &&
-      //     localStorage.getItem("theme")
-      //   ) {
-      //     return localStorage.getItem("theme");
-      //   }
-      //   if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      //     return "dark";
-      //   }
-      //   return "light";
-      // })();
-
-      // if (theme != null) {
-      //   if (theme === "light") {
-      //     //document.documentElement.classList.remove("dark");
-      //     document.documentElement.removeAttribute("data-theme");
-      //   } else {
-      //     //document.documentElement.classList.add("dark");
-      //     document.documentElement.setAttribute("data-theme", "dark");
-      //   }
-
-      //   window.localStorage.setItem("theme", theme);
-
-      //   console.log(theme);
-      // }
-    </script>
   </head>
   <body>
-    <slot />
-    <Contact />
-    <Footer />
+    <div class="c-loader-bg js-loader-bg">
+      <div class="c-loader-dot js-loader-dot-wrap">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <Header client:load />
+    <main>
+      <slot />
+      <Contact />
+    </main>
+    <Footer client:load />
     <style is:global>
       :root {
         --main-color: #addff2;
@@ -148,6 +113,7 @@ const baseUrl = Astro.url.origin;
         --base-width: 85%;
         --card-size-width-pc: 31%;
       }
+
       [data-theme="dark"] {
         --main-color: #8295cc;
         --sub-color: #141619;
@@ -157,6 +123,40 @@ const baseUrl = Astro.url.origin;
         --card-bgColor: #2d2d34;
         --hover-bgColor: #eee;
         --hover-teColor: #111;
+      }
+
+      /* ローディング画面 */
+      .c-loader-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--main-color);
+        z-index: 999;
+        display: grid;
+        place-items: center;
+        pointer-events: none;
+        transition: 0.3s;
+      }
+
+      .c-loader-dot {
+        display: inline-flex;
+        align-items: center;
+        justify-content: start;
+        pointer-events: none;
+      }
+
+      .c-loader-dot > span {
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: var(--accent-color);
+      }
+
+      .c-loader-dot > span + span {
+        margin-left: 4rem;
       }
     </style>
   </body>

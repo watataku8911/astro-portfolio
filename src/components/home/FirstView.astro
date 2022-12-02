@@ -1,15 +1,3 @@
----
-import Header from "../Header/Header";
----
-
-<!-- <iv class="c-loader-bg js-loader-bg">
-  <div class="c-loader-dot js-loader-dot-wrap">
-    <span></span>
-    <span></span>
-    <spand></spand>
-  </div>
-</div> -->
-<Header client:load />
 <section class="first-view">
   <div class="first-view__image-box">
     <img class="first-view__image" src="/img/typing.png" alt="pc" />
@@ -37,6 +25,9 @@ import Header from "../Header/Header";
     surroundSpan,
   } from "../../ts/function";
 
+  surroundSpan(".first-view__title__text");
+  surroundSpan(".first-view__text");
+
   const jsLoaderBg = ".js-loader-bg";
   const jsDot = ".js-loader-dot-wrap > span";
   const firstViewCircle = ".first-view__circle";
@@ -45,16 +36,12 @@ import Header from "../Header/Header";
   const firstViewtext = ".first-view__text span";
   const picDown = ".pic_down";
 
-  surroundSpan(".first-view__title__text");
-  surroundSpan(".first-view__text");
-
   //メイン
   if (!sessionStorage.getItem("visited")) {
     sessionStorage.setItem("visited", "true");
     displayLoadingScreen(jsDot);
     window.onload = () => {
       setTimeout(() => {
-        closeLoadingScreen(jsDot, jsLoaderBg);
         opningAnimation(
           jsDot,
           jsLoaderBg,
@@ -77,39 +64,6 @@ import Header from "../Header/Header";
 </script>
 
 <style>
-  .c-loader-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #addff2;
-    z-index: 999;
-    display: grid;
-    place-items: center;
-    pointer-events: none;
-    transition: 0.3s;
-  }
-
-  .c-loader-dot {
-    display: inline-flex;
-    align-items: center;
-    justify-content: start;
-    pointer-events: none;
-  }
-
-  .c-loader-dot > span {
-    display: block;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #000;
-  }
-
-  .c-loader-dot > span + span {
-    margin-left: 3rem;
-  }
-
   /* メイン */
   .first-view {
     background-color: var(--sub-color);
@@ -160,7 +114,7 @@ import Header from "../Header/Header";
   }
   @media screen and (max-width: 481px) {
     .first-view__text {
-      font-size: 1em;
+      font-size: 1.2em;
     }
   }
 
@@ -179,7 +133,7 @@ import Header from "../Header/Header";
   }
   @media screen and (max-width: 481px) {
     .first-view__title {
-      font-size: 2em;
+      font-size: 2.5em;
     }
   }
 
@@ -211,7 +165,7 @@ import Header from "../Header/Header";
     position: absolute;
     width: 70vw;
     height: 70vw;
-    bottom: 0%;
+    bottom: 0;
   }
   .first-view__circle:after {
     content: "";
@@ -259,7 +213,7 @@ import Header from "../Header/Header";
       bottom: 2vw;
     }
     100% {
-      bottom: 3vw;
+      bottom: 20px;
     }
   }
 </style>
