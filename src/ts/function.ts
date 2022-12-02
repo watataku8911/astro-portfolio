@@ -35,7 +35,6 @@ export const displayLoadingScreen = (jsDot: string) => {
       from: "start",
       ease: "power4.inOut",
     },
-    repeat: -1,
   });
 };
 
@@ -63,13 +62,19 @@ export const opningAnimation = (
   firstViewCircle: string,
   picDown: string
 ) => {
+  gsap.set(firstViewCircle, {
+    opacity: 0,
+    y: 30,
+  });
+
   gsap.set([firstViewTitle, firstViewtext, firstViewImageBox], {
     opacity: 0,
     y: -50,
   });
-  gsap.set([firstViewCircle, picDown], {
+
+  gsap.set(picDown, {
     opacity: 0,
-    y: 30,
+    y: -30,
   });
   gsap
     .timeline()
@@ -77,6 +82,7 @@ export const opningAnimation = (
       opacity: 0,
     })
     .to(jsLoaderBg, {
+      display: "none",
       y: "100%",
       delay: 0.5,
     })
@@ -133,7 +139,7 @@ export const opningAnimation = (
     .to(
       picDown,
       {
-        opacity: 2,
+        opacity: 1,
         y: 0,
         duration: 0.8,
       },

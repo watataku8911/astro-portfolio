@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header/Header";
 import Qiita from "../components/home/blog/qiita.astro";
 import Zenn from "../components/home/blog/zenn.astro";
 import WatatakuBlog from "../components/home/blog/watataku-blog.astro";
@@ -15,14 +14,6 @@ const site_url = Astro.url.href;
   description="BLOGページです。"
   site_url={site_url}
 >
-  <div class="c-loader-bg js-loader-bg">
-    <div class="c-loader-dot js-loader-dot-wrap">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-  <Header client:load />
   <section class="blogs-page">
     <div class="blogs-page__blog">
       <h1 class="blogs-page__blog__title">
@@ -74,55 +65,19 @@ const site_url = Astro.url.href;
     intersection,
   } from "../ts/function";
 
-  intersection(document.querySelectorAll(".blogs-page__blog__title"));
-  intersection(document.querySelectorAll(".blogs-page__blog__inner"));
-
   const jsLoaderBg = ".js-loader-bg";
   const jsDot = ".js-loader-dot-wrap > span";
-
-  //メイン
   displayLoadingScreen(jsDot);
   window.onload = () => {
     setTimeout(() => {
       closeLoadingScreen(jsDot, jsLoaderBg);
     }, 2500);
   };
+  intersection(document.querySelectorAll(".blogs-page__blog__title"));
+  intersection(document.querySelectorAll(".blogs-page__blog__inner"));
 </script>
 
 <style>
-  .c-loader-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #addff2;
-    z-index: 999;
-    display: grid;
-    place-items: center;
-    pointer-events: none;
-    transition: 0.3s;
-  }
-
-  .c-loader-dot {
-    display: inline-flex;
-    align-items: center;
-    justify-content: start;
-    pointer-events: none;
-  }
-
-  .c-loader-dot > span {
-    display: block;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #000;
-  }
-
-  .c-loader-dot > span + span {
-    margin-left: 3rem;
-  }
-
   .blogs-page {
     background-color: var(--main-color);
     padding: 5% 0 60px 0;

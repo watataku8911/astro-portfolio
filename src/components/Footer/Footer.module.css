@@ -70,9 +70,12 @@
 }
 
 .footer__copy__icons {
-  padding: 25px 0 25px 0;
-  width: 100px;
-  margin: 0 auto;
+  width: 150px;
+  margin: 30px 2vw 30px auto;
+}
+
+.footer__copy__icons path {
+  fill: var(--accent-color);
 }
 
 .footer__copy__icons a {
