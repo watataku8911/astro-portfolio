@@ -96,18 +96,17 @@ const site_url = Astro.url.href;
 </Layout>
 
 <script>
-  import {
-    displayLoadingScreen,
-    closeLoadingScreen,
-    intersection,
-  } from "../ts/function";
+  import { closeLoadingScreen, intersection } from "../ts/function";
+
+  const body = document.querySelector("body");
 
   const jsLoaderBg = ".js-loader-bg";
-  const jsDot = ".js-loader-dot-wrap > span";
-  displayLoadingScreen(jsDot);
   window.onload = () => {
     setTimeout(() => {
-      closeLoadingScreen(jsDot, jsLoaderBg);
+      closeLoadingScreen(jsLoaderBg);
+      if (body != null) {
+        body.classList.add("loaded");
+      }
     }, 2500);
   };
 

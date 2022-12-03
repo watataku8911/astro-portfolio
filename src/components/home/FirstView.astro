@@ -19,17 +19,17 @@
 
 <script>
   import {
-    displayLoadingScreen,
+    surroundSpan,
     closeLoadingScreen,
     opningAnimation,
-    surroundSpan,
   } from "../../ts/function";
+
+  const body = document.querySelector("body");
 
   surroundSpan(".first-view__title__text");
   surroundSpan(".first-view__text");
 
   const jsLoaderBg = ".js-loader-bg";
-  const jsDot = ".js-loader-dot-wrap > span";
   const firstViewCircle = ".first-view__circle";
   const firstViewImageBox = ".first-view__image-box";
   const firstViewTitle = ".first-view__title__text span";
@@ -39,11 +39,9 @@
   //メイン
   if (!sessionStorage.getItem("visited")) {
     sessionStorage.setItem("visited", "true");
-    displayLoadingScreen(jsDot);
     window.onload = () => {
       setTimeout(() => {
         opningAnimation(
-          jsDot,
           jsLoaderBg,
           firstViewTitle,
           firstViewtext,
@@ -51,14 +49,19 @@
           firstViewCircle,
           picDown
         );
+        if (body != null) {
+          body.classList.add("loaded");
+        }
       }, 2500);
     };
   } else {
-    displayLoadingScreen(jsDot);
     window.onload = () => {
       setTimeout(() => {
-        closeLoadingScreen(jsDot, jsLoaderBg);
+        closeLoadingScreen(jsLoaderBg);
       }, 2500);
+      if (body != null) {
+        body.classList.add("loaded");
+      }
     };
   }
 </script>
