@@ -47,15 +47,19 @@
   transition: 0.35s ease-in-out;
   left: 6px;
 }
+
 .navToggle span:nth-child(1) {
   top: 9px;
 }
+
 .navToggle span:nth-child(2) {
   top: 18px;
 }
+
 .navToggle span:nth-child(3) {
   top: 27px;
 }
+
 .navToggle span:nth-child(4) {
   border: none;
   color: #eee;
@@ -63,7 +67,7 @@
   font-weight: bold;
   top: 34px;
 }
-/* 最初のspanをマイナス45度に */
+
 .navToggle.is-active span {
   top: 18px;
   left: 6px;
@@ -71,6 +75,7 @@
   -moz-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
+
 .navToggle.is-active span:nth-child(2),
 .navToggle.is-active span:nth-child(3) {
   top: 18px;
@@ -95,6 +100,7 @@
   display: block;
   transition: all 0.5s;
 }
+
 .navi__wrap {
   display: flex;
   justify-content: center;
@@ -102,8 +108,29 @@
   flex-direction: column;
   height: 100%;
 }
+
 .navi li .text-color {
   width: 100%;
   padding: 15px;
   font-size: 2em;
+}
+
+.navi__copy__icons {
+  position: absolute;
+  bottom: 0;
+  right: 1vw;
+  width: 150px;
+  margin: 30px 2vw 30px auto;
+}
+
+.navi__copy__icons path {
+  fill: var(--accent-color);
+}
+
+.navi__copy__icons a {
+  display: block;
+}
+
+.navi__copy__icons a:hover {
+  transform: scale(1.5);
 }

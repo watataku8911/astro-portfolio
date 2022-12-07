@@ -75,7 +75,6 @@ const site_url = Astro.url.href;
     }, 2500);
   };
 
-  intersection(document.querySelectorAll(".works-page__work__title"));
   intersection(document.querySelectorAll(".works-page__work__inner"));
 </script>
 
@@ -127,15 +126,26 @@ const site_url = Astro.url.href;
   }
 
   .works-page__work__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
     width: 95%;
     margin: 0 auto;
     opacity: 0;
     transform: translateY(30px);
   }
-  @media screen and (max-width: 1026px) {
+  @media screen and (max-width: 481px) {
     .works-page__work__inner {
       width: 100%;
+      flex-direction: column;
     }
+  }
+
+  .works-page__work__inner::after {
+    content: "";
+    display: block;
+    width: var(--card-size-width-pc);
   }
 
   .works-page__work__inner.active {

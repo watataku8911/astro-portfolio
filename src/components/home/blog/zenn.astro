@@ -60,24 +60,9 @@ const getFetchData: Zenn = await res.json();
     justify-content: space-between;
   }
 
-  .zenn::before {
-    content: "";
-    width: 21vw;
-    order: 1;
-  }
-
   .zenn::after {
     content: "";
-    width: 21vw;
-  }
-
-  @media screen and (max-width: 481px) {
-    .zenn::before {
-      width: 43vw;
-    }
-
-    .zenn::after {
-      width: 43vw;
-    }
+    display: block;
+    width: var(--card-size-width-pc);
   }
 </style>

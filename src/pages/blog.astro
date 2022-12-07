@@ -71,7 +71,7 @@ const site_url = Astro.url.href;
       }
     }, 2500);
   };
-  intersection(document.querySelectorAll(".blogs-page__blog__title"));
+
   intersection(document.querySelectorAll(".blogs-page__blog__inner"));
 </script>
 
@@ -95,8 +95,6 @@ const site_url = Astro.url.href;
     color: var(--accent-color);
     font-size: 4.5em;
     padding: 2% 0 60px 0;
-    opacity: 0;
-    transform: translateX(-30px);
   }
   @media screen and (min-width: 482px) and (max-width: 1026px) {
     .blogs-page__blog__title {
@@ -124,10 +122,6 @@ const site_url = Astro.url.href;
     width: 20px;
     border-bottom: solid 1px var(--subtextColor);
     margin: 0 5px 0 5px;
-  }
-
-  .blogs-page__blog__title.active {
-    animation: animationName 0.5s ease 0.5s 1 forwards;
   }
 
   .blogs-page__blog__inner:nth-child(2n) {

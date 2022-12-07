@@ -62,24 +62,9 @@ const getFetchData: WatatakuBlog = await res.json();
     flex-wrap: wrap;
   }
 
-  .watataku-blog::before {
-    content: "";
-    width: 21vw;
-    order: 1;
-  }
-
   .watataku-blog::after {
     content: "";
-    width: 21vw;
-  }
-
-  @media screen and (max-width: 481px) {
-    .watataku-blog::before {
-      width: 43vw;
-    }
-
-    .watataku-blog::after {
-      width: 43vw;
-    }
+    display: block;
+    width: var(--card-size-width-pc);
   }
 </style>
