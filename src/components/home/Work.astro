@@ -21,7 +21,7 @@ type Image = {
 
 const myMicroCMSApiUrl = `https://${
   import.meta.env.MICROCMS_SERVICE_DOMAIN_PORTFOLIO
-}.microcms.io/api/v1/works?orders=-publishedAt&limit=2`;
+}.microcms.io/api/v1/works?orders=-publishedAt&limit=3`;
 
 const res = await fetch(myMicroCMSApiUrl, {
   headers: {
@@ -68,10 +68,10 @@ const getFetchData: Work = await res.json();
     padding: 0 0 60px 0;
   }
 
-  .works::after {
+  /* .works::after {
     content: "";
     width: 40vw;
-  }
+  } */
 
   .works__work {
     width: var(--base-width);
@@ -118,13 +118,24 @@ const getFetchData: Work = await res.json();
 
   .works__work__inner {
     width: 95%;
-    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
   }
-  @media screen and (max-width: 1026px) {
+  @media screen and (max-width: 481px) {
     .works__work__inner {
       width: 100%;
+      flex-direction: column;
     }
   }
+
+  .works__work__inner::after {
+    content: "";
+    display: block;
+    width: var(--card-size-width-pc);
+  }
+
   .works__work__linker {
     font-size: 24px;
     margin-top: 30px;

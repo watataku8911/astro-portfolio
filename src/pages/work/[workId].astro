@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import Linker from "../../components/UIKit/Linker.astro";
 
 type Work = {
   contents: Contents[];
@@ -84,28 +85,27 @@ const site_url = Astro.url.href;
       <div class="work-detail__inner__comment text">
         {getFetchWorkDetail.comment_large}
       </div>
+
+      <div class="linker">
+        <Linker href="/work" msg="戻る" target={"_self"} />
+      </div>
     </div>
   </section>
 </Layout>
 
 <script>
-  import {
-    displayLoadingScreen,
-    closeLoadingScreen,
-    intersection,
-  } from "../../ts/function";
+  import { closeLoadingScreen } from "../../ts/function";
+  const body = document.querySelector("body");
 
   const jsLoaderBg = ".js-loader-bg";
-  const jsDot = ".js-loader-dot-wrap > span";
-  displayLoadingScreen(jsDot);
   window.onload = () => {
     setTimeout(() => {
-      closeLoadingScreen(jsDot, jsLoaderBg);
+      closeLoadingScreen(jsLoaderBg);
+      if (body != null) {
+        body.classList.add("loaded");
+      }
     }, 2500);
   };
-
-  // intersection(document.querySelectorAll(".works-page__work__title"));
-  // intersection(document.querySelectorAll(".works-page__work__inner"));
 </script>
 
 <style>
@@ -142,15 +142,13 @@ const site_url = Astro.url.href;
     }
   }
 
-  .work-detail__inner__thumbnail {
-  }
-
   .work-detail__inner__thumbnail__image {
     max-width: 100%;
     border: solid 1px #000;
   }
 
   .text {
+    color: var(--accent-color);
     word-break: break-all;
   }
 
@@ -162,6 +160,9 @@ const site_url = Astro.url.href;
     margin: 20px 0;
   }
 
-  .work-detail__inner__comment {
+  .linker {
+    font-size: 24px;
+    margin: 30px 0 0 0;
+    text-align: right;
   }
 </style>

@@ -1,48 +1,24 @@
----
-import interestList from "../../../public/data/interest.json";
-
-type Interest = {
-  id: number;
-  interest: string;
-};
----
-
-<ul>
-  {
-    interestList.map((interest: Interest) => (
-      <li class="abouts__about__li">{interest.interest}</li>
-    ))
-  }
-</ul>
-
-<script>
-  import { intersection } from "../../ts/function";
-
-  intersection(document.querySelectorAll(".abouts__about__li"));
-</script>
-
+<div class="interest">
+  <p class="interest__text">INTEREST IS WEB FRONTEND, AND WEB DESIGIN.</p>
+</div>
 <style>
-  .abouts__about__li {
+  .interest__text {
+    font-size: 4em;
     color: var(--accent-color);
-    margin-left: 25px;
-    list-style: disc;
-    opacity: 0;
-    transform: translateX(-30px);
+    -webkit-text-stroke: 1px var(--sub-color);
+    text-stroke: 1px var(--sub-color);
+    white-space: nowrap;
+    animation: text_scroll 20s linear infinite;
   }
-  @media screen and (max-width: 1025px) {
-    .abouts__about__li {
-      transform: translateY(30px);
+  @keyframes text_scroll {
+    0% {
+      transform: translateX(100%);
     }
-  }
-
-  .abouts__about__li.active {
-    animation: animationName 0.5s ease 0.5s 1 forwards;
-  }
-
-  @keyframes animationName {
+    50% {
+      transform: translateX(-100%);
+    }
     100% {
-      opacity: 1;
-      transform: translate(0, 0);
+      transform: translateX(100%);
     }
   }
 </style>

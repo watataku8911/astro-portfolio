@@ -46,24 +46,9 @@ const getFetchData: Qiita[] = await res.json();
     column-gap: 2vw;
   }
 
-  .qiita::before {
-    content: "";
-    width: 21vw;
-    order: 1;
-  }
-
   .qiita::after {
     content: "";
-    width: 21vw;
-  }
-
-  @media screen and (max-width: 481px) {
-    .qiita::before {
-      width: 43vw;
-    }
-
-    .qiita::after {
-      width: 43vw;
-    }
+    display: block;
+    width: var(--card-size-width-pc);
   }
 </style>

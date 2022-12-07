@@ -19,42 +19,16 @@ export const split = (text: string, maxLength: number): string => {
   return modStr;
 };
 
-// ローディング画面の表示
-export const displayLoadingScreen = (jsDot: string) => {
-  gsap.set(jsDot, {
-    opacity: 0,
-    y: -50,
-  });
-  gsap.timeline().to(jsDot, {
-    opacity: 1,
-    y: 0,
-    duration: 0.8,
-    delay: 0.8,
-    stagger: {
-      amount: 0.5,
-      from: "start",
-      ease: "power4.inOut",
-    },
-  });
-};
-
 // ローディング画面を閉じる
-export const closeLoadingScreen = (jsDot: string, jsLoaderBg: string) => {
-  gsap
-    .timeline()
-    .to(jsDot, {
-      opacity: 0,
-    })
-    .to(jsLoaderBg, {
-      display: "none",
-      y: "100%",
-      delay: 0.5,
-    });
+export const closeLoadingScreen = (jsLoaderBg: string) => {
+  gsap.timeline().to(jsLoaderBg, {
+    opacity: 0,
+    direction: 1.1,
+  });
 };
 
 // オープニングアニメーション
 export const opningAnimation = (
-  jsDot: string,
   jsLoaderBg: string,
   firstViewTitle: string,
   firstViewtext: string,
@@ -78,13 +52,10 @@ export const opningAnimation = (
   });
   gsap
     .timeline()
-    .to(jsDot, {
-      opacity: 0,
-    })
     .to(jsLoaderBg, {
-      display: "none",
-      y: "100%",
-      delay: 0.5,
+      opacity: 0,
+      direction: 1.1,
+      delay: 1.5,
     })
     .to(
       firstViewCircle,
