@@ -1,26 +1,17 @@
----
-import Linker from "../components/UIKit/Linker.astro";
----
-
 <section class="contacts" id="contact">
   <div class="contacts__contact">
     <h2 class="contacts__contact__title">
       Contact&nbsp;me<span class="contacts__contact__title__sub">連絡する</span>
     </h2>
     <div class="contacts__contact__inner">
-      <div class="contacts__contact__inner__message">
-        <p>
-          Twitterがありますので、ご連絡の際はTwitterのDMまでお願いします。
-          またフォローの方もお待ちしております。
-        </p>
-      </div>
-      <!-- <p class="contacts__contact__inner__twitter">
-        <Linker
+      <p class="contacts__contact__inner__message">
+        <a
           href="https://twitter.com/watataku8911"
-          msg="twitter"
-          target={"_blank"}
-        />
-      </p> -->
+          target="_blank"
+          rel="nofollow noopener noreferrer">Twitter</a
+        >がありますので、ご連絡の際はTwitterのDMまでお願いします。
+        またフォローの方もお待ちしております。
+      </p>
     </div>
   </div>
 
@@ -39,8 +30,7 @@ import Linker from "../components/UIKit/Linker.astro";
   <style>
     .contacts {
       background-color: var(--main-color);
-      z-index: 1;
-      padding: 0px 0 60px 0;
+      height: 300px;
     }
 
     .contacts__contact {
@@ -97,47 +87,24 @@ import Linker from "../components/UIKit/Linker.astro";
       opacity: 0;
       transform: translateY(30px);
       padding: 0 0 80px 0;
-    }
-
-    .contacts__contact__inner__message.active {
-      animation: animationName 0.5s ease 0.5s 1 forwards;
-    }
-
-    .contacts__contact__inner__message p {
       color: var(--accent-color);
       word-wrap: break-word;
     }
 
-    .contacts__contact__inner__twitter {
-      margin-left: auto;
-      margin-top: auto;
-      opacity: 0;
-      transform: translateY(30px);
+    .contacts__contact__inner__message a {
+      border-bottom: 1px var(--accent-color) dashed;
+      text-decoration-thickness: 0.5px;
+      text-underline-offset: 0.1em;
+      color: var(--accent-color);
     }
 
-    .contacts__contact__inner__twitter.active {
+    .contacts__contact__inner__message a:hover {
+      color: var(--hover-teColor);
+      border-bottom: 1px var(--hover-teColor) dashed;
+    }
+
+    .contacts__contact__inner__message.active {
       animation: animationName 0.5s ease 0.5s 1 forwards;
-    }
-
-    .contacts__contact__inner__twitter a {
-      display: block;
-    }
-
-    .contacts__contact__inner__twitter img {
-      max-width: 90%;
-      width: 200px;
-      height: 200px;
-    }
-    @media screen and (max-width: 1026px) {
-      .contacts__contact__inner__twitter img {
-        max-width: 90%;
-        width: 100px;
-        height: 100px;
-      }
-    }
-
-    .contacts__contact__inner__twitter a:hover {
-      opacity: 0.5;
     }
   </style>
 </section>
