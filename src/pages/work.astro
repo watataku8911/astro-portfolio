@@ -1,11 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import WorkCard from "../components/UIKit/WorkCard .astro";
-
 type Work = {
   contents: Contents[];
 };
-
 type Contents = {
   id: string;
   image: Image;
@@ -14,22 +12,18 @@ type Contents = {
   use_tech: string;
   comment: string;
 };
-
 type Image = {
   url: string;
 };
-
 const myMicroCMSApiUrl = `https://${
   import.meta.env.MICROCMS_SERVICE_DOMAIN_PORTFOLIO
 }.microcms.io/api/v1/works?orders=-publishedAt&limit=999`;
-
 const res = await fetch(myMicroCMSApiUrl, {
   headers: {
     "X-MICROCMS-API-KEY": import.meta.env.MICROCMS_API_KEY_PORTFOLIO,
   },
 });
 const getFetchData: Work = await res.json();
-
 // サイトのURLを取得
 const site_url = Astro.url.href;
 ---
@@ -64,7 +58,6 @@ const site_url = Astro.url.href;
 <script>
   import { closeLoadingScreen, intersection } from "../ts/function";
   const body = document.querySelector("body");
-
   const jsLoaderBg = ".js-loader-bg";
   window.onload = () => {
     setTimeout(() => {
@@ -74,7 +67,6 @@ const site_url = Astro.url.href;
       }
     }, 2500);
   };
-
   intersection(document.querySelectorAll(".works-page__work__inner"));
 </script>
 
@@ -88,21 +80,19 @@ const site_url = Astro.url.href;
       padding: 80px 0 60px 0;
     }
   }
-
   .works-page__work {
     width: var(--base-width);
     margin: 0 auto;
   }
-
   .works-page__work__title {
     color: var(--accent-color);
     font-size: 4.5em;
-    padding: 2% 0 30px 0;
+    padding: 0 0 30px 0;
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
     .works-page__work__title {
       font-size: 3.5em;
-      padding: 5% 0 30px 0;
+      padding: 0 0 30px 0;
     }
   }
   @media screen and (max-width: 481px) {
@@ -111,12 +101,10 @@ const site_url = Astro.url.href;
       padding: 0 0 30px 0;
     }
   }
-
   .works-page__work__title--sub {
     font-size: 0.25em;
     color: var(--subtextColor);
   }
-
   .works-page__work__title--sub::before {
     content: "";
     display: inline-block;
@@ -124,7 +112,6 @@ const site_url = Astro.url.href;
     border-bottom: solid 1px var(--subtextColor);
     margin: 0 5px 0 5px;
   }
-
   .works-page__work__inner {
     display: flex;
     align-items: center;
@@ -141,17 +128,14 @@ const site_url = Astro.url.href;
       flex-direction: column;
     }
   }
-
   .works-page__work__inner::after {
     content: "";
     display: block;
     width: var(--card-size-width-pc);
   }
-
   .works-page__work__inner.active {
     animation: animationName 0.5s ease 0.5s 1 forwards;
   }
-
   @keyframes animationName {
     100% {
       opacity: 1;

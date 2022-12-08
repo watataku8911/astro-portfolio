@@ -7,6 +7,7 @@ import Layout from "../layouts/Layout.astro";
 import Service from "../components/about/Service.astro";
 import Intrest from "../components/about/Intarest.astro";
 import Career from "../components/about/Career.astro";
+import Spacer from "../components/UIKit/Speacer";
 
 // サイトのURLを取得
 const site_url = Astro.url.href;
@@ -87,7 +88,7 @@ const site_url = Astro.url.href;
       <Service />
     </div>
 
-    <!-- <Intrest /> -->
+    <Spacer height={"120"} />
 
     <div class="abouts-page__about__inner">
       <h2 class="abouts-page__about__title">
@@ -256,7 +257,7 @@ const site_url = Astro.url.href;
 
   .abouts-page__about__inner {
     width: var(--base-width);
-    margin: 60px auto;
+    margin: 0 auto;
   }
   @media screen and (max-width: 481px) {
     .abouts-page__about__inner {

@@ -4,7 +4,6 @@ import Qiita from "../components/home/blog/qiita.astro";
 import Zenn from "../components/home/blog/zenn.astro";
 import WatatakuBlog from "../components/home/blog/watataku-blog.astro";
 import Linker from "../components/UIKit/Linker.astro";
-
 // サイトのURLを取得
 const site_url = Astro.url.href;
 ---
@@ -61,7 +60,6 @@ const site_url = Astro.url.href;
 <script>
   import { closeLoadingScreen, intersection } from "../ts/function";
   const body = document.querySelector("body");
-
   const jsLoaderBg = ".js-loader-bg";
   window.onload = () => {
     setTimeout(() => {
@@ -71,7 +69,6 @@ const site_url = Astro.url.href;
       }
     }, 2500);
   };
-
   intersection(document.querySelectorAll(".blogs-page__blog__inner"));
 </script>
 
@@ -85,37 +82,33 @@ const site_url = Astro.url.href;
       padding: 80px 0 60px 0;
     }
   }
-
   .blogs-page__blog {
     width: 80%;
     margin: 0 auto;
   }
-
   .blogs-page__blog__title {
     color: var(--accent-color);
     font-size: 4.5em;
-    padding: 2% 0 60px 0;
+    padding: 0 0 60px 0;
   }
   @media screen and (min-width: 482px) and (max-width: 1026px) {
     .blogs-page__blog__title {
       font-size: 3.5em;
       transform: translateY(30px);
-      padding: 5% 0 30px 0;
+      padding: 0 0 30px 0;
     }
   }
   @media screen and (max-width: 481px) {
     .blogs-page__blog__title {
       font-size: 2.5em;
-      padding: 2% 0 30px 0;
+      padding: 0 0 30px 0;
       transform: translateY(30px);
     }
   }
-
   .blogs-page__blog__title--sub {
     font-size: 0.25em;
     color: var(--subtextColor);
   }
-
   .blogs-page__blog__title--sub::before {
     content: "";
     display: inline-block;
@@ -123,7 +116,6 @@ const site_url = Astro.url.href;
     border-bottom: solid 1px var(--subtextColor);
     margin: 0 5px 0 5px;
   }
-
   .blogs-page__blog__inner:nth-child(2n) {
     opacity: 0;
     transform: translateX(30px);
@@ -140,20 +132,16 @@ const site_url = Astro.url.href;
       transform: translateY(30px);
     }
   }
-
   .blogs-page__blog__inner.active {
     animation: animationName 0.5s ease 0.5s 1 forwards;
   }
-
   .blogs-page__blog__inner__title {
     color: var(--accent-color);
     margin-bottom: 10px;
   }
-
   .blogs-page__inner__linker {
     text-align: right;
   }
-
   @keyframes animationName {
     100% {
       opacity: 1;
