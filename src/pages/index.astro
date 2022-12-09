@@ -4,7 +4,7 @@ import Blog from "../components/home/Blog.astro";
 import Work from "../components/home/Work.astro";
 import Plofile from "../components/home/Plofile.astro";
 import FirstView from "../components/home/FirstView.astro";
-import Spacer from "../components/UIKit/Speacer";
+import Speacer from "../components/UIKit/Speacer";
 
 const site_url = Astro.url.href;
 ---
@@ -15,13 +15,13 @@ const site_url = Astro.url.href;
   site_url={site_url}
 >
   <FirstView />
-  <Spacer height={"150"} />
+  <Speacer height={"150"} />
   <Plofile />
-  <Spacer height={"60"} />
-  <Work />
-  <Spacer height={"60"} />
-  <Blog />
-  <Spacer height={"60"} />
+  <Speacer height={"60"} />
+  <Work limit={"3"} path={"/work"} />
+  <Speacer height={"60"} />
+  <Blog path={"/blog"} />
+  <Speacer height={"60"} />
 </Layout>
 
 <script></script>

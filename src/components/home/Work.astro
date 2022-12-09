@@ -2,6 +2,12 @@
 import WorkCard from "../UIKit/WorkCard .astro";
 import Linker from "../UIKit/Linker.astro";
 
+type Props = {
+  limit: string;
+  path?: string;
+};
+
+const { limit, path } = Astro.props;
 type Work = {
   contents: Contents[];
 };
@@ -21,7 +27,7 @@ type Image = {
 
 const myMicroCMSApiUrl = `https://${
   import.meta.env.MICROCMS_SERVICE_DOMAIN_PORTFOLIO
-}.microcms.io/api/v1/works?orders=-publishedAt&limit=3`;
+}.microcms.io/api/v1/works?orders=-publishedAt&limit=${limit}`;
 
 const res = await fetch(myMicroCMSApiUrl, {
   headers: {
@@ -49,9 +55,13 @@ const getFetchData: Work = await res.json();
         ))
       }
     </div>
-    <div class="works__work__linker">
-      <Linker href="/work" msg="Works→" target={"_self"} />
-    </div>
+    {
+      path && (
+        <div class="works__work__linker">
+          <Linker href={path} msg="Works→" target={"_self"} />
+        </div>
+      )
+    }
   </div>
 </section>
 
