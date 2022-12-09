@@ -3,6 +3,15 @@ import Qiita from "../home/blog/qiita.astro";
 import Zenn from "../home/blog/zenn.astro";
 import WatatakuBlog from "../home/blog/watataku-blog.astro";
 import Linker from "../UIKit/Linker.astro";
+
+type Props = {
+  qiita?: string;
+  zenn?: string;
+  watatakuBlog?: string;
+  path?: string;
+};
+
+const { qiita, zenn, watatakuBlog, path } = Astro.props;
 ---
 
 <section class="blogs" id="blog">
@@ -14,17 +23,42 @@ import Linker from "../UIKit/Linker.astro";
       <h3 class="blogs__blog__inner__title">- Qiita</h3>
       <Qiita perPage={"6"} />
     </div>
+    {
+      qiita && (
+        <div class="blogs__blog__linker">
+          <Linker href={qiita} msg="もっとみる" target={"_self"} />
+        </div>
+      )
+    }
     <div class="blogs__blog__inner">
       <h3 class="blogs__blog__inner__title">- Zenn</h3>
       <Zenn count={"6"} />
     </div>
+    {
+      zenn && (
+        <div class="blogs__blog__linker">
+          <Linker href={zenn} msg="もっとみる" target={"_self"} />
+        </div>
+      )
+    }
     <div class="blogs__blog__inner">
       <h3 class="blogs__blog__inner__title">- Watataku ブログ</h3>
       <WatatakuBlog limit={"6"} />
     </div>
-    <div class="blogs__blog__linker">
-      <Linker href="/blog" msg="Tech Blogs→" target={"_self"} />
-    </div>
+    {
+      watatakuBlog && (
+        <div class="blogs__blog__linker">
+          <Linker href={watatakuBlog} msg="もっとみる" target={"_self"} />
+        </div>
+      )
+    }
+    {
+      path && (
+        <div class="blogs__blog__linker">
+          <Linker href={path} msg="Tech Blogs→" target={"_self"} />
+        </div>
+      )
+    }
   </div>
 </section>
 

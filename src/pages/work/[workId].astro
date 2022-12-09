@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Linker from "../../components/UIKit/Linker.astro";
+import Speacer from "../../components/UIKit/Speacer";
 
 type Work = {
   contents: Contents[];
@@ -9,6 +10,7 @@ type Work = {
 type Contents = {
   id: string;
   image: Image;
+  image_sp: Image;
   title: string;
   href: string;
   use_tech: string;
@@ -60,6 +62,7 @@ const site_url = Astro.url.href;
   site_url={site_url}
   ogp={getFetchWorkDetail.image.url}
 >
+  <Speacer height={"80"} />
   <section class="work-detail">
     <div class="work-detail__inner">
       <h1 class="work-detail__inner__title">{getFetchWorkDetail.title}</h1>
@@ -72,18 +75,41 @@ const site_url = Astro.url.href;
           />
         </a>
       </div>
-      <p class="work-detail__inner__url text">
-        URL:
-        <a href={getFetchWorkDetail.href} target="_blank"
-          >{getFetchWorkDetail.href}</a
-        >
-      </p>
-      <p class="work-detail__inner__tags text">
-        使用技術:{getFetchWorkDetail.use_tech}
-      </p>
 
-      <div class="work-detail__inner__comment text">
-        {getFetchWorkDetail.comment_large}
+      <Speacer height={"70"} />
+      <div class="work-detail__inner__texts">
+        <Speacer height={"60"} />
+        <p class="work-detail__inner__url text">
+          URL:
+          <a href={getFetchWorkDetail.href} target="_blank"
+            >{getFetchWorkDetail.href}</a
+          >
+        </p>
+        <p class="work-detail__inner__tags text">
+          使用技術:{getFetchWorkDetail.use_tech}
+        </p>
+
+        <div class="work-detail__inner__comment text">
+          {getFetchWorkDetail.comment_large}
+        </div>
+        <Speacer height={"60"} />
+      </div>
+
+      <div class="work-detail__inner__thumbnail-sp">
+        <p class="item">
+          <img
+            class="image-sp"
+            src={getFetchWorkDetail.image_sp.url}
+            alt={getFetchWorkDetail.title}
+          />
+        </p>
+        <p class="item">
+          <img
+            class="image-sp"
+            src={getFetchWorkDetail.image_sp.url}
+            alt={getFetchWorkDetail.title}
+          />
+        </p>
       </div>
 
       <div class="linker">
@@ -111,12 +137,6 @@ const site_url = Astro.url.href;
 <style>
   .work-detail {
     background-color: var(--main-color);
-    padding: 5% 0 60px 0;
-  }
-  @media screen and (max-width: 481px) {
-    .work-detail {
-      padding: 80px 0 60px 0;
-    }
   }
 
   .work-detail__inner {
@@ -126,7 +146,7 @@ const site_url = Astro.url.href;
 
   .work-detail__inner__title {
     color: var(--accent-color);
-    font-size: 4.5em;
+    font-size: 3.5em;
     padding: 0 0 30px 0;
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
@@ -147,17 +167,46 @@ const site_url = Astro.url.href;
     border: solid 1px #000;
   }
 
-  .text {
+  .work-detail__inner__texts {
     color: var(--accent-color);
+    border-top: 2px solid var(--accent-color);
+  }
+
+  .work-detail__url {
+  }
+
+  .text {
     word-break: break-all;
   }
 
-  .work-detail__inner__url {
-    margin: 60px 0 10px 0;
+  .text a {
+    color: var(--accent-color);
+    border-bottom: 1px var(--accent-color) dashed;
+  }
+
+  .text a:hover {
+    color: var(--hover-teColor);
+    border-bottom: 1px var(--hover-teColor) dashed;
   }
 
   .work-detail__inner__tags {
     margin: 20px 0;
+  }
+
+  .work-detail__inner__thumbnail-sp {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .item {
+    width: 30%;
+  }
+
+  .image-sp {
+    max-width: 100%;
+    border: 1px var(--accent-color) solid;
   }
 
   .linker {

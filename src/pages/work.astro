@@ -1,29 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import WorkCard from "../components/UIKit/WorkCard .astro";
-type Work = {
-  contents: Contents[];
-};
-type Contents = {
-  id: string;
-  image: Image;
-  title: string;
-  href: string;
-  use_tech: string;
-  comment: string;
-};
-type Image = {
-  url: string;
-};
-const myMicroCMSApiUrl = `https://${
-  import.meta.env.MICROCMS_SERVICE_DOMAIN_PORTFOLIO
-}.microcms.io/api/v1/works?orders=-publishedAt&limit=999`;
-const res = await fetch(myMicroCMSApiUrl, {
-  headers: {
-    "X-MICROCMS-API-KEY": import.meta.env.MICROCMS_API_KEY_PORTFOLIO,
-  },
-});
-const getFetchData: Work = await res.json();
+import Speacer from "../components/UIKit/Speacer";
+import Work from "../components/home/Work.astro";
+
 // サイトのURLを取得
 const site_url = Astro.url.href;
 ---
@@ -33,30 +12,12 @@ const site_url = Astro.url.href;
   description="作品集です"
   site_url={site_url}
 >
-  <section class="works-page" id="work">
-    <div class="works-page__work">
-      <h2 class="works-page__work__title">
-        Works<span class="works-page__work__title--sub">作品</span>
-      </h2>
-      <div class="works-page__work__inner">
-        {
-          getFetchData.contents.map((work: Contents) => (
-            <WorkCard
-              image={work.image.url}
-              href={`/work/${work.id}`}
-              title={work.title}
-              use_tech={work.use_tech}
-              comment={work.comment}
-            />
-          ))
-        }
-      </div>
-    </div>
-  </section>
+  <Speacer height={"80"} />
+  <Work limit={"999"} />
 </Layout>
 
 <script>
-  import { closeLoadingScreen, intersection } from "../ts/function";
+  import { closeLoadingScreen } from "../ts/function";
   const body = document.querySelector("body");
   const jsLoaderBg = ".js-loader-bg";
   window.onload = () => {
@@ -67,79 +28,4 @@ const site_url = Astro.url.href;
       }
     }, 2500);
   };
-  intersection(document.querySelectorAll(".works-page__work__inner"));
 </script>
-
-<style>
-  .works-page {
-    background-color: var(--main-color);
-    padding: 5% 0 60px 0;
-  }
-  @media screen and (max-width: 481px) {
-    .works-page {
-      padding: 80px 0 60px 0;
-    }
-  }
-  .works-page__work {
-    width: var(--base-width);
-    margin: 0 auto;
-  }
-  .works-page__work__title {
-    color: var(--accent-color);
-    font-size: 4.5em;
-    padding: 0 0 30px 0;
-  }
-  @media screen and (min-width: 482px) and (max-width: 1025px) {
-    .works-page__work__title {
-      font-size: 3.5em;
-      padding: 0 0 30px 0;
-    }
-  }
-  @media screen and (max-width: 481px) {
-    .works-page__work__title {
-      font-size: 2.5em;
-      padding: 0 0 30px 0;
-    }
-  }
-  .works-page__work__title--sub {
-    font-size: 0.25em;
-    color: var(--subtextColor);
-  }
-  .works-page__work__title--sub::before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    border-bottom: solid 1px var(--subtextColor);
-    margin: 0 5px 0 5px;
-  }
-  .works-page__work__inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    width: 95%;
-    margin: 0 auto;
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  @media screen and (max-width: 481px) {
-    .works-page__work__inner {
-      width: 100%;
-      flex-direction: column;
-    }
-  }
-  .works-page__work__inner::after {
-    content: "";
-    display: block;
-    width: var(--card-size-width-pc);
-  }
-  .works-page__work__inner.active {
-    animation: animationName 0.5s ease 0.5s 1 forwards;
-  }
-  @keyframes animationName {
-    100% {
-      opacity: 1;
-      transform: translate(0, 0);
-    }
-  }
-</style>

@@ -1,9 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Qiita from "../components/home/blog/qiita.astro";
-import Zenn from "../components/home/blog/zenn.astro";
-import WatatakuBlog from "../components/home/blog/watataku-blog.astro";
-import Linker from "../components/UIKit/Linker.astro";
+import Blog from "../components/home/Blog.astro";
+import Speacer from "../components/UIKit/Speacer";
 // サイトのURLを取得
 const site_url = Astro.url.href;
 ---
@@ -13,52 +11,16 @@ const site_url = Astro.url.href;
   description="BLOGページです。"
   site_url={site_url}
 >
-  <section class="blogs-page">
-    <div class="blogs-page__blog">
-      <h1 class="blogs-page__blog__title">
-        Tech&nbsp;Blog<span class="blogs-page__blog__title--sub"
-          >技術ブログ</span
-        >
-      </h1>
-      <div class="blogs-page__blog__inner">
-        <h3 class="blogs-page__blog__inner__title">- Qiita</h3>
-        <Qiita perPage={"6"} />
-        <div class="blogs-page__inner__linker">
-          <Linker
-            href={"https://qiita.com/watataku8911"}
-            msg={"もっとみる"}
-            target={"_blank"}
-          />
-        </div>
-      </div>
-      <div class="blogs-page__blog__inner">
-        <h3 class="blogs-page__blog__inner__title">- Zenn</h3>
-        <Zenn count={"6"} />
-        <div class="blogs-page__inner__linker">
-          <Linker
-            href={"https://zenn.dev/watataku"}
-            msg={"もっとみる"}
-            target={"_blank"}
-          />
-        </div>
-      </div>
-      <div class="blogs-page__blog__inner">
-        <h3 class="blogs-page__blog__inner__title">- Watataku ブログ</h3>
-        <WatatakuBlog limit={"6"} />
-        <div class="blogs-page__inner__linker">
-          <Linker
-            href={"https://watataku-blog.vercel.app"}
-            msg={"もっとみる"}
-            target={"_blank"}
-          />
-        </div>
-      </div>
-    </div>
-  </section>
+  <Speacer height={"80"} />
+  <Blog
+    qiita={"https://qiita.com/watataku8911"}
+    zenn={"https://zenn.dev/watataku"}
+    watatakuBlog={"https://watataku-blog.vercel.app"}
+  />
 </Layout>
 
 <script>
-  import { closeLoadingScreen, intersection } from "../ts/function";
+  import { closeLoadingScreen } from "../ts/function";
   const body = document.querySelector("body");
   const jsLoaderBg = ".js-loader-bg";
   window.onload = () => {
@@ -69,83 +31,4 @@ const site_url = Astro.url.href;
       }
     }, 2500);
   };
-  intersection(document.querySelectorAll(".blogs-page__blog__inner"));
 </script>
-
-<style>
-  .blogs-page {
-    background-color: var(--main-color);
-    padding: 5% 0 60px 0;
-  }
-  @media screen and (max-width: 481px) {
-    .blogs-page {
-      padding: 80px 0 60px 0;
-    }
-  }
-  .blogs-page__blog {
-    width: 80%;
-    margin: 0 auto;
-  }
-  .blogs-page__blog__title {
-    color: var(--accent-color);
-    font-size: 4.5em;
-    padding: 0 0 60px 0;
-  }
-  @media screen and (min-width: 482px) and (max-width: 1026px) {
-    .blogs-page__blog__title {
-      font-size: 3.5em;
-      transform: translateY(30px);
-      padding: 0 0 30px 0;
-    }
-  }
-  @media screen and (max-width: 481px) {
-    .blogs-page__blog__title {
-      font-size: 2.5em;
-      padding: 0 0 30px 0;
-      transform: translateY(30px);
-    }
-  }
-  .blogs-page__blog__title--sub {
-    font-size: 0.25em;
-    color: var(--subtextColor);
-  }
-  .blogs-page__blog__title--sub::before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    border-bottom: solid 1px var(--subtextColor);
-    margin: 0 5px 0 5px;
-  }
-  .blogs-page__blog__inner:nth-child(2n) {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  .blogs-page__blog__inner:nth-child(2n + 1) {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  @media screen and (max-width: 1026px) {
-    .blogs-page__blog__inner:nth-child(2n) {
-      transform: translateY(30px);
-    }
-    .blogs-page__blog__inner:nth-child(2n + 1) {
-      transform: translateY(30px);
-    }
-  }
-  .blogs-page__blog__inner.active {
-    animation: animationName 0.5s ease 0.5s 1 forwards;
-  }
-  .blogs-page__blog__inner__title {
-    color: var(--accent-color);
-    margin-bottom: 10px;
-  }
-  .blogs-page__inner__linker {
-    text-align: right;
-  }
-  @keyframes animationName {
-    100% {
-      opacity: 1;
-      transform: translate(0, 0);
-    }
-  }
-</style>
