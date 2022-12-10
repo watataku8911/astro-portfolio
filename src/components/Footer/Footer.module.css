@@ -69,6 +69,11 @@
   font-size: 18px;
 }
 
+.goTop {
+  color: var(--accent-color);
+  text-align: right;
+}
+
 .footer__copy__icons {
   width: 150px;
   margin: 30px 2vw 30px auto;

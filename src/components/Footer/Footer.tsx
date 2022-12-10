@@ -32,9 +32,14 @@ const Footer = () => {
               Tech&nbsp;blogs
             </a>
           </li>
-          <a href="#top">Back to top</a>
+          <li>
+            <a href="#top" className={styles.goTop}>
+              (Back To Top)
+            </a>
+          </li>
         </ul>
       </div>
+
       <div className={styles["footer__copy"]}>
         <small className={styles["grid"]}>&copy;2022 Watataku.</small>
         <div className={`${styles["footer__copy__icons"]} ${styles["grid"]}`}>

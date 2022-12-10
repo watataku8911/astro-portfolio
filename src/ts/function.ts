@@ -154,3 +154,26 @@ export const intersection = (domElements: NodeListOf<Element>) => {
     observer.observe(domElement);
   });
 };
+
+/* SmoothScroll */
+export const smoothScroll = () => {
+  const scrollElement = document.querySelectorAll("a[href^='#']");
+  for (let i = 0; i < scrollElement.length; i++) {
+    scrollElement[i].addEventListener("click", (e) => {
+      e.preventDefault();
+      const href = scrollElement[i].getAttribute("href");
+      if (href !== null) {
+        const target = document.getElementById(href.replace("#", ""));
+        if (target !== null) {
+          const offset = window.pageYOffset;
+          const rect = target.getBoundingClientRect().top;
+          const position = rect + offset;
+          window.scrollTo({
+            top: position,
+            behavior: "smooth",
+          });
+        }
+      }
+    });
+  }
+};
