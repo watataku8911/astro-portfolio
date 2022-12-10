@@ -11,9 +11,11 @@ type Contents = {
   id: string;
   image: Image;
   image_sp: Image;
+  image_sp2: Image;
   title: string;
   href: string;
   use_tech: string;
+  comment: string;
   comment_large: string;
 };
 
@@ -54,61 +56,54 @@ const getFetchWorkDetail: Contents = await res.json();
 
 // サイトのURL取得
 const site_url = Astro.url.href;
+
+const title = getFetchWorkDetail.title;
+const comment = getFetchWorkDetail.comment;
+const commentLarge = getFetchWorkDetail.comment_large;
+const href = getFetchWorkDetail.href;
+const useTech = getFetchWorkDetail.use_tech;
+const imagePc = getFetchWorkDetail.image.url;
+const imageSp = getFetchWorkDetail.image_sp.url;
+const imageSp2 = getFetchWorkDetail.image_sp2.url;
 ---
 
 <Layout
-  title={`${getFetchWorkDetail.title} | Watataku's ポートフォリオ`}
-  description={getFetchWorkDetail.comment_large}
+  title={`${title} | Watataku's ポートフォリオ`}
+  description={comment}
   site_url={site_url}
-  ogp={getFetchWorkDetail.image.url}
+  ogp={imagePc}
 >
   <Speacer height={"80"} />
-  <section class="work-detail">
-    <div class="work-detail__inner">
-      <h1 class="work-detail__inner__title">{getFetchWorkDetail.title}</h1>
-      <div class="work-detail__inner__thumbnail">
-        <a href={getFetchWorkDetail.href} target="_blank"
-          ><img
-            class="work-detail__inner__thumbnail__image"
-            src={getFetchWorkDetail.image.url}
-            alt={getFetchWorkDetail.title}
-          />
-        </a>
-      </div>
+  <section class="detail">
+    <div class="detail__inner">
+      <h1 class="detail__inner__title">{title}</h1>
+      <a href={href} target="_blank"
+        ><img class="image" src={imagePc} alt={title} />
+      </a>
 
       <Speacer height={"70"} />
-      <div class="work-detail__inner__texts">
+      <div class="detail__inner__texts">
         <Speacer height={"60"} />
-        <p class="work-detail__inner__url text">
+        <p class="text">
           URL:
-          <a href={getFetchWorkDetail.href} target="_blank"
-            >{getFetchWorkDetail.href}</a
-          >
+          <a href={href} target="_blank">{href}</a>
         </p>
-        <p class="work-detail__inner__tags text">
-          使用技術:{getFetchWorkDetail.use_tech}
+        <p class="text">
+          使用技術:{useTech}
         </p>
 
-        <div class="work-detail__inner__comment text">
-          {getFetchWorkDetail.comment_large}
+        <div class="text">
+          {commentLarge}
         </div>
-        <Speacer height={"60"} />
       </div>
 
-      <div class="work-detail__inner__thumbnail-sp">
+      <Speacer height={"60"} />
+      <div class="detail__inner__thumbnail-sp">
         <p class="item">
-          <img
-            class="image-sp"
-            src={getFetchWorkDetail.image_sp.url}
-            alt={getFetchWorkDetail.title}
-          />
+          <img class="image" src={imageSp} alt={title} />
         </p>
         <p class="item">
-          <img
-            class="image-sp"
-            src={getFetchWorkDetail.image_sp.url}
-            alt={getFetchWorkDetail.title}
-          />
+          <img class="image" src={imageSp2} alt={title} />
         </p>
       </div>
 
@@ -120,7 +115,7 @@ const site_url = Astro.url.href;
 </Layout>
 
 <script>
-  import { closeLoadingScreen } from "../../ts/function";
+  import { closeLoadingScreen, intersection } from "../../ts/function";
   const body = document.querySelector("body");
 
   const jsLoaderBg = ".js-loader-bg";
@@ -132,51 +127,85 @@ const site_url = Astro.url.href;
       }
     }, 2500);
   };
+
+  intersection(document.querySelectorAll(".text"));
+  intersection(document.querySelectorAll(".item"));
 </script>
 
 <style>
-  .work-detail {
+  .detail {
     background-color: var(--main-color);
   }
 
-  .work-detail__inner {
+  .detail__inner {
     width: var(--base-width);
     margin: 0 auto;
   }
 
-  .work-detail__inner__title {
+  .detail__inner__title {
     color: var(--accent-color);
     font-size: 3.5em;
     padding: 0 0 30px 0;
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
-    .work-detail__inner__title {
+    .detail__inner__title {
       font-size: 3.5em;
       padding: 0 0 30px 0;
     }
   }
   @media screen and (max-width: 481px) {
-    .work-detail__inner__title {
-      font-size: 2.5em;
+    .detail__inner__title {
+      font-size: 2em;
       padding: 0 0 30px 0;
     }
   }
 
-  .work-detail__inner__thumbnail__image {
-    max-width: 100%;
-    border: solid 1px #000;
+  /* 画像関係 */
+  .detail__inner__thumbnail-sp {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
   }
 
-  .work-detail__inner__texts {
+  .item {
+    width: 30%;
+    opacity: 0;
+  }
+  @media screen and (max-width: 1026px) {
+    .item {
+      width: 45%;
+    }
+  }
+
+  .item.active:nth-child(1) {
+    animation: animationName 0.5s ease 0.5s 1 forwards;
+  }
+
+  .item.active:nth-child(2) {
+    animation: animationName 0.5s ease 0.7s 1 forwards;
+  }
+
+  .image {
+    max-width: 100%;
+    border: solid 1px var(--accent-color);
+  }
+
+  /* テキスト関係 */
+  .detail__inner__texts {
     color: var(--accent-color);
     border-top: 2px solid var(--accent-color);
   }
 
-  .work-detail__url {
+  .text {
+    margin-top: 20px;
+    word-break: break-all;
+    opacity: 0;
+    transform: translateY(30px);
   }
 
-  .text {
-    word-break: break-all;
+  .text.active {
+    animation: animationName 0.5s ease 0.5s 1 forwards;
   }
 
   .text a {
@@ -189,29 +218,16 @@ const site_url = Astro.url.href;
     border-bottom: 1px var(--hover-teColor) dashed;
   }
 
-  .work-detail__inner__tags {
-    margin: 20px 0;
-  }
-
-  .work-detail__inner__thumbnail-sp {
-    width: 90%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-around;
-  }
-
-  .item {
-    width: 30%;
-  }
-
-  .image-sp {
-    max-width: 100%;
-    border: 1px var(--accent-color) solid;
-  }
-
   .linker {
     font-size: 24px;
     margin: 30px 0 0 0;
     text-align: right;
+  }
+
+  @keyframes animationName {
+    100% {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
   }
 </style>

@@ -79,17 +79,19 @@ const baseUrl = Astro.url.origin;
       )
     }
     <!-- /Twitter -->
-
     <link rel="stylesheet" href="/css/reset.css" />
+
     <script>
       import ASScroll from "@ashthornton/asscroll";
+      import { smoothScroll } from "../ts/function";
 
-      // https://github.com/ashthornton/asscroll
       const asscroll = new ASScroll();
 
       window.addEventListener("load", () => {
         asscroll.enable();
       });
+
+      smoothScroll();
     </script>
     <title>{title}</title>
   </head>
@@ -107,6 +109,7 @@ const baseUrl = Astro.url.origin;
     </div>
 
     <Header client:load />
+    <div id="top"></div>
     <div asscroll-container>
       <div>
         <slot />

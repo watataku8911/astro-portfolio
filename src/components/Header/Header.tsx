@@ -5,7 +5,7 @@ import HumbergerMenu from "./HumbergerMenu/HumbergerMenu";
 
 const Header = () => {
   return (
-    <header className={`${styles["header"]} ${styles["grid"]}`} id="top">
+    <header className={`${styles["header"]} ${styles["grid"]}`}>
       <div className={styles["header__logo"]}>
         <a className={styles["text-color"]} href="/">
           T.W
