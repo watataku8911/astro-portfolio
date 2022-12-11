@@ -87,18 +87,18 @@ const getFetchData: Work = await res.json();
     font-size: 4.5em;
     padding: 0 0 60px 0;
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translate3d(-30px, 0, 0);
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
     .works__work__title {
       font-size: 3.5em;
-      transform: translateY(10px);
+      transform: translate3d(0, 10px, 0);
     }
   }
   @media screen and (max-width: 481px) {
     .works__work__title {
       font-size: 2em;
-      transform: translateY(10px);
+      transform: translate3d(0, 10px, 0);
       padding: 0 0 30px 0;
     }
   }
@@ -145,13 +145,13 @@ const getFetchData: Work = await res.json();
     margin-top: 30px;
     text-align: right;
     opacity: 0;
-    transform: translateX(30px);
+    transform: translate3d(30px, 0, 0);
   }
   @media screen and (max-width: 1026px) {
     .works__work__linker {
       margin-top: 10px;
       font-size: 18px;
-      transform: translateY(10px);
+      transform: translate3d(0, 10px, 0);
     }
   }
 
@@ -162,7 +162,7 @@ const getFetchData: Work = await res.json();
   @keyframes animationName {
     100% {
       opacity: 1;
-      transform: translate(0, 0);
+      transform: translate3d(0, 0, 0);
     }
   }
 </style>

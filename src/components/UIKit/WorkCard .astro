@@ -54,13 +54,13 @@ const { image, href, title, use_tech, comment } = Astro.props;
     background-color: var(--card-bgColor);
     margin-bottom: 30px;
     opacity: 0;
-    transform: translateY(30px);
+    transform: translate3d(0, 30px, 0);
   }
   @media screen and (max-width: 481px) {
     .work-card {
       width: 100%;
       margin-bottom: 20px;
-      transform: translateY(10px);
+      transform: translate3d(0, 10px, 0);
     }
   }
 
@@ -103,7 +103,7 @@ const { image, href, title, use_tech, comment } = Astro.props;
   @keyframes animationName {
     100% {
       opacity: 1;
-      transform: translateY(0);
+      transform: translate3d(0, 0, 0);
     }
   }
 </style>
