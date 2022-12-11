@@ -31,12 +31,12 @@ const { image, title, text } = Astro.props;
     height: 580px;
     background-color: var(--card-bgColor);
     opacity: 0;
-    transform: translateY(30px);
+    transform: translate3d(0, 30px, 0);
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
     .service-card {
       height: 400px;
-      transform: translateY(10px);
+      transform: translate3d(0, 20px, 0);
     }
   }
   @media screen and (max-width: 481px) {
@@ -44,7 +44,7 @@ const { image, title, text } = Astro.props;
       width: 95%;
       height: 500px;
       margin-bottom: 20px;
-      transform: translateY(10px);
+      transform: translate3d(0, 10px, 0);
     }
   }
 
@@ -95,7 +95,7 @@ const { image, title, text } = Astro.props;
   @keyframes animationName {
     100% {
       opacity: 1;
-      transform: translate(0, 0);
+      transform: translate3d(0, 0, 0);
     }
   }
 </style>
