@@ -84,20 +84,19 @@ const site_url = Astro.url.href;
 
     <div class="abouts-page__about__inner">
       <h2 class="abouts-page__about__title">
-        Can do it<span class="abouts-page__about__title__sub">できること</span>
-      </h2>
-      <Service />
-    </div>
-
-    <Speacer height={"120"} />
-
-    <div class="abouts-page__about__inner">
-      <h2 class="abouts-page__about__title">
         Career<span class="abouts-page__about__title__sub">キャリア</span>
       </h2>
       <Career />
     </div>
+    <Speacer height={"80"} />
+    <div class="abouts-page__about__inner">
+      <h2 class="abouts-page__about__title">
+        Can do it<span class="abouts-page__about__title__sub">できること</span>
+      </h2>
+      <Service />
+    </div>
   </section>
+  <Speacer height={"80"} />
 </Layout>
 
 <script>
@@ -263,7 +262,7 @@ const site_url = Astro.url.href;
   .abouts-page__about__title {
     color: var(--accent-color);
     font-size: 25px;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
     opacity: 0;
     transform: translateX(-30px);
   }

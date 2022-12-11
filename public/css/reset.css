@@ -6,11 +6,10 @@
 
 html {
   font-family: "Sawarabi Gothic";
-  overflow: scroll;
 }
 
 body {
-  background-color: #192a56;
+  background-color: #4d4e4d;
 }
 
 body.loaded {
