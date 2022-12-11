@@ -50,6 +50,7 @@ export const opningAnimation = (
     opacity: 0,
     y: -30,
   });
+
   gsap
     .timeline()
     .to(jsLoaderBg, {
