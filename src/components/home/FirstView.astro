@@ -1,27 +1,21 @@
 <section class="first-view">
-  <div class="first-view__image-box">
-    <img class="first-view__image" src="/img/typing.png" alt="pc" />
-  </div>
-
-  <div class="first-view__circle"></div>
-
-  <div class="first-view__title center-top">
+  <div class="first-view__title center">
     <h1 class="first-view__title__text">Welcome&nbsp;to</h1>
     <h1 class="first-view__title__text margin-left">my&nbsp;portfolio.</h1>
   </div>
 
-  <p class="first-view__text bottom">
+  <h2 class="first-view__text bottom-left">
     Markup&nbsp;developer/Frontend&nbsp;developer.
-  </p>
+  </h2>
 
-  <div class="pic_down"></div>
+  <div class="pic_down bottom-right"></div>
 </section>
 
 <script>
   import {
     surroundSpan,
-    closeLoadingScreen,
     opningAnimation,
+    closeLoadingScreen,
   } from "../../ts/function";
 
   const body = document.querySelector("body");
@@ -30,8 +24,6 @@
   surroundSpan(".first-view__text");
 
   const jsLoaderBg = ".js-loader-bg";
-  const firstViewCircle = ".first-view__circle";
-  const firstViewImageBox = ".first-view__image-box";
   const firstViewTitle = ".first-view__title__text span";
   const firstViewtext = ".first-view__text span";
   const picDown = ".pic_down";
@@ -41,14 +33,7 @@
     sessionStorage.setItem("visited", "true");
     window.onload = () => {
       setTimeout(() => {
-        opningAnimation(
-          jsLoaderBg,
-          firstViewTitle,
-          firstViewtext,
-          firstViewImageBox,
-          firstViewCircle,
-          picDown
-        );
+        opningAnimation(jsLoaderBg, firstViewTitle, firstViewtext, picDown);
         if (body != null) {
           body.classList.add("loaded");
         }
@@ -69,7 +54,6 @@
 <style>
   /* メイン */
   .first-view {
-    background-color: var(--sub-color);
     position: relative;
     width: 100%;
     height: 100vh;
@@ -80,56 +64,15 @@
     color: var(--accent-color);
   }
 
-  .first-view__image-box {
-    position: absolute;
-    top: 10%;
-    right: 0;
-  }
-
-  .first-view__image {
-    width: 450px;
-    height: 500px;
-  }
-  @media screen and (min-width: 482px) and (max-width: 1025px) {
-    .first-view__image {
-      width: calc(15vw + 120px);
-      height: calc(15vw + 120px);
-    }
-  }
-  @media screen and (max-width: 481px) {
-    .first-view__image {
-      width: 150px;
-      height: 150px;
-    }
-  }
-
-  /* text */
-  .first-view__text {
-    color: var(--accent-color);
-    font-family: "Lobster";
-    position: absolute;
-    font-size: 4.5em;
-  }
-  @media screen and (min-width: 482px) and (max-width: 1025px) {
-    .first-view__text {
-      font-size: 2.3em;
-    }
-  }
-  @media screen and (max-width: 481px) {
-    .first-view__text {
-      font-size: 1em;
-    }
-  }
-
   .first-view__title {
     color: var(--accent-color);
-    font-family: "Lobster";
-    font-size: 80px;
+    font-family: "Poiret One", cursive;
+    font-size: 100px;
     position: absolute;
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
     .first-view__title {
-      font-size: calc(5vh + 12px);
+      font-size: 3em;
     }
   }
   @media screen and (max-width: 481px) {
@@ -142,64 +85,26 @@
     margin-left: 15vw;
   }
 
-  .center-top {
-    top: 27%;
+  .first-view__text {
+    color: var(--accent-color);
+    font-family: "Poiret One", cursive;
+    position: absolute;
+    font-size: 50px;
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
-    .center-top {
-      top: 35vh;
+    .first-view__text {
+      font-size: 1.5em;
     }
   }
   @media screen and (max-width: 481px) {
-    .center-top {
-      top: 38%;
-    }
-  }
-
-  .bottom {
-    left: 1%;
-    bottom: 2%;
-  }
-
-  /* 円 */
-  .first-view__circle {
-    position: absolute;
-    width: 70vw;
-    height: 70vw;
-    bottom: 0;
-  }
-  .first-view__circle:after {
-    content: "";
-    position: absolute;
-    border: solid var(--main-color);
-    border-width: 70vw 70vw 0 0;
-    border-top-right-radius: 70vw;
-  }
-  @media screen and (min-width: 482px) and (max-width: 1025px) {
-    .first-view__circle {
-      width: calc(45vw + 50vh);
-      height: calc(45vw + 50vh);
-    }
-    .first-view__circle:after {
-      border-width: calc(45vw + 50vh) calc(45vw + 50vh) 0 0;
-      border-top-right-radius: calc(45vw + 50vh);
-    }
-  }
-  @media screen and (max-width: 481px) {
-    .first-view__circle {
-      width: 70vh;
-      height: 70vh;
-    }
-    .first-view__circle:after {
-      border-width: 70vh 70vh 0 0;
-      border-top-right-radius: 70vh;
+    .first-view__text {
+      font-size: 1em;
     }
   }
 
   /* 下矢印 */
   .pic_down {
     position: absolute;
-    right: 4vw;
     display: inline-block;
     width: 28px;
     height: 28px;
@@ -216,5 +121,28 @@
     100% {
       bottom: 20px;
     }
+  }
+
+  /* position */
+
+  .center {
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  @media screen and (max-width: 1026px) {
+    .center {
+      top: 48%;
+    }
+  }
+
+  .bottom-left {
+    left: 1%;
+    bottom: 2%;
+  }
+
+  .bottom-right {
+    right: 4vw;
+    bottom: 2%;
   }
 </style>

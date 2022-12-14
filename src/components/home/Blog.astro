@@ -16,9 +16,9 @@ const { qiita, zenn, watatakuBlog, path } = Astro.props;
 
 <section class="blogs" id="blog">
   <div class="blogs__blog">
-    <h2 class="blogs__blog__title">
+    <h3 class="blogs__blog__title">
       Tech&nbsp;Blogs<span class="blogs__blog__title__sub">技術ブログ</span>
-    </h2>
+    </h3>
     <div class="blogs__blog__inner">
       <h3 class="blogs__blog__inner__title">- Qiita</h3>
       <Qiita perPage={"6"} />
@@ -71,10 +71,6 @@ const { qiita, zenn, watatakuBlog, path } = Astro.props;
 </script>
 
 <style>
-  .blogs {
-    background-color: var(--main-color);
-  }
-
   .blogs__blog {
     width: var(--base-width);
     margin: 0 auto;

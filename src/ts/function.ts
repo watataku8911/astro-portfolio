@@ -9,7 +9,7 @@ export const datePlasticSurgery = (dateString: string): string => {
 
 // 文字を丸める関数
 export const split = (text: string, maxLength: number): string => {
-  let modStr = "・・・";
+  let modStr = "...";
 
   if (text.length > maxLength) {
     modStr = text.substr(0, maxLength) + "...";
@@ -32,16 +32,9 @@ export const opningAnimation = (
   jsLoaderBg: string,
   firstViewTitle: string,
   firstViewtext: string,
-  firstViewImageBox: string,
-  firstViewCircle: string,
   picDown: string
 ) => {
-  gsap.set(firstViewCircle, {
-    opacity: 0,
-    y: 30,
-  });
-
-  gsap.set([firstViewTitle, firstViewtext, firstViewImageBox], {
+  gsap.set([firstViewTitle, firstViewtext], {
     opacity: 0,
     y: -50,
   });
@@ -58,30 +51,6 @@ export const opningAnimation = (
       direction: 1.1,
       delay: 1.5,
     })
-    .to(
-      firstViewCircle,
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: {
-          amount: 0.6,
-        },
-      },
-      "+=0.2"
-    )
-    .to(
-      firstViewImageBox,
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: {
-          amount: 0.6,
-        },
-      },
-      "+=0.2"
-    )
     .to(
       firstViewTitle,
       {
