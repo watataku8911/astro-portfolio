@@ -40,8 +40,8 @@ const Footer = () => {
         </ul>
       </div>
 
-      <div className={styles["footer__copy"]}>
-        <small className={styles["grid"]}>&copy;2022 Watataku.</small>
+      <div className={`${styles["footer__copy"]} ${styles["grid"]}`}>
+        <small>&copy;2022 Watataku.</small>
         <div className={`${styles["footer__copy__icons"]} ${styles["grid"]}`}>
           <a href="https://twitter.com/watataku8911" target="_blank">
             <ReactSVG style={{ width: "25px", height: "25px" }} src={IconTw} />

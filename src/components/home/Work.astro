@@ -39,9 +39,9 @@ const getFetchData: Work = await res.json();
 
 <section class="works" id="work">
   <div class="works__work">
-    <h2 class="works__work__title">
+    <h3 class="works__work__title">
       Works<span class="works__work__title__sub">作品</span>
-    </h2>
+    </h3>
     <div class="works__work__inner">
       {
         getFetchData.contents.map((work: Contents) => (
@@ -73,10 +73,6 @@ const getFetchData: Work = await res.json();
 </script>
 
 <style>
-  .works {
-    background-color: var(--main-color);
-  }
-
   .works__work {
     width: var(--base-width);
     margin: 0 auto;

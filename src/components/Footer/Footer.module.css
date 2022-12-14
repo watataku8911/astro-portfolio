@@ -66,7 +66,6 @@
 .footer__copy small {
   color: var(--accent-color);
   letter-spacing: 1px;
-  font-size: 18px;
 }
 
 .goTop {
@@ -76,7 +75,10 @@
 
 .footer__copy__icons {
   width: 150px;
-  margin: 30px 2vw 30px auto;
+}
+
+.footer__copy {
+  height: 100px;
 }
 
 .footer__copy__icons path {

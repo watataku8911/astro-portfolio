@@ -29,26 +29,6 @@ const baseUrl = Astro.url.origin;
     <meta name="description" content={description} />
     <meta property="url" content={site_url} />
 
-    <!-- さわらびゴシック -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Sawarabi+Gothic"
-      rel="stylesheet"
-    />
-    <!-- Lobster -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anton&family=Libre+Baskerville:wght@700&family=Lobster&family=Nunito:ital,wght@1,300&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Great Vibes -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anton&family=Great+Vibes&family=Libre+Baskerville:wght@700&family=Lobster&family=Nunito:ital,wght@1,300&display=swap"
-      rel="stylesheet"
-    />
-
     <!-- OGP  -->
     <meta property="og:site_name" content={title} />
     <meta property="og:description" content={description} />
@@ -79,6 +59,35 @@ const baseUrl = Astro.url.origin;
       )
     }
     <!-- /Twitter -->
+
+    <!-- google font(全共通) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- さわらびゴシック -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Sawarabi+Gothic"
+      rel="stylesheet"
+    />
+
+    <!-- Poiret One -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Great+Vibes&family=Libre+Baskerville:wght@700&family=Nunito:ital,wght@1,300&family=Poiret+One&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Lobster -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Libre+Baskerville:wght@700&family=Lobster&family=Nunito:ital,wght@1,300&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Great Vibes -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Great+Vibes&family=Libre+Baskerville:wght@700&family=Lobster&family=Nunito:ital,wght@1,300&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- リセットCSS -->
     <link rel="stylesheet" href="/css/reset.css" />
 
     <script>
