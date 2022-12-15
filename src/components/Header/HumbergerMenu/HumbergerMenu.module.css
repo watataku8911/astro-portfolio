@@ -85,23 +85,28 @@
 }
 
 .navi {
-  display: none;
+  opacity: 0;
   z-index: 1;
   height: 100%;
-  width: 100%;
+  width: 0;
   background-color: var(--main-color);
   text-align: center;
   position: fixed;
   top: 0;
   right: 0;
+  transform: transition3d(40px, 0, 0);
+  transition: all 0.5s;
 }
 
 .navi.is-open {
-  display: block;
+  opacity: 1;
+  width: 100%;
+  transform: transition3d(0, 0, 0);
   transition: all 0.5s;
 }
 
 .navi__wrap {
+  overflow-x: hidden;
   display: flex;
   justify-content: center;
   align-items: center;

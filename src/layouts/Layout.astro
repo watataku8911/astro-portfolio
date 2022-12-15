@@ -38,7 +38,7 @@ const baseUrl = Astro.url.origin;
       ogp ? (
         <meta property="og:image" content={ogp} />
       ) : (
-        <meta property="og:image" content={`${baseUrl}/img/Hight_main.jpeg`} />
+        <meta property="og:image" content={`${baseUrl}/img/ogp.png`} />
       )
     }
 
@@ -52,10 +52,7 @@ const baseUrl = Astro.url.origin;
       ogp ? (
         <meta name="twitter:image:src" content={ogp} />
       ) : (
-        <meta
-          name="twitter:image:src"
-          content={`${baseUrl}/img/Hight_main.jpeg`}
-        />
+        <meta name="twitter:image:src" content={`${baseUrl}/img/ogp.png`} />
       )
     }
     <!-- /Twitter -->
