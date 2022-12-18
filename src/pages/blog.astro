@@ -2,8 +2,9 @@
 import Layout from "../layouts/Layout.astro";
 import Blog from "../components/home/Blog.astro";
 import Speacer from "../components/UIKit/Speacer";
+
 // サイトのURLを取得
-const site_url = Astro.url.href;
+const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
 ---
 
 <Layout
