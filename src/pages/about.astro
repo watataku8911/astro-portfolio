@@ -9,7 +9,8 @@ import Career from "../components/about/Career.astro";
 import Speacer from "../components/UIKit/Speacer";
 
 // サイトのURLを取得
-const site_url = Astro.url.href;
+const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
+console.log(site_url);
 ---
 
 <Layout

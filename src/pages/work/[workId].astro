@@ -54,8 +54,8 @@ const res = await fetch(myMicroCMSApiUrl, {
 });
 const getFetchWorkDetail: Contents = await res.json();
 
-// サイトのURL取得
-const site_url = Astro.url.href;
+// サイトのURLを取得
+const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
 
 const title = getFetchWorkDetail.title;
 const comment = getFetchWorkDetail.comment;

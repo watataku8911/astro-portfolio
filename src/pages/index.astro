@@ -5,14 +5,12 @@ import Work from "../components/home/Work.astro";
 import Plofile from "../components/home/Plofile.astro";
 import FirstView from "../components/home/FirstView.astro";
 import Speacer from "../components/UIKit/Speacer";
-
-const site_url = Astro.url.href;
 ---
 
 <Layout
   title="Watataku's ポートフォリオ"
   description="Watatakuのポートフォリオサイトです。"
-  site_url={site_url}
+  site_url="https://watataku-portfolio.vercel.app"
 >
   <FirstView />
   <Speacer height={"150"} />

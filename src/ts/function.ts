@@ -94,9 +94,7 @@ export const surroundSpan = (className: string) => {
   jsText.forEach((target) => {
     let newText = "";
     const text = target.textContent;
-    if (text == null) {
-      console.error("error");
-    } else {
+    if (text !== null) {
       const result = text.split("");
       for (let i = 0; i < result.length; i++) {
         newText += "<span>" + result[i] + "</span>";
@@ -132,18 +130,14 @@ export const smoothScroll = () => {
     scrollElement[i].addEventListener("click", (e) => {
       e.preventDefault();
       const href = scrollElement[i].getAttribute("href");
-      if (href !== null) {
-        const target = document.getElementById(href.replace("#", ""));
-        if (target !== null) {
-          const offset = window.pageYOffset;
-          const rect = target.getBoundingClientRect().top;
-          const position = rect + offset;
-          window.scrollTo({
-            top: position,
-            behavior: "smooth",
-          });
-        }
-      }
+      const target = document.getElementById(href!.replace("#", ""));
+      const offset = window.pageYOffset;
+      const rect = target!.getBoundingClientRect().top;
+      const position = rect + offset;
+      window.scrollTo({
+        top: position,
+        behavior: "smooth",
+      });
     });
   }
 };
