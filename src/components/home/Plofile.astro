@@ -4,7 +4,7 @@ import Linker from "../UIKit/Linker.astro";
 
 <section class="profiles">
   <h3 class="profiles__inner__title">
-    About&nbsp;me<span class="profiles__inner__title__sub">私について</span>
+    About&nbsp;me<span class="profiles__inner__title--sub">私について</span>
   </h3>
 
   <div class="profiles__profile grid">
@@ -80,12 +80,12 @@ import Linker from "../UIKit/Linker.astro";
     }
   }
 
-  .profiles__inner__title__sub {
+  .profiles__inner__title--sub {
     font-size: 0.25em;
     color: var(--subtextColor);
   }
 
-  .profiles__inner__title__sub::before {
+  .profiles__inner__title--sub::before {
     content: "";
     display: inline-block;
     width: 20px;

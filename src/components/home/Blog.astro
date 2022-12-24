@@ -17,7 +17,7 @@ const { qiita, zenn, watatakuBlog, path } = Astro.props;
 <section class="blogs" id="blog">
   <div class="blogs__blog">
     <h3 class="blogs__blog__title">
-      Tech&nbsp;Blogs<span class="blogs__blog__title__sub">技術ブログ</span>
+      Tech&nbsp;Blogs<span class="blogs__blog__title--sub">技術ブログ</span>
     </h3>
     <div class="blogs__blog__inner">
       <h3 class="blogs__blog__inner__title">- Qiita</h3>
@@ -97,12 +97,12 @@ const { qiita, zenn, watatakuBlog, path } = Astro.props;
     }
   }
 
-  .blogs__blog__title__sub {
+  .blogs__blog__title--sub {
     font-size: 0.25em;
     color: var(--subtextColor);
   }
 
-  .blogs__blog__title__sub::before {
+  .blogs__blog__title--sub::before {
     content: "";
     display: inline-block;
     width: 20px;
@@ -151,6 +151,10 @@ const { qiita, zenn, watatakuBlog, path } = Astro.props;
       font-size: 18px;
       transform: translate3d(0, 10px, 0);
     }
+  }
+
+  .blogs__blog__linker.active {
+    animation: animationName 0.5s ease 0.5s 1 forwards;
   }
 
   .blogs__blog__linker.active {
