@@ -40,7 +40,7 @@ const getFetchData: Work = await res.json();
 <section class="works" id="work">
   <div class="works__work">
     <h3 class="works__work__title">
-      Works<span class="works__work__title__sub">作品</span>
+      Works<span class="works__work__title--sub">作品</span>
     </h3>
     <div class="works__work__inner">
       {
@@ -99,12 +99,12 @@ const getFetchData: Work = await res.json();
     }
   }
 
-  .works__work__title__sub {
+  .works__work__title--sub {
     font-size: 0.25em;
     color: var(--subtextColor);
   }
 
-  .works__work__title__sub::before {
+  .works__work__title--sub::before {
     content: "";
     display: inline-block;
     width: 20px;
@@ -126,7 +126,6 @@ const getFetchData: Work = await res.json();
   @media screen and (max-width: 481px) {
     .works__work__inner {
       width: 100%;
-      flex-direction: column;
     }
   }
 

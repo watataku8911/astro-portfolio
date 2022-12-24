@@ -1,6 +1,5 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Linker from "../../components/UIKit/Linker.astro";
 import Speacer from "../../components/UIKit/Speacer";
 
 type Work = {
@@ -78,37 +77,41 @@ const imageSp2 = getFetchWorkDetail.image_sp2.url;
     <div class="detail__inner">
       <h1 class="detail__inner__title">{title}</h1>
       <a href={href} target="_blank"
-        ><img class="image" src={imagePc} alt={title} />
+        ><img class="detail__inner__image" src={imagePc} alt={title} />
       </a>
 
       <Speacer height={"70"} />
       <div class="detail__inner__texts">
         <Speacer height={"60"} />
-        <p class="text">
+        <p class="detail__inner__texts__text">
           URL:
           <a href={href} target="_blank">{href}</a>
         </p>
-        <p class="text">
+        <p class="detail__inner__texts__text">
           使用技術:{useTech}
         </p>
 
-        <div class="text">
+        <div class="detail__inner__texts__text">
           {commentLarge}
         </div>
       </div>
 
       <Speacer height={"60"} />
-      <div class="detail__inner__thumbnail-sp">
-        <p class="item">
-          <img class="image" src={imageSp} alt={title} />
+      <div class="detail__inner__thumbnail">
+        <p class="detail__inner__thumbnail__item">
+          <img
+            class="detail__inner__thumbnail__item__image--sp"
+            src={imageSp}
+            alt={title}
+          />
         </p>
-        <p class="item">
-          <img class="image" src={imageSp2} alt={title} />
+        <p class="detail__inner__thumbnail__item">
+          <img
+            class="detail__inner__thumbnail__item__image--sp"
+            src={imageSp2}
+            alt={title}
+          />
         </p>
-      </div>
-
-      <div class="linker">
-        <Linker href="/work" msg="戻る" target={"_self"} />
       </div>
     </div>
   </section>
@@ -126,11 +129,11 @@ const imageSp2 = getFetchWorkDetail.image_sp2.url;
       if (body != null) {
         body.classList.add("loaded");
       }
-    }, 2500);
+    }, 1500);
   };
 
-  intersection(document.querySelectorAll(".text"));
-  intersection(document.querySelectorAll(".item"));
+  intersection(document.querySelectorAll(".detail__inner__texts__text"));
+  intersection(document.querySelectorAll(".detail__inner__thumbnail__item"));
 </script>
 
 <style>
@@ -162,32 +165,37 @@ const imageSp2 = getFetchWorkDetail.image_sp2.url;
   }
 
   /* 画像関係 */
-  .detail__inner__thumbnail-sp {
+  .detail__inner__image {
+    max-width: 100%;
+    border: solid 1px var(--accent-color);
+  }
+
+  .detail__inner__thumbnail {
     width: 90%;
     margin: 0 auto;
     display: flex;
     justify-content: space-around;
   }
 
-  .item {
+  .detail__inner__thumbnail__item {
     width: 30%;
     opacity: 0;
   }
   @media screen and (max-width: 1026px) {
-    .item {
+    .detail__inner__thumbnail__item {
       width: 45%;
     }
   }
 
-  .item.active:nth-child(1) {
+  .detail__inner__thumbnail__item.active:nth-child(1) {
     animation: animationName 0.5s ease 0.5s 1 forwards;
   }
 
-  .item.active:nth-child(2) {
+  .detail__inner__thumbnail__item.active:nth-child(2) {
     animation: animationName 0.5s ease 0.7s 1 forwards;
   }
 
-  .image {
+  .detail__inner__thumbnail__item__image--sp {
     max-width: 100%;
     border: solid 1px var(--accent-color);
   }
@@ -198,37 +206,43 @@ const imageSp2 = getFetchWorkDetail.image_sp2.url;
     border-top: 2px solid var(--accent-color);
   }
 
-  .text {
+  .detail__inner__texts__text {
     margin-top: 20px;
     word-break: break-all;
     opacity: 0;
-    transform: translateY(30px);
+    transform: translate3d(0, 30px, 0);
   }
 
-  .text.active {
+  .detail__inner__texts__text.active {
     animation: animationName 0.5s ease 0.5s 1 forwards;
   }
 
-  .text a {
+  .detail__inner__texts__text a {
     color: var(--accent-color);
     border-bottom: 1px var(--accent-color) dashed;
   }
 
-  .text a:hover {
+  .detail__inner__texts__text a:hover {
     color: var(--hover-teColor);
     border-bottom: 1px var(--hover-teColor) dashed;
   }
 
-  .linker {
+  .detail__inner__linker {
     font-size: 24px;
     margin: 30px 0 0 0;
     text-align: right;
+    opacity: 0;
+    transform: translate3d(30px, 0, 0);
+  }
+
+  .detail__inner__linker.active {
+    animation: animationName 0.5s ease 0.5s 1 forwards;
   }
 
   @keyframes animationName {
     100% {
       opacity: 1;
-      transform: translate(0, 0);
+      transform: translate3d(0, 0, 0);
     }
   }
 </style>

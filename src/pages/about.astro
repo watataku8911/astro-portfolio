@@ -84,14 +84,14 @@ const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
 
     <div class="abouts-page__about__inner">
       <h2 class="abouts-page__about__title">
-        Career<span class="abouts-page__about__title__sub">キャリア</span>
+        Career<span class="abouts-page__about__title--sub">キャリア</span>
       </h2>
       <Career />
     </div>
     <Speacer height={"80"} />
     <div class="abouts-page__about__inner">
       <h2 class="abouts-page__about__title">
-        Can do it<span class="abouts-page__about__title__sub">できること</span>
+        Can do it<span class="abouts-page__about__title--sub">できること</span>
       </h2>
       <Service />
     </div>
@@ -112,7 +112,7 @@ const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
       if (body != null) {
         body.classList.add("loaded");
       }
-    }, 2500);
+    }, 1500);
   };
 
   intersection(document.querySelectorAll(".abouts-page__about__title"));
@@ -271,12 +271,12 @@ const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
     animation: animationName 0.5s ease 0.5s 1 forwards;
   }
 
-  .abouts-page__about__title__sub {
+  .abouts-page__about__title--sub {
     font-size: 0.5em;
     color: var(--subtextColor);
   }
 
-  .abouts-page__about__title__sub::before {
+  .abouts-page__about__title--sub::before {
     display: inline-block;
     content: "";
     width: 20px;
