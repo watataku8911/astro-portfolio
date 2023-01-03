@@ -11,6 +11,7 @@ const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
   title="BLOG | Watataku's ポートフォリオ"
   description="BLOGページです。"
   site_url={site_url}
+  ogp="https://watataku-portfolio.vercel.app/img/ogp.png"
 >
   <Speacer height={"80"} />
   <Blog
@@ -23,13 +24,13 @@ const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
 
 <script>
   import { closeLoadingScreen } from "../ts/function";
-  const body = document.querySelector("body");
-  const jsLoaderBg = ".js-loader-bg";
+
+  const bodyElement = document.querySelector("body") as HTMLBodyElement;
   window.onload = () => {
     setTimeout(() => {
-      closeLoadingScreen(jsLoaderBg);
-      if (body != null) {
-        body.classList.add("loaded");
+      closeLoadingScreen(".js-loader-bg");
+      if (bodyElement != null) {
+        bodyElement.classList.add("loaded");
       }
     }, 1500);
   };

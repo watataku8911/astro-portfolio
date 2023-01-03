@@ -1,0 +1,37 @@
+.link {
+  display: block;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 30px;
+}
+
+.link:hover {
+  transform: translateY(5px);
+  box-shadow: none;
+}
+
+.icon-button {
+  width: 100px;
+  height: 100px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+}
+@media screen and (max-width: 1026px) {
+  .icon-button {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.icon {
+  width: 45px;
+  height: 45px;
+}
+@media screen and (max-width: 1026px) {
+  .icon {
+    width: 40px;
+    height: 40px;
+  }
+}
