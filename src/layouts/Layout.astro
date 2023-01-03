@@ -3,16 +3,14 @@ import Header from "../components/Header/Header";
 import Contact from "../components/Contact.astro";
 import Footer from "../components/Footer/Footer";
 
-export interface Props {
+type Props = {
   title: string;
   description: string;
   site_url: string;
-  ogp?: string;
-}
+  ogp: string;
+};
 
 const { title, description, site_url, ogp } = Astro.props;
-
-const baseUrl = "https://watataku-portfolio.vercel.app";
 ---
 
 <!DOCTYPE html>
@@ -31,30 +29,18 @@ const baseUrl = "https://watataku-portfolio.vercel.app";
 
     <!-- OGP  -->
     <meta property="og:site_name" content={title} />
+    <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogp} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={site_url} />
-    {
-      ogp ? (
-        <meta property="og:image" content={ogp} />
-      ) : (
-        <meta property="og:image" content={`${baseUrl}/img/ogp.png`} />
-      )
-    }
-
     <!-- /OGP -->
 
     <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    {
-      ogp ? (
-        <meta name="twitter:image:src" content={ogp} />
-      ) : (
-        <meta name="twitter:image:src" content={`${baseUrl}/img/ogp.png`} />
-      )
-    }
+    <meta name="twitter:image:src" content={ogp} />
     <!-- /Twitter -->
 
     <!-- google font(全共通) -->
@@ -78,6 +64,7 @@ const baseUrl = "https://watataku-portfolio.vercel.app";
       href="https://fonts.googleapis.com/css2?family=Anton&family=Libre+Baskerville:wght@700&family=Lobster&family=Nunito:ital,wght@1,300&display=swap"
       rel="stylesheet"
     />
+
     <!-- Great Vibes -->
     <link
       href="https://fonts.googleapis.com/css2?family=Anton&family=Great+Vibes&family=Libre+Baskerville:wght@700&family=Lobster&family=Nunito:ital,wght@1,300&display=swap"
@@ -87,20 +74,9 @@ const baseUrl = "https://watataku-portfolio.vercel.app";
     <!-- リセットCSS -->
     <link rel="stylesheet" href="/css/reset.css" />
 
-    <script>
-      import ASScroll from "@ashthornton/asscroll";
-      import { smoothScroll } from "../ts/function";
-
-      const asscroll = new ASScroll();
-
-      window.addEventListener("load", () => {
-        asscroll.enable();
-      });
-
-      smoothScroll();
-    </script>
     <title>{title}</title>
   </head>
+
   <body>
     <div class="c-loader-bg js-loader-bg">
       <div class="c-loader-dot js-loader-dot-wrap">
@@ -261,4 +237,16 @@ const baseUrl = "https://watataku-portfolio.vercel.app";
       }
     </style>
   </body>
+  <script>
+    import ASScroll from "@ashthornton/asscroll";
+    import { smoothScroll } from "../ts/function";
+
+    const asscroll = new ASScroll();
+
+    window.addEventListener("load", () => {
+      asscroll.enable();
+    });
+
+    smoothScroll();
+  </script>
 </html>

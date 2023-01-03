@@ -120,14 +120,13 @@ const imageSp2 = getFetchWorkDetail.image_sp2.url;
 
 <script>
   import { closeLoadingScreen, intersection } from "../../ts/function";
-  const body = document.querySelector("body");
 
-  const jsLoaderBg = ".js-loader-bg";
+  const bodyElement = document.querySelector("body") as HTMLBodyElement;
   window.onload = () => {
     setTimeout(() => {
-      closeLoadingScreen(jsLoaderBg);
-      if (body != null) {
-        body.classList.add("loaded");
+      closeLoadingScreen(".js-loader-bg");
+      if (bodyElement != null) {
+        bodyElement.classList.add("loaded");
       }
     }, 1500);
   };

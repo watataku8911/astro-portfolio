@@ -18,35 +18,33 @@
     closeLoadingScreen,
   } from "../../ts/function";
 
-  const body = document.querySelector("body");
-
   surroundSpan(".first-view__title__text");
   surroundSpan(".first-view__text");
 
-  const jsLoaderBg = ".js-loader-bg";
-  const firstViewTitle = ".first-view__title__text span";
-  const firstViewtext = ".first-view__text span";
-  const picDown = ".pic_down";
-
-  //メイン
+  const bodyElement = document.querySelector("body") as HTMLBodyElement;
   if (!sessionStorage.getItem("visited")) {
     sessionStorage.setItem("visited", "true");
     window.onload = () => {
       setTimeout(() => {
-        opningAnimation(jsLoaderBg, firstViewTitle, firstViewtext, picDown);
-        if (body != null) {
-          body.classList.add("loaded");
+        opningAnimation(
+          ".js-loader-bg",
+          ".first-view__title span",
+          ".first-view__text span",
+          ".pic_down"
+        );
+        if (bodyElement != null) {
+          bodyElement.classList.add("loaded");
         }
       }, 1500);
     };
   } else {
     window.onload = () => {
       setTimeout(() => {
-        closeLoadingScreen(jsLoaderBg);
+        closeLoadingScreen(".js-loader-bg");
+        if (bodyElement != null) {
+          bodyElement.classList.add("loaded");
+        }
       }, 1500);
-      if (body != null) {
-        body.classList.add("loaded");
-      }
     };
   }
 </script>

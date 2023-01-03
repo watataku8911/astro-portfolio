@@ -1,6 +1,6 @@
 ---
 import WorkCard from "../UIKit/WorkCard .astro";
-import Linker from "../UIKit/Linker.astro";
+import Linker from "../UIKit/Linker/Linker";
 
 type Props = {
   limit: string;
@@ -8,7 +8,9 @@ type Props = {
 };
 
 const { limit, path } = Astro.props;
+
 type Work = {
+  totalCount: number;
   contents: Contents[];
 };
 
