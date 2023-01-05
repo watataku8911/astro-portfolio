@@ -60,11 +60,12 @@ const getFetchData: WatatakuBlog = await res.json();
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    row-gap: 25px;
   }
 
   .watataku-blog::after {
     content: "";
     display: block;
-    width: var(--card-size-width-pc);
+    width: var(--card-size-width-3col);
   }
 </style>

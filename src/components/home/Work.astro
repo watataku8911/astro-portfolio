@@ -121,6 +121,7 @@ const getFetchData: Work = await res.json();
   .works__work__inner {
     width: 95%;
     display: flex;
+    row-gap: 25px;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -134,7 +135,7 @@ const getFetchData: Work = await res.json();
   .works__work__inner::after {
     content: "";
     display: block;
-    width: var(--card-size-width-pc);
+    width: var(--card-size-width-3col);
   }
 
   .works__work__linker {

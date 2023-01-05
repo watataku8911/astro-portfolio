@@ -43,12 +43,12 @@ const getFetchData: Qiita[] = await res.json();
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
-    column-gap: 2vw;
+    row-gap: 25px;
   }
 
   .qiita::after {
     content: "";
     display: block;
-    width: var(--card-size-width-pc);
+    width: var(--card-size-width-3col);
   }
 </style>
