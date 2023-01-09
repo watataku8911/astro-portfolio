@@ -123,7 +123,8 @@
   margin: 30px 2vw 30px auto;
 }
 
-.navi__copy__icons path {
+.navi__copy__icons path,
+.navi__copy__icons svg {
   fill: var(--accent-color);
 }
 
