@@ -81,7 +81,8 @@
   height: 100px;
 }
 
-.footer__copy__icons path {
+.footer__copy__icons path,
+.footer__copy__icons svg {
   fill: var(--accent-color);
 }
 
