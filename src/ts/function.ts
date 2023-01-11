@@ -33,7 +33,6 @@ export const opningAnimation = (
 
   gsap.set(picDown, {
     opacity: 0,
-    y: -30,
   });
 
   gsap
@@ -73,7 +72,6 @@ export const opningAnimation = (
       picDown,
       {
         opacity: 1,
-        y: 0,
         duration: 0.8,
       },
       "+=0.2"
