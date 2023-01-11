@@ -15,12 +15,14 @@ const { target, image, href, title, time } = Astro.props;
 <article class="card">
   <a href={href} target={target} class="link">
     <figure><img src={image} alt={title} class="card__thunbnail" /></figure>
-    <h4 class="card__title">
-      {title}
-    </h4>
-    <time datetime="YYYY年MM月DD日" class="card__date">
-      {datePlasticSurgery(time)}
-    </time>
+    <div class="card__text">
+      <h4 class="card__title text-color">
+        {title}
+      </h4>
+      <time datetime="YYYY年MM月DD日" class="card__date">
+        {datePlasticSurgery(time)}
+      </time>
+    </div>
   </a>
 </article>
 
@@ -33,19 +35,13 @@ const { target, image, href, title, time } = Astro.props;
     text-align: center;
     position: relative;
     width: var(--card-size-width-3col);
-    height: 300px;
     background-color: var(--card-bgColor);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   }
-  @media screen and (min-width: 482px) and (max-width: 1025px) {
-    .card {
-      height: 230px;
-    }
-  }
+
   @media screen and (max-width: 481px) {
     .card {
       width: var(--card-size-width-2col);
-      height: 200px;
     }
   }
 
@@ -70,19 +66,26 @@ const { target, image, href, title, time } = Astro.props;
     }
   }
 
+  .card__text {
+    word-break: break-all;
+    height: 100px;
+  }
+
+  .text-color {
+    color: var(--accent-color);
+  }
+
   .card__title {
     text-align: left;
-    -webkit-line-clamp: 4;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    word-break: break-all;
     padding: 0 15px 0 15px;
     letter-spacing: 1px;
     font-size: 1rem;
-    color: var(--accent-color);
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
-  @media screen and (max-width: 1026px) {
+  @media screen and (max-width: 1025px) {
     .card__title {
       font-size: 0.8rem;
       -webkit-line-clamp: 3;
