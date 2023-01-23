@@ -41,18 +41,30 @@ const HumbergerMenu = () => {
         </ul>
 
         <div className={`${styles["navi__copy__icons"]} ${styles["grid"]}`}>
-          <a href="https://twitter.com/watataku8911" target="_blank">
+          <a
+            href="https://twitter.com/watataku8911"
+            aria-label="Twitter"
+            target="_blank"
+          >
             <ReactSVG style={{ width: "25px", height: "25px" }} src={IconTw} />
           </a>
 
-          <a href="https://instagram.com/watataku8911" target="_blank">
+          <a
+            href="https://instagram.com/watataku8911"
+            aria-label="Instagram"
+            target="_blank"
+          >
             <ReactSVG
               style={{ width: "25px", height: "25px" }}
               src={IconInst}
             />
           </a>
 
-          <a href="https://github.com/watataku8911" target="_blank">
+          <a
+            href="https://github.com/watataku8911"
+            aria-label="Github"
+            target="_blank"
+          >
             <ReactSVG style={{ width: "25px", height: "25px" }} src={IconGit} />
           </a>
         </div>

@@ -39,7 +39,7 @@ const { target, image, href, title, time } = Astro.props;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   }
 
-  @media screen and (max-width: 481px) {
+  @media screen and (max-width: 1026px) {
     .card {
       width: var(--card-size-width-2col);
     }
@@ -52,18 +52,9 @@ const { target, image, href, title, time } = Astro.props;
 
   .card__thunbnail {
     width: 100%;
-    height: 190px;
+    height: auto;
     object-fit: cover;
-  }
-  @media screen and (min-width: 482px) and (max-width: 1025px) {
-    .card__thunbnail {
-      height: 120px;
-    }
-  }
-  @media screen and (max-width: 481px) {
-    .card__thunbnail {
-      height: 80px;
-    }
+    aspect-ratio: 4 / 2;
   }
 
   .card__text {
@@ -78,8 +69,6 @@ const { target, image, href, title, time } = Astro.props;
   .card__title {
     text-align: left;
     padding: 0 15px 0 15px;
-    letter-spacing: 1px;
-    font-size: 1rem;
     -webkit-line-clamp: 2;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -96,7 +85,6 @@ const { target, image, href, title, time } = Astro.props;
     position: absolute;
     bottom: 5px;
     right: 15px;
-    font-size: 1rem;
     color: var(--subtextColor);
   }
   @media screen and (max-width: 1026px) {
