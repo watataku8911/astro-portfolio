@@ -10,9 +10,9 @@ const { image, title, text } = Astro.props;
 
 <article class="service-card">
   <img src={image} alt={title} class="service-card__thunbnail" />
-  <h4 class="service-card__title text-color">
+  <h3 class="service-card__title text-color">
     {title}
-  </h4>
+  </h3>
   <p class="service-card__text text-color">
     {text}
   </p>
@@ -41,9 +41,8 @@ const { image, title, text } = Astro.props;
   }
   @media screen and (max-width: 481px) {
     .service-card {
-      width: 95%;
+      width: var(--card-size-width-1col);
       height: 500px;
-      margin-bottom: 20px;
       transform: translate3d(0, 10px, 0);
     }
   }
@@ -64,25 +63,12 @@ const { image, title, text } = Astro.props;
   .service-card.active:nth-child(3) {
     animation: animationName 0.5s ease 1.5s 1 forwards;
   }
-  @media screen and (max-width: 481px) {
-    .service-card {
-      width: 95vw;
-      height: 500px;
-      margin-bottom: 20px;
-    }
-  }
 
   .service-card__thunbnail {
     max-width: 100%;
     height: auto;
-  }
-  @media screen and (min-width: 482px) and (max-width: 1025px) {
-    .service-card__thunbnail {
-      display: block;
-      max-width: 100%;
-      text-align: center;
-      height: 150px;
-    }
+    aspect-ratio: 1;
+    object-fit: cover;
   }
 
   .text-color {

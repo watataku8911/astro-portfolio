@@ -50,6 +50,7 @@ const Switch = () => {
       <label className={styles["switch"]}>
         <input
           type="checkbox"
+          aria-label="Switch"
           checked={darkTheme ?? false}
           onChange={handleToggle}
         />

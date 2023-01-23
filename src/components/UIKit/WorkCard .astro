@@ -64,7 +64,7 @@ const { image, href, title, use_tech, comment } = Astro.props;
   }
   @media screen and (max-width: 481px) {
     .work-card {
-      width: 100%;
+      width: var(--card-size-width-1col);
       transform: translate3d(0, 10px, 0);
     }
   }
@@ -81,6 +81,7 @@ const { image, href, title, use_tech, comment } = Astro.props;
     max-width: 100%;
     height: auto;
     object-fit: cover;
+    aspect-ratio: 7 / 4;
   }
 
   .work-card__text {

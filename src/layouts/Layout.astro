@@ -49,7 +49,7 @@ const { title, description, site_url, ogp } = Astro.props;
 
     <!-- さわらびゴシック -->
     <link
-      href="https://fonts.googleapis.com/css?family=Sawarabi+Gothic"
+      href="https://fonts.googleapis.com/css?family=Sawarabi+Gothic&display=swap"
       rel="stylesheet"
     />
 
@@ -114,6 +114,7 @@ const { title, description, site_url, ogp } = Astro.props;
         --base-width: 85%;
         --card-size-width-3col: 32%;
         --card-size-width-2col: 48%;
+        --card-size-width-1col: 100%;
       }
 
       [data-theme="dark"] {
