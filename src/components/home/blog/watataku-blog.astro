@@ -20,6 +20,8 @@ type Contents = {
 
 type Thumbnail = {
   url: string;
+  width: number;
+  height: number;
 };
 
 const myMicroCMSApiUrl = `https://${
@@ -41,6 +43,8 @@ const getFetchData: WatatakuBlog = await res.json();
         <Card
           target={"_blank"}
           image={item.thumbnail.url}
+          width={item.thumbnail.width}
+          height={item.thumbnail.height}
           href={"https://watataku-blog.vercel.app/blog/" + item.id}
           title={item.title}
           time={item.createdAt}

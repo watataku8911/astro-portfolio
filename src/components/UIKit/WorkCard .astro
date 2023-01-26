@@ -1,25 +1,51 @@
 ---
-import IconTag from "/icon/icon_tag_navy.svg";
-
 type Props = {
   image: string;
   title: string;
+  width: number;
+  height: number;
   use_tech: string;
   href: string;
   comment: string;
 };
 
-const { image, href, title, use_tech, comment } = Astro.props;
+const { image, title, width, height, use_tech, href, comment } = Astro.props;
 ---
 
 <article class="work-card">
   <a href={href} class="link">
     <figure class="work-card__thumbnail">
-      <img src={image} alt={title} class="work-card__thumbnail__image" />
+      <img
+        src={image}
+        width={width}
+        height={height}
+        alt={title}
+        class="work-card__thumbnail__image"
+      />
     </figure>
     <div class="work-card__text">
       <p class="work-card__tag text-color">
-        <img src={IconTag} alt="タグ" />{use_tech}
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 14 14"
+          fill="#fff"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M8.32414 13L13 8.32414L5.67586 1L1.28966 1.28966L1 5.67586L8.32414 13Z"
+            stroke="#331CBF"
+            stroke-miterlimit="10"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+          <path
+            d="M3.68999 4.51723C3.23293 4.51723 2.86241 4.14671 2.86241 3.68965C2.86241 3.23258 3.23293 2.86206 3.68999 2.86206C4.14706 2.86206 4.51758 3.23258 4.51758 3.68965C4.51758 4.14671 4.14706 4.51723 3.68999 4.51723Z"
+            stroke="#331CBF"
+            stroke-miterlimit="10"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+        {use_tech}
       </p>
 
       <h4 class="work-card__title text-color">
@@ -78,9 +104,6 @@ const { image, href, title, use_tech, comment } = Astro.props;
   }
 
   .work-card__thumbnail__image {
-    max-width: 100%;
-    height: auto;
-    object-fit: cover;
     aspect-ratio: 7 / 4;
   }
 

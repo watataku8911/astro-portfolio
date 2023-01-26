@@ -24,6 +24,8 @@ const getFetchData: Qiita[] = await res.json();
         <Card
           target={"_blank"}
           image="/img/qiita-ogp.png"
+          width={1200}
+          height={630}
           href={qiita.url}
           title={qiita.title}
           time={qiita.created_at}

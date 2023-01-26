@@ -25,6 +25,8 @@ type Contents = {
 
 type Image = {
   url: string;
+  width: number;
+  height: number;
 };
 
 const myMicroCMSApiUrl = `https://${
@@ -49,9 +51,11 @@ const getFetchData: Work = await res.json();
         getFetchData.contents.map((work: Contents) => (
           <WorkCard
             image={work.image.url}
-            href={`/work/${work.id}`}
             title={work.title}
+            width={work.image.width}
+            height={work.image.height}
             use_tech={work.use_tech}
+            href={`/work/${work.id}`}
             comment={work.comment}
           />
         ))

@@ -31,6 +31,8 @@ const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
         <img
           class="abouts-page__about__img"
           src="/img/Hight_icon_watataku's_radius.png"
+          width="400"
+          height="400"
           alt="Watataku"
         />
         <p class="abouts-page__about__name">Watataku</p>
@@ -148,17 +150,16 @@ const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
   }
 
   .abouts-page__about .abouts-page__about__img {
-    max-width: 15%;
-    aspect-ratio: 1;
+    width: 15%;
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
     .abouts-page__about .abouts-page__about__img {
-      max-width: 25%;
+      width: 25%;
     }
   }
   @media screen and (max-width: 481px) {
     .abouts-page__about .abouts-page__about__img {
-      max-width: 50%;
+      width: 50%;
     }
   }
 

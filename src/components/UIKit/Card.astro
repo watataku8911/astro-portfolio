@@ -4,17 +4,27 @@ import { datePlasticSurgery } from "../../ts/function";
 type Props = {
   target: "_blank" | "_self" | "_top" | "_parent";
   image: string;
+  width: number;
+  height: number;
   title: string;
   href: string;
   time: string;
 };
 
-const { target, image, href, title, time } = Astro.props;
+const { target, image, width, height, href, title, time } = Astro.props;
 ---
 
 <article class="card">
   <a href={href} target={target} class="link">
-    <figure><img src={image} alt={title} class="card__thunbnail" /></figure>
+    <figure>
+      <img
+        class="card__thunbnail"
+        src={image}
+        width={width}
+        height={height}
+        alt={title}
+      />
+    </figure>
     <div class="card__text">
       <h4 class="card__title text-color">
         {title}
@@ -51,9 +61,6 @@ const { target, image, href, title, time } = Astro.props;
   }
 
   .card__thunbnail {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
     aspect-ratio: 4 / 2;
   }
 
