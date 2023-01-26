@@ -2,19 +2,25 @@
   {
     "id": 0,
     "image": "/img/coding.png",
-    "service": "Webサイト制作",
+    "width": 2000,
+    "height": 2000,
+    "title": "Webサイト制作",
     "text": "HTML/CSS/Javascriptを使ってコーディングができます。レスポンシブや様々なサイトにも対応可能です。"
   },
   {
     "id": 1,
     "image": "/img/programing.png",
-    "service": "フロントエンド開発",
+    "width": 2000,
+    "height": 2000,
+    "title": "フロントエンド開発",
     "text": "React、Vue.js、TypeScriptなどを使ったフロントエンド開発ができます。"
   },
   {
     "id": 2,
     "image": "/img/api.png",
-    "service": "バックエンド開発",
+    "width": 2000,
+    "height": 2000,
+    "title": "バックエンド開発",
     "text": "JavaやPHPなどのバックエンド言語を使ったAPI開発などができます。"
   }
 ]

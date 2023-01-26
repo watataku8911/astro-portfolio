@@ -5,7 +5,9 @@ import ServiceCard from "../UIKit/ServiceCard.astro";
 type Service = {
   id: number;
   image: string;
-  service: string;
+  title: string;
+  width: number;
+  height: number;
   text: string;
 };
 ---
@@ -15,7 +17,9 @@ type Service = {
     serviceList.map((service: Service) => (
       <ServiceCard
         image={service.image}
-        title={service.service}
+        title={service.title}
+        width={service.width}
+        height={service.height}
         text={service.text}
       />
     ))

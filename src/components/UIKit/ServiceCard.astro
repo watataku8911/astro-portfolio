@@ -1,15 +1,23 @@
 ---
 type Props = {
   image: string;
+  width: number;
+  height: number;
   title: string;
   text: string;
 };
 
-const { image, title, text } = Astro.props;
+const { image, width, height, title, text } = Astro.props;
 ---
 
 <article class="service-card">
-  <img src={image} alt={title} class="service-card__thunbnail" />
+  <img
+    class="service-card__thunbnail"
+    src={image}
+    width={width}
+    height={height}
+    alt={title}
+  />
   <h3 class="service-card__title text-color">
     {title}
   </h3>
@@ -62,13 +70,6 @@ const { image, title, text } = Astro.props;
 
   .service-card.active:nth-child(3) {
     animation: animationName 0.5s ease 1.5s 1 forwards;
-  }
-
-  .service-card__thunbnail {
-    max-width: 100%;
-    height: auto;
-    aspect-ratio: 1;
-    object-fit: cover;
   }
 
   .text-color {

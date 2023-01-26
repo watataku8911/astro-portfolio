@@ -20,6 +20,8 @@ type Contents = {
 
 type Image = {
   url: string;
+  width: number;
+  height: number;
 };
 
 export async function getStaticPaths() {
@@ -62,8 +64,16 @@ const commentLarge = getFetchWorkDetail.comment_large;
 const href = getFetchWorkDetail.href;
 const useTech = getFetchWorkDetail.use_tech;
 const imagePc = getFetchWorkDetail.image.url;
+const widthLarge = getFetchWorkDetail.image.width;
+const heightLarge = getFetchWorkDetail.image.height;
+
 const imageSp = getFetchWorkDetail.image_sp.url;
+const widthSmall = getFetchWorkDetail.image_sp.width;
+const heightSmall = getFetchWorkDetail.image_sp.height;
+
 const imageSp2 = getFetchWorkDetail.image_sp2.url;
+const widthSmall2 = getFetchWorkDetail.image_sp2.width;
+const heightSmall2 = getFetchWorkDetail.image_sp2.height;
 ---
 
 <Layout
@@ -77,7 +87,13 @@ const imageSp2 = getFetchWorkDetail.image_sp2.url;
     <div class="detail__inner">
       <h1 class="detail__inner__title">{title}</h1>
       <a href={href} target="_blank"
-        ><img class="detail__inner__image" src={imagePc} alt={title} />
+        ><img
+          class="detail__inner__image"
+          src={imagePc}
+          width={widthLarge}
+          height={heightLarge}
+          alt={title}
+        />
       </a>
 
       <Speacer height={"70"} />
@@ -102,6 +118,8 @@ const imageSp2 = getFetchWorkDetail.image_sp2.url;
           <img
             class="detail__inner__thumbnail__item__image--sp"
             src={imageSp}
+            width={widthSmall}
+            height={heightSmall}
             alt={title}
           />
         </p>
@@ -109,6 +127,8 @@ const imageSp2 = getFetchWorkDetail.image_sp2.url;
           <img
             class="detail__inner__thumbnail__item__image--sp"
             src={imageSp2}
+            width={widthSmall2}
+            height={heightSmall2}
             alt={title}
           />
         </p>
@@ -165,7 +185,6 @@ const imageSp2 = getFetchWorkDetail.image_sp2.url;
 
   /* 画像関係 */
   .detail__inner__image {
-    max-width: 100%;
     border: solid 1px var(--accent-color);
   }
 
@@ -195,7 +214,6 @@ const imageSp2 = getFetchWorkDetail.image_sp2.url;
   }
 
   .detail__inner__thumbnail__item__image--sp {
-    max-width: 100%;
     border: solid 1px var(--accent-color);
   }
 
