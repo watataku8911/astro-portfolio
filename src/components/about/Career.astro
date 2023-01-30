@@ -55,11 +55,11 @@ const getFetchData: Career = await res.json();
     float: left;
     margin-top: 20px;
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translate3d(-30px, 0, 0);
   }
-  @media screen and (max-width: 481px) {
+  @media screen and (max-width: 1026px) {
     .abouts__about__timeline__date {
-      transform: translateY(30px);
+      transform: translate3d(0, 0, 0);
     }
   }
 
@@ -75,13 +75,18 @@ const getFetchData: Career = await res.json();
     padding-left: 30px;
     padding-bottom: 10px;
     opacity: 0;
-    transform: translateX(-30);
+    transform: translate3d(-30px, 0, 0);
+  }
+  @media screen and (min-width: 482px) and (max-width: 1025px) {
+    .abouts__about__timeline__content {
+      transform: translate3d(0, 0, 0);
+    }
   }
   @media screen and (max-width: 481px) {
     .abouts__about__timeline__content {
       width: 100%;
       border-left: none;
-      transform: translateY(30px);
+      transform: translate3d(0, 0, 0);
     }
   }
 
@@ -113,7 +118,7 @@ const getFetchData: Career = await res.json();
   @keyframes animationName {
     100% {
       opacity: 1;
-      transform: translate(0, 0);
+      transform: translate3d(0, 0, 0);
     }
   }
 </style>
