@@ -211,11 +211,11 @@ const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
     font-size: 25px;
     margin-bottom: 25px;
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translate3d(-30px, 0, 0);
   }
   @media screen and (max-width: 1026px) {
     .abouts-page__about__title {
-      transform: translateY(30px);
+      transform: translate3d(0, 0, 0);
     }
   }
 
@@ -239,7 +239,7 @@ const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
   @keyframes animationName {
     100% {
       opacity: 1;
-      transform: translate(0, 0);
+      transform: translate3d(0, 0, 0);
     }
   }
 </style>
