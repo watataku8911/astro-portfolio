@@ -1,10 +1,10 @@
 .linker__title {
   display: inline-block;
-  color: var(--main-color);
-  background-color: var(--accent-color);
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  color: var(--accent-color);
+  background-color: var(--linker-bg-color);
+  box-shadow: 0px 4px 15px var(--linker-bg-color);
   padding: 8px;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
 .linker__title:hover {
