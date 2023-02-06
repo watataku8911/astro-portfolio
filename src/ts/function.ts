@@ -105,7 +105,7 @@ export const intersection = (domElements: NodeListOf<Element>) => {
   };
   const option = {
     rootMargin: "0px",
-    threshold: 0.5,
+    threshold: [0.25, 0.5],
   };
   const observer = new IntersectionObserver(callback, option);
   domElements.forEach((domElement: Element) => {
