@@ -5,13 +5,14 @@ import WatatakuBlog from "../home/blog/watataku-blog.astro";
 import Linker from "../UIKit/Linker/Linker";
 
 type Props = {
+  limit: string;
   qiita?: string;
   zenn?: string;
   watatakuBlog?: string;
   path?: string;
 };
 
-const { qiita, zenn, watatakuBlog, path } = Astro.props;
+const { limit, qiita, zenn, watatakuBlog, path } = Astro.props;
 ---
 
 <section class="blogs" id="blog">
@@ -21,7 +22,7 @@ const { qiita, zenn, watatakuBlog, path } = Astro.props;
     </h3>
     <div class="blogs__blog__inner">
       <h3 class="blogs__blog__inner__title">- Qiita</h3>
-      <Qiita perPage={"6"} />
+      <Qiita perPage={limit} />
     </div>
     {
       qiita && (
@@ -32,7 +33,7 @@ const { qiita, zenn, watatakuBlog, path } = Astro.props;
     }
     <div class="blogs__blog__inner">
       <h3 class="blogs__blog__inner__title">- Zenn</h3>
-      <Zenn count={"6"} />
+      <Zenn count={limit} />
     </div>
     {
       zenn && (
@@ -43,7 +44,7 @@ const { qiita, zenn, watatakuBlog, path } = Astro.props;
     }
     <div class="blogs__blog__inner">
       <h3 class="blogs__blog__inner__title">- Watataku ブログ</h3>
-      <WatatakuBlog limit={"6"} />
+      <WatatakuBlog limit={limit} />
     </div>
     {
       watatakuBlog && (
@@ -151,10 +152,6 @@ const { qiita, zenn, watatakuBlog, path } = Astro.props;
       font-size: 18px;
       transform: translate3d(0, 0, 0);
     }
-  }
-
-  .blogs__blog__linker.active {
-    animation: animationName 0.5s ease 0.5s 1 forwards;
   }
 
   .blogs__blog__linker.active {
