@@ -18,6 +18,11 @@ body.loaded {
 
 a {
   text-decoration: none;
+  color: var(--accent-color);
+}
+
+a:hover {
+  border-bottom: none;
 }
 
 li {
