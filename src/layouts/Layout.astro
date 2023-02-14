@@ -90,14 +90,14 @@ const { title, description, site_url, ogp } = Astro.props;
       </div>
     </div>
 
-    <Header client:load />
     <div id="top"></div>
+    <Header client:load />
     <div asscroll-container>
-      <div>
+      <main>
         <slot />
         <Contact />
         <Footer client:load />
-      </div>
+      </main>
     </div>
 
     <style is:global>
@@ -106,7 +106,6 @@ const { title, description, site_url, ogp } = Astro.props;
         --sub-color: #fff;
         --accent-color: #000;
         --humberger-color: #555;
-        --text-color: #000;
         --subtextColor: #444;
         --card-bgColor: #fffdf9;
         --border-color: #5bbee5;
@@ -140,7 +139,6 @@ const { title, description, site_url, ogp } = Astro.props;
         z-index: 999;
         display: grid;
         place-items: center;
-        pointer-events: none;
       }
 
       .c-loader-dot {

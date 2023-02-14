@@ -1,13 +1,12 @@
 ---
 import WorkCard from "../UIKit/WorkCard .astro";
-import Linker from "../UIKit/Linker/Linker";
 
 type Props = {
   limit: string;
-  path?: string;
+  title?: string;
 };
 
-const { limit, path } = Astro.props;
+const { limit, title } = Astro.props;
 
 type Work = {
   totalCount: number;
@@ -43,9 +42,14 @@ const getFetchData: Work = await res.json();
 
 <section class="works" id="work">
   <div class="works__work">
-    <h3 class="works__work__title">
-      Works<span class="works__work__title--sub">作品</span>
-    </h3>
+    {
+      title && (
+        <h3 class="works__work__title">
+          Works<span class="works__work__title--sub">{title}</span>
+        </h3>
+      )
+    }
+
     <div class="works__work__inner">
       {
         getFetchData.contents.map((work: Contents) => (
@@ -61,13 +65,6 @@ const getFetchData: Work = await res.json();
         ))
       }
     </div>
-    {
-      path && (
-        <div class="works__work__linker">
-          <Linker href={path} msg="Works→" target={"_self"} />
-        </div>
-      )
-    }
   </div>
 </section>
 

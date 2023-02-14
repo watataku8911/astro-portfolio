@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import Work from "../../components/home/Work.astro";
 import Speacer from "../../components/UIKit/Speacer/Speacer";
 
 type Work = {
@@ -107,9 +108,7 @@ const heightSmall2 = getFetchWorkDetail.image_sp2.height;
           使用技術:{useTech}
         </p>
 
-        <div class="detail__inner__texts__text">
-          {commentLarge}
-        </div>
+        <div class="detail__inner__texts__text" set:html={commentLarge} />
       </div>
 
       <Speacer height={"60"} />
@@ -134,6 +133,8 @@ const heightSmall2 = getFetchWorkDetail.image_sp2.height;
         </p>
       </div>
     </div>
+    <Speacer height={"80"} />
+    <Work limit={"6"} />
   </section>
   <Speacer height={"80"} />
 </Layout>
@@ -189,10 +190,11 @@ const heightSmall2 = getFetchWorkDetail.image_sp2.height;
   }
 
   .detail__inner__thumbnail {
-    width: 90%;
-    margin: 0 auto;
+    width: 100%;
     display: flex;
     justify-content: space-around;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 80px;
   }
 
   .detail__inner__thumbnail__item {
@@ -235,18 +237,12 @@ const heightSmall2 = getFetchWorkDetail.image_sp2.height;
     }
   }
 
+  .detail__inner__texts__text a {
+    border-bottom: 1px var(--accent-color) solid;
+  }
+
   .detail__inner__texts__text.active {
     animation: animationName 0.5s ease 0.5s 1 forwards;
-  }
-
-  .detail__inner__texts__text a {
-    color: var(--accent-color);
-    border-bottom: 1px var(--accent-color) dashed;
-  }
-
-  .detail__inner__texts__text a:hover {
-    color: var(--hover-teColor);
-    border-bottom: 1px var(--hover-teColor) dashed;
   }
 
   .detail__inner__linker {

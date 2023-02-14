@@ -13,9 +13,10 @@ export const range = (start: number, end: number) =>
 
 // ローディング画面を閉じる
 export const closeLoadingScreen = (jsLoaderBg: string) => {
-  gsap.timeline().to(jsLoaderBg, {
-    opacity: 0,
+  gsap.to(jsLoaderBg, {
     direction: 1.1,
+    opacity: 0,
+    pointerEvents: "none",
   });
 };
 
@@ -38,8 +39,9 @@ export const opningAnimation = (
   gsap
     .timeline()
     .to(jsLoaderBg, {
-      opacity: 0,
       direction: 1.1,
+      opacity: 0,
+      pointerEvents: "none",
       delay: 1.5,
     })
     .to(
