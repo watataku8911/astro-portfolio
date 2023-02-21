@@ -116,20 +116,8 @@ const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
 
   .abouts-page__about__title--large {
     color: var(--accent-color);
-    font-size: 4.5em;
-    padding: 2% 0 30px 0;
-  }
-  @media screen and (min-width: 482px) and (max-width: 1025px) {
-    .abouts-page__about__title--large {
-      font-size: 3.5em;
-      padding: 5% 0 20px 0;
-    }
-  }
-  @media screen and (max-width: 481px) {
-    .abouts-page__about__title--large {
-      font-size: 2em;
-      padding: 2% 0 20px 0;
-    }
+    font-size: clamp(1.875rem, -0.313rem + 7.29vw, 4.5rem);
+    padding: 0 0 clamp(30px, 5vw, 60px) 0;
   }
 
   .abouts-page__about__title--large--sub {
@@ -150,17 +138,7 @@ const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
   }
 
   .abouts-page__about .abouts-page__about__img {
-    width: 15%;
-  }
-  @media screen and (min-width: 482px) and (max-width: 1025px) {
-    .abouts-page__about .abouts-page__about__img {
-      width: 25%;
-    }
-  }
-  @media screen and (max-width: 481px) {
-    .abouts-page__about .abouts-page__about__img {
-      width: 50%;
-    }
+    width: max(15%, 150px);
   }
 
   .abouts-page__about__name {
@@ -172,28 +150,18 @@ const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
   .abouts-page__about__text {
     color: var(--accent-color);
     font-size: 14px;
-    width: 50%;
+    width: max(320px, 60%);
     text-align: left;
     margin: 10px auto;
   }
-  @media screen and (max-width: 1026px) {
-    .abouts-page__about__text {
-      width: 95%;
-    }
-  }
 
   .abouts-page__about__sns__area {
-    width: 50%;
+    width: max(320px, 50%);
     margin: 0 auto;
     padding: 40px 0 60px 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-  @media screen and (max-width: 481px) {
-    .abouts-page__about__sns__area {
-      width: 90%;
-    }
   }
 
   .abouts-page__about__inner {
@@ -208,8 +176,8 @@ const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
 
   .abouts-page__about__title {
     color: var(--accent-color);
-    font-size: 25px;
-    margin-bottom: 25px;
+    font-size: 24px;
+    margin-bottom: 24px;
     opacity: 0;
     transform: translate3d(-30px, 0, 0);
   }

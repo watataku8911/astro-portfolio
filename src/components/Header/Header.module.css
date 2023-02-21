@@ -21,7 +21,7 @@
 .header__logo {
   z-index: 2;
   font-family: "Great Vibes", cursive;
-  font-size: 43px;
+  font-size: clamp(2.25rem, 1.977rem + 1.36vw, 3rem);
   padding: 0 0 0 3%;
 }
 
