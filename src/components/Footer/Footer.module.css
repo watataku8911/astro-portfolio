@@ -26,11 +26,12 @@
 
 .footer__logo {
   font-family: "Great Vibes", cursive;
-  font-size: 43px;
+  font-size: clamp(2.25rem, 1.977rem + 1.36vw, 3rem);
 }
 
 .footer__link {
   column-gap: 40px;
+  font-size: clamp(0.5rem, 0.083rem + 1.39vw, 1rem);
 }
 @media screen and (max-width: 481px) {
   .footer__link {
@@ -66,6 +67,7 @@
 .footer__copy small {
   color: var(--accent-color);
   letter-spacing: 1px;
+  font-size: clamp(0.5rem, 0.083rem + 1.39vw, 1rem);
 }
 
 .goTop {

@@ -22,12 +22,10 @@ const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
   import { closeLoadingScreen } from "../ts/function";
 
   const bodyElement = document.querySelector("body") as HTMLBodyElement;
-  // const jsLoaderBgElement = document.querySelector(".js-loader-bg") as HTMLElement;
   window.onload = () => {
     setTimeout(() => {
       closeLoadingScreen(".js-loader-bg");
       if (bodyElement != null) {
-        // jsLoaderBgElement.classList.add()
         bodyElement.classList.add("loaded");
       }
     }, 1500);

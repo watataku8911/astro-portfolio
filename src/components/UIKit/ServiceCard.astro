@@ -34,23 +34,19 @@ const { image, width, height, title, text } = Astro.props;
 
 <style>
   .service-card {
-    position: relative;
     width: var(--card-size-width-3col);
-    height: 548px;
     background-color: var(--card-bgColor);
     opacity: 0;
     transform: translate3d(0, 30px, 0);
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
     .service-card {
-      height: 416px;
       transform: translate3d(0, 0, 0);
     }
   }
   @media screen and (max-width: 481px) {
     .service-card {
       width: var(--card-size-width-1col);
-      height: 496px;
       transform: translate3d(0, 0, 0);
     }
   }
@@ -75,16 +71,24 @@ const { image, width, height, title, text } = Astro.props;
   .text-color {
     color: var(--accent-color);
     word-break: break-all;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: auto;
   }
 
   .service-card__title {
     text-align: center;
-    font-size: 1.25rem;
-    padding: 10px 15px 10px 15px;
+    margin: 8px 0;
+    padding: 0 15px 0 15px;
+    font-size: clamp(1rem, 0.909rem + 0.45vw, 1.25rem);
+    -webkit-line-clamp: 1;
   }
 
   .service-card__text {
+    margin-bottom: 16px;
     padding: 0 15px 0 15px;
+    font-size: clamp(0.75rem, 0.659rem + 0.45vw, 1rem);
+    height: 72px;
   }
 
   @keyframes animationName {

@@ -78,22 +78,14 @@ const { limit, qiita, zenn, watatakuBlog, path } = Astro.props;
   }
 
   .blogs__blog__title {
-    font-size: 4.5em;
-    padding: 0 0 60px 0;
+    font-size: clamp(1.875rem, -0.313rem + 7.29vw, 4.5rem);
+    padding: 0 0 clamp(30px, 5vw, 60px) 0;
     opacity: 0;
     transform: translate3d(-30px, 0, 0);
     color: var(--accent-color);
   }
-  @media screen and (min-width: 482px) and (max-width: 1026px) {
+  @media screen and (max-width: 1026px) {
     .blogs__blog__title {
-      font-size: 3.5em;
-      transform: translate3d(0, 0, 0);
-    }
-  }
-  @media screen and (max-width: 481px) {
-    .blogs__blog__title {
-      font-size: 2em;
-      padding: 0 0 30px 0;
       transform: translate3d(0, 0, 0);
     }
   }
@@ -142,14 +134,13 @@ const { limit, qiita, zenn, watatakuBlog, path } = Astro.props;
   }
 
   .blogs__blog__linker {
-    font-size: 24px;
+    font-size: clamp(1rem, 0.583rem + 1.39vw, 1.5rem);
     text-align: right;
     opacity: 0;
     transform: translate3d(30px, 0, 0);
   }
-  @media screen and (max-width: 1026px) {
+  @media screen and (max-width: 1025px) {
     .blogs__blog__linker {
-      font-size: 18px;
       transform: translate3d(0, 0, 0);
     }
   }
