@@ -76,7 +76,6 @@ const { image, title, width, height, use_tech, href, comment } = Astro.props;
   }
 
   .work-card {
-    width: var(--card-size-width-3col);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     background-color: var(--card-bgColor);
     opacity: 0;
@@ -84,13 +83,11 @@ const { image, title, width, height, use_tech, href, comment } = Astro.props;
   }
   @media screen and (min-width: 482px) and (max-width: 1025px) {
     .work-card {
-      width: var(--card-size-width-2col);
       transform: translate3d(0, 0, 0);
     }
   }
   @media screen and (max-width: 481px) {
     .work-card {
-      width: var(--card-size-width-1col);
       transform: translate3d(0, 0, 0);
     }
   }

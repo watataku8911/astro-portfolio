@@ -44,15 +44,8 @@ const { target, image, width, height, href, title, time } = Astro.props;
   .card {
     text-align: center;
     position: relative;
-    width: var(--card-size-width-3col);
     background-color: var(--card-bgColor);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  }
-
-  @media screen and (max-width: 1026px) {
-    .card {
-      width: var(--card-size-width-2col);
-    }
   }
 
   .card:hover {
@@ -80,10 +73,10 @@ const { target, image, width, height, href, title, time } = Astro.props;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    font-size: clamp(0.8rem, 0.727rem + 0.36vw, 1rem);
   }
   @media screen and (max-width: 1026px) {
     .card__title {
-      font-size: 0.8rem;
       -webkit-line-clamp: 3;
     }
   }
@@ -93,10 +86,6 @@ const { target, image, width, height, href, title, time } = Astro.props;
     bottom: 5px;
     right: 15px;
     color: var(--subtextColor);
-  }
-  @media screen and (max-width: 1026px) {
-    .card__date {
-      font-size: 0.8rem;
-    }
+    font-size: clamp(0.8rem, 0.727rem + 0.36vw, 1rem);
   }
 </style>

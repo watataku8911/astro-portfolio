@@ -60,16 +60,13 @@ const getFetchData: WatatakuBlog = await res.json();
 
 <style>
   .watataku-blog {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    row-gap: 25px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
   }
-
-  .watataku-blog::after {
-    content: "";
-    display: block;
-    width: var(--card-size-width-3col);
+  @media screen and (max-width: 1026px) {
+    .watataku-blog {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 </style>

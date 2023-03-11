@@ -30,13 +30,12 @@
 }
 
 .footer__link {
-  column-gap: 40px;
-  font-size: clamp(0.5rem, 0.083rem + 1.39vw, 1rem);
+  gap: clamp(10px, 3vw, 40px);
+  font-size: clamp(0.813rem, 0.744rem + 0.34vw, 1rem);
 }
 @media screen and (max-width: 481px) {
   .footer__link {
     flex-direction: column;
-    row-gap: 10px;
   }
 }
 
@@ -67,7 +66,6 @@
 .footer__copy small {
   color: var(--accent-color);
   letter-spacing: 1px;
-  font-size: clamp(0.5rem, 0.083rem + 1.39vw, 1rem);
 }
 
 .goTop {
