@@ -56,16 +56,13 @@ const getFetchData: Zenn = await res.json();
 <script></script>
 <style>
   .zenn {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    row-gap: 25px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
   }
-
-  .zenn::after {
-    content: "";
-    display: block;
-    width: var(--card-size-width-3col);
+  @media screen and (max-width: 1026px) {
+    .zenn {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 </style>

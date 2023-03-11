@@ -1,0 +1,226 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Speacer from "../../components/UIKit/Speacer/Speacer";
+import WorkCard from "../../components/UIKit/WorkCard.astro";
+import type { Page, GetStaticPathsOptions } from "astro";
+
+type Props = {
+  page: Page<Contents>;
+};
+
+const { page } = Astro.props;
+
+type Work = {
+  contents: Contents[];
+};
+
+type Contents = {
+  id: string;
+  image: Image;
+  title: string;
+  href: string;
+  use_tech: string;
+  comment: string;
+};
+
+type Image = {
+  url: string;
+  width: number;
+  height: number;
+};
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const myMicroCMSApiUrlWork = `https://${
+    import.meta.env.MICROCMS_SERVICE_DOMAIN_PORTFOLIO
+  }.microcms.io/api/v1/works?orders=-publishedAt?limit=999`;
+
+  const response = await fetch(myMicroCMSApiUrlWork, {
+    headers: {
+      "X-MICROCMS-API-KEY": import.meta.env.MICROCMS_API_KEY_PORTFOLIO,
+    },
+  });
+  const getFetchDataWork: Work = await response.json();
+  return paginate(getFetchDataWork.contents, { pageSize: 6 });
+}
+
+// サイトのURLを取得
+const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
+---
+
+<Layout
+  title="WORKS | Watataku's ポートフォリオ"
+  description="作ったものです"
+  site_url={site_url}
+  ogp="https://watataku-portfolio.vercel.app/img/ogp.png"
+>
+  <Speacer height={"80"} />
+
+  <section class="works" id="work">
+    <div class="works__work">
+      <h3 class="works__work__title">
+        Works<span class="works__work__title--sub">作ったもの</span>
+      </h3>
+
+      <div class="works__work__inner">
+        {
+          page.data.map((work: Contents) => (
+            <WorkCard
+              image={work.image.url}
+              title={work.title}
+              width={work.image.width}
+              height={work.image.height}
+              use_tech={work.use_tech}
+              href={`/work/${work.id}`}
+              comment={work.comment}
+            />
+          ))
+        }
+      </div>
+
+      {
+        page.total >= 6 && (
+          <nav class="works__work__paginate">
+            {/* page.currentPageで現在ページ、page.lastPageで総ページ数を表示 */}
+            <p>
+              page {page.currentPage}/{page.lastPage}
+            </p>
+            <ul>
+              {/* page.url.prevがある場合は前ページへのリンクを表示 */}
+              {page.url.prev && (
+                <li>
+                  <a href={page.url.prev}>PREV</a>
+                </li>
+              )}
+              {/* page.url.nextがある場合は次ページへのリンクを表示 */}
+              {page.url.next && (
+                <li>
+                  <a href={page.url.next}>NEXT</a>
+                </li>
+              )}
+            </ul>
+          </nav>
+        )
+      }
+    </div>
+  </section>
+  <Speacer height={"80"} />
+</Layout>
+
+<script>
+  import { closeLoadingScreen, intersection } from "../../ts/function";
+
+  intersection(document.querySelectorAll(".works__work__title"));
+  intersection(document.querySelectorAll(".works__work__paginate"));
+
+  const bodyElement = document.querySelector("body") as HTMLBodyElement;
+  window.onload = () => {
+    setTimeout(() => {
+      closeLoadingScreen(".js-loader-bg");
+      if (bodyElement != null) {
+        bodyElement.classList.add("loaded");
+      }
+    }, 1500);
+  };
+</script>
+
+<style>
+  .works__work {
+    width: var(--base-width);
+    margin: 0 auto;
+  }
+
+  .works__work__title {
+    color: var(--accent-color);
+    font-size: clamp(1.875rem, -0.313rem + 7.29vw, 4.5rem);
+    padding: 0 0 clamp(30px, 5vw, 45px) 0;
+    opacity: 0;
+    transform: translate3d(-30px, 0, 0);
+  }
+  @media screen and (max-width: 1025px) {
+    .works__work__title {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .works__work__title--sub {
+    font-size: 0.25em;
+    color: var(--subtextColor);
+  }
+
+  .works__work__title--sub::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    border-bottom: solid 1px var(--subtextColor);
+    margin: 0 5px 0 5px;
+  }
+
+  .works__work__title.active {
+    animation: animationName 0.5s ease 0.5s 1 forwards;
+  }
+
+  .works__work__inner {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  @media screen and (min-width: 482px) and (max-width: 1025px) {
+    .works__work__inner {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media screen and (max-width: 481px) {
+    .works__work__inner {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  /* ------------------ページング----------------- */
+  .works__work__paginate {
+    margin-top: 8px;
+    width: 152px;
+    text-align: center;
+    margin-left: auto;
+    opacity: 0;
+    transform: translate3d(30px, 0, 0);
+  }
+  @media screen and (max-width: 481px) {
+    .works__work__paginate {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .works__work__paginate p {
+    color: var(--accent-color);
+  }
+
+  .works__work__paginate ul {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 16px;
+    border-radius: 16px;
+  }
+
+  .works__work__paginate li a {
+    padding: 8px;
+    background-color: var(--sub-color);
+    color: var(--border-color);
+  }
+
+  .works__work__paginate li a:hover {
+    background-color: var(--accent-color);
+  }
+
+  .works__work__paginate.active {
+    animation: animationName 0.5s ease 0.5s 1 forwards;
+  }
+
+  /* ------------------------------------------------- */
+
+  @keyframes animationName {
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+</style>

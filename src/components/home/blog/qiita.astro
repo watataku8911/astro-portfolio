@@ -41,16 +41,13 @@ const getFetchData: Qiita[] = await res.json();
 
 <style>
   .qiita {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    row-gap: 25px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
   }
-
-  .qiita::after {
-    content: "";
-    display: block;
-    width: var(--card-size-width-3col);
+  @media screen and (max-width: 1026px) {
+    .qiita {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 </style>

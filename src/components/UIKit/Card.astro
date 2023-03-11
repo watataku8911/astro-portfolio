@@ -44,15 +44,8 @@ const { target, image, width, height, href, title, time } = Astro.props;
   .card {
     text-align: center;
     position: relative;
-    width: var(--card-size-width-3col);
     background-color: var(--card-bgColor);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  }
-
-  @media screen and (max-width: 1026px) {
-    .card {
-      width: var(--card-size-width-2col);
-    }
   }
 
   .card:hover {
