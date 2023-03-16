@@ -21,6 +21,17 @@ const { limit, qiita, zenn, watatakuBlog, path } = Astro.props;
       Tech&nbsp;Blogs<span class="blogs__blog__title--sub">技術ブログ</span>
     </h3>
     <div class="blogs__blog__inner">
+      <h3 class="blogs__blog__inner__title">- Watataku ブログ</h3>
+      <WatatakuBlog limit={limit} />
+    </div>
+    {
+      watatakuBlog && (
+        <div class="blogs__blog__linker">
+          <Linker href={watatakuBlog} msg="もっとみる" target={"_self"} />
+        </div>
+      )
+    }
+    <div class="blogs__blog__inner">
       <h3 class="blogs__blog__inner__title">- Qiita</h3>
       <Qiita perPage={limit} />
     </div>
@@ -39,17 +50,6 @@ const { limit, qiita, zenn, watatakuBlog, path } = Astro.props;
       zenn && (
         <div class="blogs__blog__linker">
           <Linker href={zenn} msg="もっとみる" target={"_self"} />
-        </div>
-      )
-    }
-    <div class="blogs__blog__inner">
-      <h3 class="blogs__blog__inner__title">- Watataku ブログ</h3>
-      <WatatakuBlog limit={limit} />
-    </div>
-    {
-      watatakuBlog && (
-        <div class="blogs__blog__linker">
-          <Linker href={watatakuBlog} msg="もっとみる" target={"_self"} />
         </div>
       )
     }
@@ -109,13 +109,13 @@ const { limit, qiita, zenn, watatakuBlog, path } = Astro.props;
 
   .blogs__blog__inner:nth-child(2n) {
     opacity: 0;
-    transform: translate3d(30px, 0, 0);
+    transform: translate3d(-30px, 0, 0);
   }
   .blogs__blog__inner:nth-child(2n + 1) {
     opacity: 0;
-    transform: translate3d(-30px, 0, 0);
+    transform: translate3d(30px, 0, 0);
   }
-  @media screen and (max-width: 1026px) {
+  @media screen and (max-width: 1025px) {
     .blogs__blog__inner:nth-child(2n) {
       transform: translate3d(0, 0, 0);
     }
