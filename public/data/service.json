@@ -5,7 +5,7 @@
     "width": 2000,
     "height": 2000,
     "title": "Webサイト制作",
-    "text": "HTML/CSS/Javascriptを使ってコーディングができます。レスポンシブや様々なサイトにも対応可能です。"
+    "text": "HTML/CSS/Javascriptなどを使ってコーディングができます。レスポンシブなどのサイトにも対応可能です。"
   },
   {
     "id": 1,
@@ -13,7 +13,7 @@
     "width": 2000,
     "height": 2000,
     "title": "フロントエンド開発",
-    "text": "React、Vue.js、TypeScriptなどを使ったフロントエンド開発ができます。"
+    "text": "React、Vue.js、TypeScriptなどを使ったフロントエンド開発ができます。Jamstackが得意です。"
   },
   {
     "id": 2,
