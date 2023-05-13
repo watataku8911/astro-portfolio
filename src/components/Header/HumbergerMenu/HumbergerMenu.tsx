@@ -34,7 +34,11 @@ const HumbergerMenu = () => {
             </a>
           </li>
           <li>
-            <a className={styles["text-color"]} href="/blog">
+            <a
+              className={styles["text-color"]}
+              href="https://watataku-blog.vercel.app"
+              target="_blank"
+            >
               Tech Blogs
             </a>
           </li>
