@@ -13,7 +13,7 @@
   "dependencies": {
     "@ashthornton/asscroll": "^2.0.11",
     "@astrojs/react": "^1.2.2",
-    "@types/react-dom": "^18.0.9",
+    "@types/react-dom": "^18.0.11",
     "astro": "^1.6.10",
     "date-fns": "^2.29.3",
     "gsap": "^3.11.3",
@@ -23,6 +23,6 @@
     "react-svg": "^15.1.14"
   },
   "devDependencies": {
-    "@types/react": "^18.0.25"
+    "@types/react": "^18.0.29"
   }
 }

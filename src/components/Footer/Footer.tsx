@@ -28,7 +28,11 @@ const Footer = () => {
             </a>
           </li>
           <li>
-            <a href="/blog" className={styles["text-color"]}>
+            <a
+              href="https://watataku-blog.vercel.app"
+              target="_blank"
+              className={styles["text-color"]}
+            >
               Tech&nbsp;blogs
             </a>
           </li>

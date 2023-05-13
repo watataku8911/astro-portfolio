@@ -1,7 +1,6 @@
 ---
 import serviceList from "../../../public/data/service.json";
 import ServiceCard from "../UIKit/ServiceCard.astro";
-
 type Service = {
   id: number;
   image: string;
@@ -28,11 +27,6 @@ type Service = {
 
 <style>
   .abouts__about__service {
-    /* display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    row-gap: 20px; */
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
@@ -40,11 +34,6 @@ type Service = {
 
   @media screen and (max-width: 481px) {
     .abouts__about__service {
-      /* display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    row-gap: 20px; */
       grid-template-columns: repeat(1, 1fr);
     }
   }
