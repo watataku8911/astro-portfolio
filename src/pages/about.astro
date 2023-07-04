@@ -3,6 +3,7 @@ import IconTw from "/icon/ico_tw.svg";
 import IconInst from "/icon/ico_inst.svg";
 import IconGit from "/icon/github_logo.svg";
 import IconCodePen from "/icon/codepen.svg";
+import IconCodeSandBox from "/icon/code-sandbox.svg";
 import IconQiita from "/icon/qiita_logo.png";
 import IconZenn from "/icon/zenn_logo.svg";
 
@@ -80,6 +81,12 @@ const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
           target={"_blank"}
           icon={IconCodePen}
           alt={"Codepen"}
+        />
+        <IconButton
+          href={"https://codesandbox.io/u/watataku8911"}
+          target={"_blank"}
+          icon={IconCodeSandBox}
+          alt={"CodeSandBox"}
         />
         <IconButton
           href={"https://qiita.com/watataku8911"}
@@ -177,11 +184,11 @@ const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
 
   .abouts-page__about__sns__area {
     margin: 0 auto;
-    padding: 20px 0 60px 0;
+    padding: 16px 0 48px 0;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 1rem clamp(1rem, 3vw, 3.5rem);
+    gap: clamp(1rem, 3.25vw, 4.5rem);
   }
 
   .abouts-page__about__inner {
