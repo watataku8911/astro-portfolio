@@ -1,0 +1,119 @@
+---
+import WorkCard from "../components/UIKit/WorkCard.astro";
+import type { WorkContents } from "../../types/type";
+
+type Props = {
+  works: WorkContents[];
+};
+
+const { works } = Astro.props;
+---
+
+<div class="swiper">
+  <div class="swiper-wrapper">
+    {
+      works.map((work: WorkContents) => (
+        <div class="swiper-slide">
+          <WorkCard
+            image={work.image.url}
+            title={work.title}
+            width={work.image.width}
+            height={work.image.height}
+            use_tech={work.use_tech}
+            href={`/work/${work.id}`}
+            comment={work.comment}
+          />
+        </div>
+      ))
+    }
+  </div>
+  <div class="swiper-pagination"></div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+</div>
+
+<script>
+  import { intersection } from "../ts/function";
+  import Swiper, { Autoplay, Pagination, Navigation } from "swiper";
+  import "swiper/swiper-bundle.css";
+  Swiper.use([Autoplay, Pagination, Navigation]);
+
+  const breakPoint = 1053; // ブレークポイントを設定
+  let swiper: Swiper;
+  let swiperBool: Boolean;
+
+  window.addEventListener(
+    "load",
+    () => {
+      if (breakPoint < window.innerWidth) {
+        swiperBool = false;
+      } else {
+        createSwiper();
+        swiperBool = true;
+      }
+    },
+    false
+  );
+
+  window.addEventListener(
+    "resize",
+    () => {
+      if (breakPoint < window.innerWidth && swiperBool) {
+        swiper.destroy(false, true);
+        swiperBool = false;
+      } else if (breakPoint >= window.innerWidth && !swiperBool) {
+        createSwiper();
+        swiperBool = true;
+      }
+    },
+    false
+  );
+
+  const createSwiper = () => {
+    swiper = new Swiper(".swiper", {
+      loop: true,
+      autoplay: {
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  };
+
+  intersection(document.querySelectorAll(".swiper"));
+</script>
+
+<style>
+  .swiper {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+  }
+
+  .swiper.active {
+    animation: animationName 0.5s ease 0.5s 1 forwards;
+  }
+
+  @keyframes animationName {
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  @media screen and (min-width: 1054px) {
+    .swiper-button-prev,
+    .swiper-button-next {
+      display: none;
+    }
+    .swiper-wrapper {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
