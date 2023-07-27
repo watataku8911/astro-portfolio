@@ -59,12 +59,6 @@ const { image, title, width, height, use_tech, href, comment } = Astro.props;
   </a>
 </article>
 
-<script>
-  import { intersection } from "../../ts/function";
-
-  intersection(document.querySelectorAll(".work-card"));
-</script>
-
 <style>
   .link {
     display: block;
@@ -76,36 +70,22 @@ const { image, title, width, height, use_tech, href, comment } = Astro.props;
   }
 
   .work-card {
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     background-color: var(--card-bgColor);
-    opacity: 0;
-    transform: translate3d(0, 30px, 0);
-  }
-  @media screen and (min-width: 482px) and (max-width: 1025px) {
-    .work-card {
-      transform: translate3d(0, 0, 0);
-    }
-  }
-  @media screen and (max-width: 481px) {
-    .work-card {
-      transform: translate3d(0, 0, 0);
-    }
-  }
-
-  .work-card.active {
-    animation: animationName 0.5s ease 0.5s 1 forwards;
   }
 
   .work-card__thumbnail {
     overflow: hidden;
+    border: solid 4px var(--card-bgColor);
+    box-sizing: border-box;
+    aspect-ratio: 9 / 5;
   }
 
   .work-card__thumbnail__image {
-    aspect-ratio: 7 / 4;
+    height: auto;
   }
 
   .work-card__text {
-    height: 180px;
+    height: 196px;
   }
 
   .text-color {
@@ -117,13 +97,13 @@ const { image, title, width, height, use_tech, href, comment } = Astro.props;
   }
 
   .work-card__tag {
-    padding: 0 0 0 16px;
+    padding: 4px 16px 0 16px;
     font-size: 1em;
     -webkit-line-clamp: 1;
   }
 
   .work-card__title {
-    padding: 10px 16px 0 16px;
+    padding: 8px 16px 0 16px;
     font-size: 1.5em;
     -webkit-line-clamp: 1;
   }
@@ -131,12 +111,5 @@ const { image, title, width, height, use_tech, href, comment } = Astro.props;
   .work-card__comment {
     padding: 16px 16px 0 16px;
     -webkit-line-clamp: 3;
-  }
-
-  @keyframes animationName {
-    100% {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
   }
 </style>

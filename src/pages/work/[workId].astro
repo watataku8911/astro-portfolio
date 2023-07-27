@@ -1,33 +1,11 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import WorkCard from "../../components/UIKit/WorkCard.astro";
+import WorkInner from "../../components/WorkInner.astro";
 import Speacer from "../../components/UIKit/Speacer/Speacer";
-import Linker from "../../components/UIKit/Linker/Linker";
+import type { Work, WorkContents } from "../../../types/type";
 
 // サイトのURLを取得
 const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
-
-type Work = {
-  contents: Contents[];
-};
-
-type Contents = {
-  id: string;
-  image: Image;
-  image_sp: Image;
-  image_sp2: Image;
-  title: string;
-  href: string;
-  use_tech: string;
-  comment: string;
-  comment_large: string;
-};
-
-type Image = {
-  url: string;
-  width: number;
-  height: number;
-};
 
 export async function getStaticPaths() {
   const myMicroCMSApiUrl = `https://${
@@ -40,7 +18,7 @@ export async function getStaticPaths() {
   });
   const getFetchData: Work = await res.json();
 
-  return getFetchData.contents.map((contents: Contents) => ({
+  return getFetchData.contents.map((contents: WorkContents) => ({
     params: {
       workId: contents.id,
     },
@@ -58,7 +36,7 @@ const res = await fetch(myMicroCMSApiUrl, {
     "X-MICROCMS-API-KEY": import.meta.env.MICROCMS_API_KEY_PORTFOLIO,
   },
 });
-const getFetchWorkDetail: Contents = await res.json();
+const getFetchWorkDetail: WorkContents = await res.json();
 const title = getFetchWorkDetail.title;
 const comment = getFetchWorkDetail.comment;
 const commentLarge = getFetchWorkDetail.comment_large;
@@ -146,24 +124,7 @@ const getFetchData: Work = await response.json();
     <Speacer height={"80"} />
     <section class="works" id="work">
       <div class="works__work">
-        <div class="works__work__inner">
-          {
-            getFetchData.contents.map((work: Contents) => (
-              <WorkCard
-                image={work.image.url}
-                title={work.title}
-                width={work.image.width}
-                height={work.image.height}
-                use_tech={work.use_tech}
-                href={`/work/${work.id}`}
-                comment={work.comment}
-              />
-            ))
-          }
-        </div>
-        <div class="works__work__linker">
-          <Linker href={"/work"} msg="一覧に戻る" target={"_self"} />
-        </div>
+        <WorkInner works={getFetchData.contents} />
       </div>
     </section>
   </section>
@@ -185,7 +146,6 @@ const getFetchData: Work = await response.json();
 
   intersection(document.querySelectorAll(".detail__inner__texts__text"));
   intersection(document.querySelectorAll(".detail__inner__thumbnail__item"));
-  intersection(document.querySelectorAll(".works__work__linker"));
 </script>
 
 <style>
@@ -332,23 +292,6 @@ const getFetchData: Work = await response.json();
     .works__work__inner {
       grid-template-columns: repeat(1, 1fr);
     }
-  }
-
-  .works__work__linker {
-    margin-top: 16px;
-    font-size: clamp(1rem, 0.583rem + 1.39vw, 1.5rem);
-    text-align: right;
-    opacity: 0;
-    transform: translate3d(30px, 0, 0);
-  }
-  @media screen and (max-width: 1025px) {
-    .works__work__linker {
-      transform: translate3d(0, 0, 0);
-    }
-  }
-
-  .works__work__linker.active {
-    animation: animationName 0.5s ease 0.5s 1 forwards;
   }
 
   @keyframes animationName {

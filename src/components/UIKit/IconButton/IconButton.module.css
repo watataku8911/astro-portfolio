@@ -14,8 +14,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 112px;
-  height: 112px;
+  width: clamp(80px, 8vw, 112px);
+  height: clamp(80px, 8vw, 112px);
   border-radius: 24px;
 }
 
@@ -28,8 +28,8 @@
 }
 
 .icon {
-  width: 56px;
-  height: 56px;
+  width: clamp(40px, 4vw, 56px);
+  height: clamp(40px, 4vw, 56px);
 }
 
 @media screen and (max-width: 481px) {
