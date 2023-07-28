@@ -6,7 +6,7 @@ import type { Work } from "../../types/type";
 
 const myMicroCMSApiUrlWork = `https://${
   import.meta.env.MICROCMS_SERVICE_DOMAIN_PORTFOLIO
-}.microcms.io/api/v1/works?orders=-publishedAt?limit=999`;
+}.microcms.io/api/v1/works?orders=-publishedAt?limit=3`;
 
 const response = await fetch(myMicroCMSApiUrlWork, {
   headers: {
