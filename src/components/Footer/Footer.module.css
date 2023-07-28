@@ -1,7 +1,6 @@
 .grid {
   display: flex;
   align-items: center;
-  justify-content: space-around;
 }
 
 .footer {
@@ -16,7 +15,10 @@
 }
 
 .footer__inner {
+  justify-content: space-between;
+  width: 80%;
   height: 100px;
+  margin: 0 auto;
 }
 @media screen and (max-width: 481px) {
   .footer__inner {
@@ -30,7 +32,7 @@
 }
 
 .footer__link {
-  gap: clamp(10px, 3vw, 40px);
+  gap: clamp(8px, 3vw, 24px);
   font-size: clamp(0.813rem, 0.744rem + 0.34vw, 1rem);
 }
 @media screen and (max-width: 481px) {
@@ -63,33 +65,21 @@
   opacity: 1;
 }
 
-.footer__copy small {
-  color: var(--accent-color);
-  letter-spacing: 1px;
-}
-
 .goTop {
   color: var(--accent-color);
   text-align: right;
 }
 
-.footer__copy__icons {
-  width: 150px;
+.footer__copy {
+  justify-content: center;
+}
+
+.footer__copy small {
+  font-size: 1.2rem;
+  color: var(--accent-color);
+  letter-spacing: 1px;
 }
 
 .footer__copy {
   height: 100px;
-}
-
-.footer__copy__icons path,
-.footer__copy__icons svg {
-  fill: var(--accent-color);
-}
-
-.footer__copy__icons a {
-  display: block;
-}
-
-.footer__copy__icons a:hover {
-  transform: scale(1.5);
 }
