@@ -50,7 +50,7 @@ const HumbergerMenu = () => {
             aria-label="Twitter"
             target="_blank"
           >
-            <ReactSVG style={{ width: "32px", height: "32px" }} src={IconTw} />
+            <ReactSVG style={{ width: "24px", height: "24px" }} src={IconTw} />
           </a>
 
           <a
@@ -59,7 +59,7 @@ const HumbergerMenu = () => {
             target="_blank"
           >
             <ReactSVG
-              style={{ width: "32px", height: "32px" }}
+              style={{ width: "24px", height: "24px" }}
               src={IconInst}
             />
           </a>
@@ -69,7 +69,7 @@ const HumbergerMenu = () => {
             aria-label="Github"
             target="_blank"
           >
-            <ReactSVG style={{ width: "32px", height: "32px" }} src={IconGit} />
+            <ReactSVG style={{ width: "24px", height: "24px" }} src={IconGit} />
           </a>
         </div>
       </nav>

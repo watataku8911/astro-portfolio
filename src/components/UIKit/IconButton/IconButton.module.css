@@ -4,9 +4,11 @@
   border-radius: 30px;
 }
 
-.link:hover {
-  transform: translateY(5px);
-  box-shadow: none;
+@media (hover: hover) {
+  .link:any-link:hover {
+    transform: translateY(5px);
+    box-shadow: none;
+  }
 }
 
 .icon-button {
