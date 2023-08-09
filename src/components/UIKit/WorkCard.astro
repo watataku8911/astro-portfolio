@@ -64,9 +64,10 @@ const { image, title, width, height, use_tech, href, comment } = Astro.props;
     display: block;
   }
 
-  .link:hover .work-card__thumbnail .work-card__thumbnail__image {
-    box-shadow: none;
-    transform: scale(1.1);
+  @media (hover: hover) {
+    .link:any-link:hover .work-card__thumbnail .work-card__thumbnail__image {
+      transform: scale(1.1);
+    }
   }
 
   .work-card {

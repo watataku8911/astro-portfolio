@@ -59,10 +59,11 @@
   content: "";
   opacity: 0;
 }
-
-.footer__link .text-color:hover::after {
-  transform: translate(0, 0);
-  opacity: 1;
+@media (hover: hover) {
+  .footer__link .text-color:any-link:hover::after {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
 }
 
 .goTop {
