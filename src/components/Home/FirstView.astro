@@ -1,0 +1,135 @@
+<section class="first-view">
+  <div class="first-view__title">
+    <h1 class="first-view__title__text">Welcome&nbsp;to</h1>
+    <h1 class="first-view__title__text margin-left">my&nbsp;portfolio.</h1>
+  </div>
+
+  <div class="first-view__title__sub">
+    <h2 class="first-view__text bottom-left">
+      Markup&nbsp;developer/Frontend&nbsp;developer.
+    </h2>
+    <div class="pic_down right"></div>
+  </div>
+</section>
+
+<script>
+  import {
+    surroundSpan,
+    opningAnimation,
+    closeLoadingScreen,
+  } from "../../ts/function";
+
+  surroundSpan(".first-view__title__text");
+  surroundSpan(".first-view__text");
+
+  const bodyElement = document.querySelector("body") as HTMLBodyElement;
+  if (!sessionStorage.getItem("visited")) {
+    sessionStorage.setItem("visited", "true");
+    window.onload = () => {
+      setTimeout(() => {
+        opningAnimation(
+          ".js-loader-bg",
+          ".first-view__title span",
+          ".first-view__text span",
+          ".pic_down"
+        );
+        if (bodyElement != null) {
+          bodyElement.classList.add("loaded");
+        }
+      }, 1500);
+    };
+  } else {
+    window.onload = () => {
+      setTimeout(() => {
+        closeLoadingScreen(".js-loader-bg");
+        if (bodyElement != null) {
+          bodyElement.classList.add("loaded");
+        }
+      }, 1500);
+    };
+  }
+</script>
+
+<style>
+  /* メイン */
+  .first-view {
+    position: relative;
+    width: 100%;
+    min-height: 100svh;
+    display: grid;
+    place-content: center;
+  }
+
+  .first-view__title {
+    color: var(--accent-color);
+    font-family: "Poiret One", cursive;
+    font-size: clamp(1.75rem, 7vw, 6.5rem);
+    transform: translateY(-10%);
+  }
+
+  .first-view__title__text.margin-left {
+    margin-left: 15vw;
+  }
+
+  .first-view__text {
+    color: var(--accent-color);
+    font-family: "Poiret One", cursive;
+    font-size: clamp(0.875rem, 3.5vw, 3.25rem);
+    position: absolute;
+  }
+
+  .first-view__title__sub {
+    display: flex;
+    justify-content: space-between;
+
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%;
+  }
+
+  /* 下矢印 */
+  .pic_down {
+    position: absolute;
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    margin: 0 10px;
+    border-bottom: 3px solid var(--accent-color);
+    border-right: 3px solid var(--accent-color);
+    transform: rotate(45deg);
+    animation: picdown-pc 1s ease 0.2s infinite;
+  }
+  @media screen and (max-width: 481px) {
+    .pic_down {
+      width: 18px;
+      height: 18px;
+      border-bottom: 2px solid var(--accent-color);
+      border-right: 2px solid var(--accent-color);
+      animation: picdown-sp 1s ease 0.2s infinite;
+    }
+  }
+  @keyframes picdown-pc {
+    0% {
+      bottom: 2%;
+    }
+    100% {
+      bottom: 35px;
+    }
+  }
+  @keyframes picdown-sp {
+    0% {
+      bottom: 2%;
+    }
+    100% {
+      bottom: 20px;
+    }
+  }
+  /* position */
+  .bottom-left {
+    left: 1%;
+    bottom: 2%;
+  }
+  .right {
+    right: 4vw;
+  }
+</style>
