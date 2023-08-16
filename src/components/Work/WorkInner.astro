@@ -1,6 +1,6 @@
 ---
-import WorkCard from "../components/UIKit/WorkCard.astro";
-import type { WorkContents } from "../../types/type";
+import WorkCard from "../UIKit/WorkCard.astro";
+import type { WorkContents } from "../../../types/type";
 
 type Props = {
   works: WorkContents[];
@@ -33,7 +33,7 @@ const { works } = Astro.props;
 </div>
 
 <script>
-  import { intersection } from "../ts/function";
+  import { intersection } from "../../ts/function";
   import Swiper, { Autoplay, Pagination, Navigation } from "swiper";
   import "swiper/swiper-bundle.css";
   Swiper.use([Autoplay, Pagination, Navigation]);
