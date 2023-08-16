@@ -76,7 +76,7 @@
 }
 
 .footer__copy small {
-  font-size: 1.2rem;
+  font-size: clamp(0.813rem, 0.744rem + 0.34vw, 1rem);
   color: var(--accent-color);
   letter-spacing: 1px;
 }
