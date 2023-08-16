@@ -38,7 +38,7 @@ const { works } = Astro.props;
   import "swiper/swiper-bundle.css";
   Swiper.use([Autoplay, Pagination, Navigation]);
 
-  const breakPoint = 1053; // ブレークポイントを設定
+  const breakPoint = 1025; // ブレークポイントを設定
   let swiper: Swiper;
   let swiperBool: Boolean;
 
@@ -105,7 +105,7 @@ const { works } = Astro.props;
       transform: translate3d(0, 0, 0);
     }
   }
-  @media screen and (min-width: 1054px) {
+  @media screen and (min-width: 1026px) {
     .swiper-button-prev,
     .swiper-button-next {
       display: none;
