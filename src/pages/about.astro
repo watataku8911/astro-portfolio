@@ -1,17 +1,12 @@
 ---
-import IconTw from "/icon/ico_tw.svg";
-import IconInst from "/icon/ico_inst.svg";
-import IconGit from "/icon/github_logo.svg";
-import IconCodePen from "/icon/codepen.svg";
-import IconCodeSandBox from "/icon/code-sandbox.svg";
-import IconQiita from "/icon/qiita_logo.png";
-import IconZenn from "/icon/zenn_logo.svg";
-
 import Layout from "../layouts/Layout.astro";
+import TitleLarge from "../components/UIKit/TitleLarge.astro";
 import IconButton from "../components/UIKit/IconButton/IconButton";
-import Service from "../components/about/Service.astro";
-import Career from "../components/about/Career.astro";
+import TitleSmall from "../components/UIKit/TitleSmall.astro";
+import Service from "../components/About/Service.astro";
+import Career from "../components/About/Career.astro";
 import Speacer from "../components/UIKit/Speacer/Speacer";
+import snsArray from "../../public/data/sns.json";
 
 // サイトのURLを取得
 const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
@@ -26,11 +21,7 @@ const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
   <Speacer height={"80"} />
   <section class="abouts-page">
     <div class="abouts-page__about">
-      <h1 class="abouts-page__about__title--large">
-        About&nbsp;me<span class="abouts-page__about__title--large--sub"
-          >私について</span
-        >
-      </h1>
+      <TitleLarge titleEn="About me" titleJa="私について" />
       <div class="image-box">
         <img
           class="abouts-page__about__img"
@@ -58,62 +49,26 @@ const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
         </p>
       </div>
       <div class="abouts-page__about__sns__area">
-        <IconButton
-          href={"https://twitter.com/watataku8911"}
-          target={"_blank"}
-          icon={IconTw}
-          alt={"twitter"}
-        />
-        <IconButton
-          href={"https://instagram.com/watataku8911"}
-          target={"_blank"}
-          icon={IconInst}
-          alt={"Instagram"}
-        />
-        <IconButton
-          href={"https://github.com/watataku8911"}
-          target={"_blank"}
-          icon={IconGit}
-          alt={"Github"}
-        />
-        <IconButton
-          href={"https://codepen.io/watataku8911"}
-          target={"_blank"}
-          icon={IconCodePen}
-          alt={"Codepen"}
-        />
-        <IconButton
-          href={"https://codesandbox.io/u/watataku8911"}
-          target={"_blank"}
-          icon={IconCodeSandBox}
-          alt={"CodeSandBox"}
-        />
-        <IconButton
-          href={"https://qiita.com/watataku8911"}
-          target={"_blank"}
-          icon={IconQiita}
-          alt={"qiita"}
-        />
-        <IconButton
-          href={"https://zenn.dev/watataku"}
-          target={"_blank"}
-          icon={IconZenn}
-          alt={"zenn"}
-        />
+        {
+          snsArray.map((sns) => (
+            <IconButton
+              href={sns.url}
+              target={"_blank"}
+              icon={sns.icon}
+              alt={sns.alt}
+            />
+          ))
+        }
       </div>
     </div>
 
     <div class="abouts-page__about__inner">
-      <h2 class="abouts-page__about__title">
-        Career<span class="abouts-page__about__title--sub">キャリア</span>
-      </h2>
+      <TitleSmall titleEn="Career" titleJa="キャリア" />
       <Career />
     </div>
     <Speacer height={"80"} />
     <div class="abouts-page__about__inner">
-      <h2 class="abouts-page__about__title">
-        Can do it<span class="abouts-page__about__title--sub">できること</span>
-      </h2>
+      <TitleSmall titleEn="Can do it" titleJa="できること" />
       <Service />
     </div>
   </section>
@@ -121,7 +76,7 @@ const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
 </Layout>
 
 <script>
-  import { closeLoadingScreen, intersection } from "../ts/function";
+  import { closeLoadingScreen } from "../ts/function";
 
   const bodyElement = document.querySelector("body") as HTMLBodyElement;
   window.onload = () => {
@@ -132,33 +87,12 @@ const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
       }
     }, 1500);
   };
-
-  intersection(document.querySelectorAll(".abouts-page__about__title"));
 </script>
 
 <style>
   .abouts-page__about {
     width: var(--base-width);
     margin: 0 auto;
-  }
-
-  .abouts-page__about__title--large {
-    color: var(--accent-color);
-    font-size: clamp(1.875rem, -0.313rem + 7.29vw, 4.5rem);
-    padding: 0 0 clamp(30px, 5vw, 60px) 0;
-  }
-
-  .abouts-page__about__title--large--sub {
-    font-size: 0.25em;
-    color: var(--subtextColor);
-  }
-
-  .abouts-page__about__title--large--sub::before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    border-bottom: solid 1px var(--subtextColor);
-    margin: 0 5px 0 5px;
   }
 
   .image-box {
@@ -198,43 +132,6 @@ const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
   @media screen and (max-width: 481px) {
     .abouts-page__about__inner {
       margin: 0 auto 10px;
-    }
-  }
-
-  .abouts-page__about__title {
-    color: var(--accent-color);
-    font-size: 24px;
-    margin-bottom: 24px;
-    opacity: 0;
-    transform: translate3d(-30px, 0, 0);
-  }
-  @media screen and (max-width: 1026px) {
-    .abouts-page__about__title {
-      transform: translate3d(0, 0, 0);
-    }
-  }
-
-  .abouts-page__about__title.active {
-    animation: animationName 0.5s ease 0.5s 1 forwards;
-  }
-
-  .abouts-page__about__title--sub {
-    font-size: 0.5em;
-    color: var(--subtextColor);
-  }
-
-  .abouts-page__about__title--sub::before {
-    display: inline-block;
-    content: "";
-    width: 20px;
-    margin: 0 4px 0 4px;
-    border-bottom: 1px solid var(--subtextColor);
-  }
-
-  @keyframes animationName {
-    100% {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
     }
   }
 </style>

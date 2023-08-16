@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import TitleLarge from "../components/UIKit/TitleLarge.astro";
 import Speacer from "../components/UIKit/Speacer/Speacer";
 import WorkInner from "../components/WorkInner.astro";
 import type { Work } from "../../types/type";
@@ -26,16 +27,13 @@ const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
   ogp="https://watataku-portfolio.vercel.app/img/ogp.png"
 >
   <Speacer height={"80"} />
-
   <section class="works" id="work">
     <div class="works__work">
-      <h3 class="works__work__title">
-        Works<span class="works__work__title--sub">作ったもの</span>
-      </h3>
+      <TitleLarge titleEn="Work" titleJa="作ったもの" />
+      <Speacer height={"40"} />
       <WorkInner works={getFetchDataWork.contents} />
     </div>
   </section>
-
   <Speacer height={"80"} />
 </Layout>
 
@@ -59,44 +57,5 @@ const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
   .works__work {
     width: var(--base-width);
     margin: 0 auto;
-  }
-
-  .works__work__title {
-    color: var(--accent-color);
-    font-size: clamp(1.875rem, -0.313rem + 7.29vw, 4.5rem);
-    padding: 0 0 clamp(30px, 5vw, 45px) 0;
-    opacity: 0;
-    transform: translate3d(-30px, 0, 0);
-  }
-  @media screen and (max-width: 1025px) {
-    .works__work__title {
-      transform: translate3d(0, 0, 0);
-    }
-  }
-
-  .works__work__title--sub {
-    font-size: 0.25em;
-    color: var(--subtextColor);
-  }
-
-  .works__work__title--sub::before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    border-bottom: solid 1px var(--subtextColor);
-    margin: 0 5px 0 5px;
-  }
-
-  .works__work__title.active {
-    animation: animationName 0.5s ease 0.5s 1 forwards;
-  }
-
-  /* ------------------------------------------------- */
-
-  @keyframes animationName {
-    100% {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
   }
 </style>

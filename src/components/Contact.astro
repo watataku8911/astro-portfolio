@@ -1,19 +1,18 @@
 ---
 import Spacer from "./UIKit/Speacer/Speacer";
+import TitleLarge from "./UIKit/TitleLarge.astro";
 ---
 
 <section class="contacts" id="contact">
   <div class="contacts__contact">
-    <h2 class="contacts__contact__title">
-      Contact&nbsp;me<span class="contacts__contact__title__sub">連絡する</span>
-    </h2>
+    <TitleLarge titleEn="Contact me" titleJa="連絡する" />
     <div class="contacts__contact__inner">
       <p class="contacts__contact__inner__message">
         <a
           href="https://twitter.com/watataku8911"
           target="_blank"
-          rel="nofollow noopener noreferrer">Twitter</a
-        >がありますので、ご連絡の際はTwitterのDMまでお願いします。
+          rel="nofollow noopener noreferrer">X(旧:Twitter)</a
+        >がありますので、ご連絡の際はX(旧:Twitter)のDMまでお願いします。
         またフォローの方もお待ちしております。
       </p>
     </div>
@@ -24,7 +23,6 @@ import Spacer from "./UIKit/Speacer/Speacer";
 <script>
   import { intersection } from "../ts/function";
 
-  intersection(document.querySelectorAll(".contacts__contact__title"));
   intersection(document.querySelectorAll(".contacts__contact__inner__message"));
 </script>
 
@@ -36,35 +34,6 @@ import Spacer from "./UIKit/Speacer/Speacer";
   .contacts__contact {
     width: var(--base-width);
     margin: 0 auto;
-  }
-
-  .contacts__contact__title {
-    color: var(--accent-color);
-    font-size: clamp(1.875rem, -0.313rem + 7.29vw, 4.5rem);
-    opacity: 0;
-    transform: translate3d(-30px, 0, 0);
-  }
-  @media screen and (max-width: 1025px) {
-    .contacts__contact__title {
-      transform: translate3d(0, 0, 0);
-    }
-  }
-
-  .contacts__contact__title__sub {
-    color: var(--subtextColor);
-    font-size: 0.25em;
-  }
-
-  .contacts__contact__title__sub::before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    border-bottom: solid 1px var(--subtextColor);
-    margin: 0 5px 0 5px;
-  }
-
-  .contacts__contact__title.active {
-    animation: animationName 0.5s ease 0.5s 1 forwards;
   }
 
   .contacts__contact__inner {
@@ -89,6 +58,13 @@ import Spacer from "./UIKit/Speacer/Speacer";
 
   .contacts__contact__inner__message a {
     border-bottom: 1px var(--accent-color) solid;
+  }
+
+  @media (hover: hover) {
+    .contacts__contact__inner__message a:hover {
+      color: var(--sub-color);
+      border-bottom: none;
+    }
   }
 
   .contacts__contact__inner__message.active {
