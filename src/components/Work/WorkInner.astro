@@ -108,10 +108,10 @@ const { works } = Astro.props;
   @media screen and (min-width: 1026px) {
     .swiper-button-prev,
     .swiper-button-next {
-      display: none;
+      display: none !important;
     }
     .swiper-wrapper {
-      display: grid;
+      display: grid !important;
       gap: 16px;
       grid-template-columns: repeat(3, 1fr);
     }
