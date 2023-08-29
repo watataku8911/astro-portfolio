@@ -51,12 +51,7 @@ const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
       <div class="abouts-page__about__sns__area">
         {
           snsArray.map((sns) => (
-            <IconButton
-              href={sns.url}
-              target={"_blank"}
-              icon={sns.icon}
-              alt={sns.alt}
-            />
+            <IconButton href={sns.url} icon={sns.icon} alt={sns.alt} />
           ))
         }
       </div>
