@@ -1,23 +1,48 @@
 import React from "react";
-import styles from "./IconButton.module.css";
+import styles from "./Footer.module.css";
 
-type Props = {
-  href: string;
-  icon: string;
-  alt: string;
-};
-const IconButton = (props: Props) => {
+const Footer = () => {
   return (
-    <a
-      className={styles.link}
-      href={props.href}
-      target="_blank"
-      rel="nofollow noopener noreferrer"
-    >
-      <p className={styles["icon-button"]}>
-        <img className={styles.icon} src={props.icon} alt={props.alt} />
-      </p>
-    </a>
+    <footer className={styles["footer"]}>
+      <div className={`${styles["footer__inner"]} ${styles["grid"]}`}>
+        <div className={styles["footer__logo"]}>
+          <a className={styles["text-color"]} href="/">
+            T.W
+          </a>
+        </div>
+        <ul className={`${styles["footer__link"]} ${styles["grid"]}`}>
+          <li>
+            <a href="/about" className={styles["text-color"]}>
+              About&nbsp;me
+            </a>
+          </li>
+          <li>
+            <a href="/work" className={styles["text-color"]}>
+              Works
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://watataku-blog.vercel.app"
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+              className={styles["text-color"]}
+            >
+              Tech&nbsp;blogs
+            </a>
+          </li>
+          <li>
+            <a href="#top" className={styles.goTop}>
+              (Back To Top)
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div className={`${styles["footer__copy"]} ${styles["grid"]}`}>
+        <small>&copy;2022 Watataku.</small>
+      </div>
+    </footer>
   );
 };
-export default IconButton;
+export default Footer;
