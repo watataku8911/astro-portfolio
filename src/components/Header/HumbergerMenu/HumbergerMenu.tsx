@@ -38,6 +38,7 @@ const HumbergerMenu = () => {
               className={styles["text-color"]}
               href="https://watataku-blog.vercel.app"
               target="_blank"
+              rel="nofollow noopener noreferrer"
             >
               Tech Blogs
             </a>
@@ -49,6 +50,7 @@ const HumbergerMenu = () => {
             href="https://twitter.com/watataku8911"
             aria-label="Twitter"
             target="_blank"
+            rel="nofollow noopener noreferrer"
           >
             <ReactSVG style={{ width: "24px", height: "24px" }} src={IconTw} />
           </a>
@@ -57,6 +59,7 @@ const HumbergerMenu = () => {
             href="https://instagram.com/watataku8911"
             aria-label="Instagram"
             target="_blank"
+            rel="nofollow noopener noreferrer"
           >
             <ReactSVG
               style={{ width: "24px", height: "24px" }}
@@ -68,6 +71,7 @@ const HumbergerMenu = () => {
             href="https://github.com/watataku8911"
             aria-label="Github"
             target="_blank"
+            rel="nofollow noopener noreferrer"
           >
             <ReactSVG style={{ width: "24px", height: "24px" }} src={IconGit} />
           </a>
