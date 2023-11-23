@@ -56,18 +56,6 @@ const HumbergerMenu = () => {
           </a>
 
           <a
-            href="https://instagram.com/watataku8911"
-            aria-label="Instagram"
-            target="_blank"
-            rel="nofollow noopener noreferrer"
-          >
-            <ReactSVG
-              style={{ width: "24px", height: "24px" }}
-              src={IconInst}
-            />
-          </a>
-
-          <a
             href="https://github.com/watataku8911"
             aria-label="Github"
             target="_blank"
