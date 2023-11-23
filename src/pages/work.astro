@@ -30,11 +30,10 @@ const site_url = "https://watataku-portfolio.vercel.app" + Astro.url.pathname;
   <section class="works" id="work">
     <div class="works__work">
       <TitleLarge titleEn="Work" titleJa="作ったもの" />
-      <Speacer height={"40"} />
       <WorkInner works={getFetchDataWork.contents} />
     </div>
   </section>
-  <Speacer height={"80"} />
+  <Speacer height={"32"} />
 </Layout>
 
 <script>

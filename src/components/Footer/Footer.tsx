@@ -25,6 +25,7 @@ const Footer = () => {
             <a
               href="https://watataku-blog.vercel.app"
               target="_blank"
+              rel="nofollow noopener noreferrer"
               className={styles["text-color"]}
             >
               Tech&nbsp;blogs
