@@ -24,10 +24,9 @@ export const closeLoadingScreen = (jsLoaderBg: string) => {
 export const opningAnimation = (
   jsLoaderBg: string,
   firstViewTitle: string,
-  firstViewtext: string,
   picDown: string
 ) => {
-  gsap.set([firstViewTitle, firstViewtext], {
+  gsap.set([firstViewTitle], {
     opacity: 0,
     y: -50,
   });
@@ -46,19 +45,6 @@ export const opningAnimation = (
     })
     .to(
       firstViewTitle,
-      {
-        opacity: 1,
-        y: 0,
-        stagger: {
-          amount: 1,
-          from: "start",
-          ease: "sine.in",
-        },
-      },
-      "-=0.1"
-    )
-    .to(
-      firstViewtext,
       {
         opacity: 1,
         y: 0,
